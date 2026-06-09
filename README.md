@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nithin.ai Interactive Portfolio
 
-## Getting Started
+This repository contains the fully interactive AI-powered portfolio of Nithin Thirumani. It features a digital twin chatbot that guides users through the portfolio sections and provides concise 5-6 line summaries using Groq AI.
 
-First, run the development server:
+## Features Implemented
 
+- **Hero Section**: Cinematic introduction with profile photo on the right and gradient headings.
+- **AI Companion Bot**: Floating chatbot in bottom-right corner with typing and flying animations.
+- **Typing Animation**: AI responses appear letter by letter, like a JARVIS interface.
+- **Flying Bot Navigation**: Bot flies beside the relevant portfolio section when answering questions.
+- **Portfolio Sections**:
+  - Hero
+  - Research / AI Core
+  - Experience (animated timeline)
+  - Projects (animated cards with tech tags)
+  - Skills (Neural Skill Matrix)
+  - Certifications (Achievement Vault with logos)
+  - Contact
+- **Smooth scrolling** between sections triggered by bot responses.
+- **Groq AI Integration**: AI responses powered by Groq Llama 3.3 70B with Nithin's knowledge base.
+- **Responsive Design**: Optimized for desktop and tablet layouts.
+
+## Next Planned Updates
+
+- Dynamic flying bot positioning directly next to section headings.
+- Section highlights/pulsing on bot arrival.
+- Voice input and output for AI companion.
+- Project & Experience modals with screenshots.
+- Mobile responsive polish.
+- Optional deployment automation for Vercel hosting.
+
+## Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/Nithin0553/Nithin-Portfolio.git
