@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="170" viewBox="0 0 1200 170" role="img" aria-label="Clarivate engineering outcomes: 29 percent lower query latency, 34 percent fewer release validation issues, and 38 percent faster release turnaround">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0E1C2C"/><stop offset="1" stop-color="#17162A"/></linearGradient></defs>
+<rect width="1200" height="170" rx="18" fill="url(#bg)" stroke="#293A54"/>
+<g font-family="Inter,Segoe UI,Arial,sans-serif" text-anchor="middle">
+<text x="200" y="76" font-size="53" font-weight="800" fill="#75F0CA">29% ↓</text>
+<text x="200" y="111" font-size="16" fill="#E0E9F4" font-weight="600">Query latency</text><text x="200" y="136" font-size="12" fill="#91A7C2">Clarivate · engineering impact</text>
+<path d="M400 31V139M800 31V139" stroke="#5B6F91" stroke-opacity=".5"/>
+<text x="600" y="76" font-size="53" font-weight="800" fill="#92B7FF">34% ↓</text>
+<text x="600" y="111" font-size="16" fill="#E0E9F4" font-weight="600">Release-validation issues</text><text x="600" y="136" font-size="12" fill="#91A7C2">Quality through systematic testing</text>
+<text x="1000" y="76" font-size="53" font-weight="800" fill="#C4A9FF">38% ↑</text>
+<text x="1000" y="111" font-size="16" fill="#E0E9F4" font-weight="600">Release turnaround</text><text x="1000" y="136" font-size="12" fill="#91A7C2">Faster, more reliable delivery</text>
+</g></svg>
