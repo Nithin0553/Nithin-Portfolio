@@ -33,7 +33,7 @@ I enjoy going beyond a working demo: understanding why something works, measurin
 
 The best kind of engineering story has evidence behind it. At **Clarivate** (Software Engineer · May 2022–Jun 2024), my work contributed to the following improvements:
 
-<img src="./assets/impact.svg" alt="29% reduced query latency, 34% fewer release-validation issues, and 38% faster release turnaround at Clarivate" width="100%" />
+<img src="./assets/impact.svg" alt="29% reduced application response latency, 34% fewer release-validation defects, and 38% faster release turnaround at Clarivate" width="100%" />
 
 Those numbers represent the work I enjoy most: investigating bottlenecks, improving application behavior, strengthening validation, and making releases less painful.
 
@@ -65,7 +65,7 @@ Those numbers represent the work I enjoy most: investigating bottlenecks, improv
   </tr>
 </table>
 
-**Currently exploring in a private build:** **Jarvis**, an intelligent personal-finance assistant shaped around clearer spending decisions, transaction understanding, and useful reminders. I'm iterating on the product and its AI-backed workflows; its code is not public.
+**In my private workshop:** **Jarvis**, a personal AI-assistant project exploring intelligent interaction and automation. I’m also developing a **personal-finance app** focused on clearer spending decisions and useful financial insights. Both are evolving builds rather than public production releases.
 
 <a id="the-thinking"></a>
 ## 03 / The thinking behind the code
