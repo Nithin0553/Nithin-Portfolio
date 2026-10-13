@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="580" height="270" viewBox="0 0 580 270" role="img" aria-label="Less data. More meaning.">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111C2E"/><stop offset="1" stop-color="#14172A"/></linearGradient><linearGradient id="wire" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#B6A1FF" stop-opacity=".7"/><stop offset="1" stop-color="#7C99FF" stop-opacity=".22"/></linearGradient><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" stroke="#ABC5E5" stroke-opacity=".07" fill="none"/></pattern></defs>
+<rect x="1" y="1" width="578" height="268" rx="16" fill="url(#bg)" stroke="#36445A"/><rect x="1" y="1" width="578" height="268" rx="16" fill="url(#g)"/>
+<path d="M24 24h532" stroke="#B6A1FF" stroke-opacity=".33"/>
+<rect x="27" y="39" width="9" height="9" rx="2" fill="#B6A1FF"/><text x="49" y="48" fill="#B6A1FF" font-size="13" font-weight="700" font-family="Arial,sans-serif" letter-spacing="1.5">AI / RESEARCH</text>
+<text x="26" y="115" fill="#F2F6FD" font-family="Arial,sans-serif" font-size="29" font-weight="760">Less data. More meaning.</text>
+<text x="27" y="149" fill="#A5B9D5" font-family="Arial,sans-serif" font-size="15">Investigating a six-dimensional bottleneck</text>
+<g stroke="url(#wire)" stroke-width="1.8" fill="none"><path d="M27 182H553"/><path d="M400 182v-35h54v-23h60"/><path d="M455 182v31h72"/></g>
+<g fill="#0F2330" stroke="#B6A1FF" stroke-width="1.8"><circle cx="400" cy="182" r="6"/><circle cx="454" cy="147" r="5"/><circle cx="514" cy="124" r="5"/><circle cx="527" cy="213" r="5"/></g>
+<text x="27" y="231" fill="#B6A1FF" font-family="Consolas,monospace" font-size="13">PyTorch · ResNet-18 · GRU · Flickr8k</text>
+<text x="552" y="250" text-anchor="end" fill="#ABBAD4" font-family="Arial,sans-serif" font-size="12">EXPLORE SOURCE ↗</text></svg>
