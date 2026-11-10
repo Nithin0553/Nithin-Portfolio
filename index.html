@@ -50,9 +50,6 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__image" role="img" aria-label="Abstract architectural grid and luminous blue data paths"></div>
-      <div class="hero__scrim" aria-hidden="true"></div>
-      <div class="hero__grid" aria-hidden="true"></div>
       <div class="hero__content container">
         <div class="hero__copy">
 
@@ -213,32 +210,48 @@
     </section>
 
     <section id="timeline" class="section trace-section container" aria-labelledby="timeline-title">
-      <div class="section-header"><h2 id="timeline-title" class="section-heading">A career in <span class="heading-muted">motion.</span></h2><p>Follow the line as you scroll. Select a milestone to inspect the experience behind it.</p></div>
-      <div class="career-journey" aria-label="Career journey milestones">
-        <svg class="career-journey__svg career-journey__svg--desktop" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path class="career-journey__rail" d="M125 88 C200 88 200 37 250 37 S315 88 375 88 C450 88 450 138 500 138 S565 88 625 88 C700 88 700 38 750 38 S815 88 875 88"/>
-          <path class="career-journey__progress" d="M125 88 C200 88 200 37 250 37 S315 88 375 88 C450 88 450 138 500 138 S565 88 625 88 C700 88 700 38 750 38 S815 88 875 88"/>
+      <div class="section-header"><h2 id="timeline-title" class="section-heading">A career in <span class="heading-muted">motion.</span></h2><p>A winding path through the work, learning, and projects that shaped my journey. Follow the blue line as you scroll.</p></div>
+      <div class="career-journey" aria-label="Scroll-driven career journey">
+        <svg class="career-journey__svg career-journey__svg--desktop" viewBox="0 0 1000 2200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path class="career-journey__rail" d="M 860 -80 C 820 180 680 250 590 430 C 490 650 185 680 260 900 C 335 1120 800 1140 725 1380 C 660 1630 305 1650 455 1900 C 520 2010 640 2100 620 2250"/>
+          <path class="career-journey__progress" d="M 860 -80 C 820 180 680 250 590 430 C 490 650 185 680 260 900 C 335 1120 800 1140 725 1380 C 660 1630 305 1650 455 1900 C 520 2010 640 2100 620 2250"/>
         </svg>
-        <svg class="career-journey__svg career-journey__svg--mobile" viewBox="0 0 120 560" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path class="career-journey__rail" d="M48 70 C48 140 80 140 48 210 C16 280 16 280 48 350 C80 420 80 420 48 490"/>
-          <path class="career-journey__progress" d="M48 70 C48 140 80 140 48 210 C16 280 16 280 48 350 C80 420 80 420 48 490"/>
+        <svg class="career-journey__svg career-journey__svg--mobile" viewBox="0 0 400 1560" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path class="career-journey__rail" d="M 135 -40 C 140 20 60 75 62 160 C 62 295 125 345 127 520 C 125 660 60 730 62 900 C 64 1040 128 1105 127 1260 C 127 1390 190 1420 200 1560"/>
+          <path class="career-journey__progress" d="M 135 -40 C 140 20 60 75 62 160 C 62 295 125 345 127 520 C 125 660 60 730 62 900 C 64 1040 128 1105 127 1260 C 127 1390 190 1420 200 1560"/>
         </svg>
         <div class="career-journey__stops">
-          <button class="career-journey__stop" data-event="backend" type="button" aria-pressed="false" aria-label="Inspect May 2022: Backend engineering">
+          <button type="button" class="career-journey__stop" data-event="backend" data-side="left" aria-pressed="false" aria-label="Inspect Building the foundation">
             <span class="career-journey__node" aria-hidden="true"></span>
-            <span class="career-journey__label"><strong class="mono">2022</strong><span>Backend engineering</span></span>
+            <span class="career-journey__label">
+              <span class="career-journey__date mono">MAY 2022 – NOV 2024</span>
+              <strong>Building the foundation</strong>
+              <span class="career-journey__description">Software Development Engineer at AD IT Robotics — developing Python backends, APIs, inventory workflows, and faster SQL searches.</span>
+            </span>
           </button>
-          <button class="career-journey__stop" data-event="education" type="button" aria-pressed="false" aria-label="Inspect January 2025: Master's studies">
+          <button type="button" class="career-journey__stop" data-event="education" data-side="right" aria-pressed="false" aria-label="Inspect Going deeper">
             <span class="career-journey__node" aria-hidden="true"></span>
-            <span class="career-journey__label"><strong class="mono">JAN 2025</strong><span>Master's studies</span></span>
+            <span class="career-journey__label">
+              <span class="career-journey__date mono">JAN 2025 – DEC 2026*</span>
+              <strong>Going deeper</strong>
+              <span class="career-journey__description">Pursuing a Master's in Computer Science at Texas A&M University–Corpus Christi.</span>
+            </span>
           </button>
-          <button class="career-journey__stop is-selected" data-event="research" type="button" aria-pressed="true" aria-label="Inspect March 2025: Graduate research">
+          <button type="button" class="career-journey__stop is-selected" data-event="research" data-side="left" aria-pressed="true" aria-label="Inspect Research & exploration">
             <span class="career-journey__node" aria-hidden="true"></span>
-            <span class="career-journey__label"><strong class="mono">MAR 2025</strong><span>Graduate research</span></span>
+            <span class="career-journey__label">
+              <span class="career-journey__date mono">MAR 2025 – PRESENT</span>
+              <strong>Research & exploration</strong>
+              <span class="career-journey__description">Graduate Research Assistant — automating AI experiments, validating models, and investigating software behavior.</span>
+            </span>
           </button>
-          <button class="career-journey__stop" data-event="milestone" type="button" aria-pressed="false" aria-label="Inspect October 2026: ApplyWise checkpoint">
+          <button type="button" class="career-journey__stop" data-event="milestone" data-side="right" aria-pressed="false" aria-label="Inspect Leading a team">
             <span class="career-journey__node" aria-hidden="true"></span>
-            <span class="career-journey__label"><strong class="mono">OCT 2026</strong><span>ApplyWise checkpoint</span></span>
+            <span class="career-journey__label">
+              <span class="career-journey__date mono">OCT 2026</span>
+              <strong>Leading a team</strong>
+              <span class="career-journey__description">ApplyWise team checkpoint — helping coordinate a six-member engineering team, with 230 automated tests developed together.</span>
+            </span>
           </button>
         </div>
       </div>
@@ -284,7 +297,7 @@
       </div>
     </section>
 
-    <section id="contact" class="contact-section" aria-labelledby="contact-title"><div class="contact-section__glow" aria-hidden="true"></div><div class="container contact-section__inner"><div class="contact-section__content"><div><p class="mono contact-section__overline">HAVE SOMETHING INTERESTING IN MIND?</p><h2 id="contact-title">Let's build something <span>worth using.</span></h2></div><a class="btn-square btn-square--large" href="mailto:nithinthirumani0553@gmail.com?subject=Let's%20build%20something">Start a conversation <span class="btn-arrow" aria-hidden="true">↗</span></a></div><a class="contact-email" href="mailto:nithinthirumani0553@gmail.com">nithinthirumani0553@gmail.com <span aria-hidden="true">↗</span></a></div></section>
+    <section id="contact" class="contact-section" aria-labelledby="contact-title"><div class="container contact-section__inner"><div class="contact-section__content"><div><p class="mono contact-section__overline">HAVE SOMETHING INTERESTING IN MIND?</p><h2 id="contact-title">Let's build something <span>worth using.</span></h2></div><a class="btn-square btn-square--large" href="mailto:nithinthirumani0553@gmail.com?subject=Let's%20build%20something">Start a conversation <span class="btn-arrow" aria-hidden="true">↗</span></a></div><a class="contact-email" href="mailto:nithinthirumani0553@gmail.com">nithinthirumani0553@gmail.com <span aria-hidden="true">↗</span></a></div></section>
   </main>
   <footer class="footer container"><a class="brand brand--footer" href="#top" aria-label="Back to top">N<span class="accent-blue">.</span><span class="brand__muted"> THIRUMANI</span></a><p class="mono">© <span id="copyright-year">2026</span> NITHIN THIRUMANI</p><div class="footer__links mono"><a href="https://github.com/Nithin0553" target="_blank" rel="noopener noreferrer">GITHUB ↗</a><a href="mailto:nithinthirumani0553@gmail.com">EMAIL ↗</a><a href="#top">BACK TO TOP ↑</a></div></footer>
 </body>

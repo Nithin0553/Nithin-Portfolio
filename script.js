@@ -172,28 +172,36 @@ document.querySelectorAll(".timeline-bar[data-start]").forEach(function (bar) {
   bar.style.setProperty("--span", Math.min(100 - left, span).toFixed(2) + "%");
 });
 
-/* Scroll-linked SVG journey.
-   Progress is 0 when the section starts entering the viewport and 1 near
-   when it leaves. Drawing backwards on reverse scroll is intentional. */
-const careerSection = document.getElementById("timeline");
+/* Scroll-linked winding SVG journey.
+   Progress is derived from the journey container itself and is reversible. */
+const careerJourney = document.querySelector(".career-journey");
 const careerPaths = Array.from(document.querySelectorAll(".career-journey__progress"));
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let careerFrameRequested = false;
 
 function updateCareerLine() {
-  if (!careerSection || careerPaths.length === 0) return;
+  if (!careerJourney || careerPaths.length === 0) return;
 
   const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  const bounds = careerSection.getBoundingClientRect();
-  const distance = Math.max(1, bounds.height + viewportHeight * 0.64);
+  const bounds = careerJourney.getBoundingClientRect();
+  // Start when the winding path approaches the viewport. Finish near the
+  // final milestone, with reverse scrolling naturally erasing the line.
+  const drawingDistance = Math.max(1, bounds.height - viewportHeight * 0.1);
   const progress = Math.min(1, Math.max(0,
-    (viewportHeight * 0.82 - bounds.top) / distance
+    (viewportHeight * 0.78 - bounds.top) / drawingDistance
   ));
+  const visibleProgress = reduceMotion.matches ? 1 : progress;
 
   careerPaths.forEach(function (path) {
     const length = path.getTotalLength();
+    if (length <= 0) return;
     path.style.strokeDasharray = String(length);
-    path.style.strokeDashoffset = String(reduceMotion.matches ? 0 : length * (1 - progress));
+    path.style.strokeDashoffset = String(length * (1 - visibleProgress));
+  });
+
+  const thresholds = [0.18, 0.41, 0.64, 0.88];
+  journeyButtons.forEach(function (button, index) {
+    button.classList.toggle("is-reached", visibleProgress >= thresholds[index]);
   });
 }
 
@@ -206,7 +214,7 @@ function scheduleCareerLineUpdate() {
   });
 }
 
-if (careerSection && careerPaths.length > 0) {
+if (careerJourney && careerPaths.length > 0) {
   updateCareerLine();
   window.addEventListener("scroll", scheduleCareerLineUpdate, { passive: true });
   window.addEventListener("resize", scheduleCareerLineUpdate);
