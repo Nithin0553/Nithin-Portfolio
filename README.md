@@ -10,7 +10,7 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 - **Education and certifications** presented separately, with experience in the journey and skills in the scrolling logo strip
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
 - **Logo-only skills marquee** with original full-color technology logos, seamless right-to-left loop, gradient fade, and hover pause
-- **Rounded CTAs and sticky stacking project cards** on desktop and suitably tall mobile screens
+- **Sticky stacking project cards with image-left, information-right design**, original technology logos and GitHub actions
 - **Clean editorial footer** with large name, contact links, and clear copyright information
 - **Arrow-free controls**, consistent Inter-based labels, and a career SVG that terminates at its final milestone
 
@@ -43,10 +43,12 @@ https://nithin0553.github.io/Nithin-Portfolio/
 
 Project descriptions and links live in \`index.html\`. The event-stream detail descriptions live in \`script.js\`. Update both if your work or employment dates change. No analytics, contact-form backend, chatbot, or secret API keys are included.
 
-**Data notes:** 4+ years refers to combined, nonconsecutive employment and graduate research experience. The 230 automated tests figure represents the *ApplyWise team* at its October 2026 checkpoint. Visual data snippets are conceptual, not measured production metrics. Master's graduation is listed as expected in December 2026.
+**Data notes:** 4+ years refers to combined, nonconsecutive employment and graduate research experience. The 230 automated tests figure represents the *ApplyWise team* at its October 2026 checkpoint. Project images are original illustrative UI previews, not captured screenshots or measured production metrics. The numeric highlights use Inter instead of the former slashed-zero monospace font. Master's graduation is listed as expected in December 2026.
+
+**Repository links:** ApplyWise links to its public project repository. Jarvis links to its matching private repository, which visitors cannot access without permission. The data pipeline repository is not published, so its GitHub action is clearly unavailable. The healthcare GitHub link points to a related but different public implementation and is labeled accordingly.
 
 ## Open-source attribution
 
-Technology logos are from [Devicon](https://github.com/devicons/devicon), licensed under the MIT License. See `assets/skills/LICENSE-devicon.txt`. Product and technology logos remain trademarks of their respective owners; inclusion does not imply endorsement.
+Technology logos are from [Devicon](https://github.com/devicons/devicon), licensed under the MIT License. See `assets/skills/LICENSE-devicon.txt`. The Pydantic logo comes from the [Pydantic project](https://github.com/pydantic/pydantic). Product and technology logos remain trademarks of their respective owners; inclusion does not imply endorsement.
 
 © Nithin Thirumani.
