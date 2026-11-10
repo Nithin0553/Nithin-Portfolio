@@ -1,36 +1,46 @@
-# Nithin.ai Interactive Portfolio
+# Nithin Thirumani — Developer Portfolio
 
-This repository contains the fully interactive AI-powered portfolio of Nithin Thirumani. It features a digital twin chatbot that guides users through the portfolio sections and provides concise 5-6 line summaries using Groq AI.
+A ground-up, static personal portfolio with a Dark Tech visual system, built for fast loading and easy hosting on GitHub Pages.
 
-## Features Implemented
+## What is here
 
-- **Hero Section**: Cinematic introduction with profile photo on the right and gradient headings.
-- **AI Companion Bot**: Floating chatbot in bottom-right corner with typing and flying animations.
-- **Typing Animation**: AI responses appear letter by letter, like a JARVIS interface.
-- **Flying Bot Navigation**: Bot flies beside the relevant portfolio section when answering questions.
-- **Portfolio Sections**:
-  - Hero
-  - Research / AI Core
-  - Experience (animated timeline)
-  - Projects (animated cards with tech tags)
-  - Skills (Neural Skill Matrix)
-  - Certifications (Achievement Vault with logos)
-  - Contact
-- **Smooth scrolling** between sections triggered by bot responses.
-- **Groq AI Integration**: AI responses powered by Groq Llama 3.3 70B with Nithin's knowledge base.
-- **Responsive Design**: Optimized for desktop and tablet layouts.
+- **Immersive hero** with original, self-hosted SVG artwork and a fully responsive layout
+- **Selected projects**: Jarvis, ApplyWise, Data Quality & Enrichment, and Healthcare Monitoring
+- **Engineering practice cards** illustrating quality, investigation, and iteration
+- **Interactive career event stream** with calendar-relative span bars and selectable details
+- **Experience, skills, certifications, and education** sourced from the portfolio owner's resume
+- **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
 
-## Next Planned Updates
+## Run locally
 
-- Dynamic flying bot positioning directly next to section headings.
-- Section highlights/pulsing on bot arrival.
-- Voice input and output for AI companion.
-- Project & Experience modals with screenshots.
-- Mobile responsive polish.
-- Optional deployment automation for Vercel hosting.
+There are no framework dependencies or build steps.
 
-## Installation
+Open \`index.html\` in your browser, or serve it from a local server:
 
-1. Clone the repository
-```bash
-git clone https://github.com/Nithin0553/Nithin-Portfolio.git
+\`\`\`sh
+python -m http.server 8000
+\`\`\`
+
+Visit http://localhost:8000.
+
+## Publish on GitHub Pages
+
+In repository **Settings → Pages**, set **Source** to **Deploy from a branch**, then select **main** and **/(root)** and save. The site will be available at:
+
+https://nithin0553.github.io/Nithin-Portfolio/
+
+## Files
+
+- \`index.html\`: all site content and semantic layout
+- \`styles.css\`: responsive visual system
+- \`script.js\`: mobile navigation, trace filtering, and timeline calculations
+- \`assets/hero-system.svg\`: original background illustration
+- \`assets/favicon.svg\`: original N monogram
+
+## Edit content
+
+Project descriptions and links live in \`index.html\`. The event-stream detail descriptions live in \`script.js\`. Update both if your work or employment dates change. No analytics, contact-form backend, chatbot, or secret API keys are included.
+
+**Data notes:** 4+ years refers to combined, nonconsecutive employment and graduate research experience. The 230 automated tests figure represents the *ApplyWise team* at its October 2026 checkpoint. Visual data snippets are conceptual, not measured production metrics. Master's graduation is listed as expected in December 2026.
+
+© Nithin Thirumani.
