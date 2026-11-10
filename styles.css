@@ -521,12 +521,12 @@ h1,h2,h3 { font-family: var(--display); }
   width: 45px;
   height: 45px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: .6;
-  transition: opacity .25s ease, transform .25s ease;
+  /* Preserve each technology's original official color palette. */
+  filter: none;
+  opacity: 1;
+  transition: transform .25s ease;
 }
 .skill-logo:hover img {
-  opacity: 1;
   transform: scale(1.08);
 }
 .skill-marquee:hover .skill-marquee__track,
@@ -847,5 +847,52 @@ h1,h2,h3 { font-family: var(--display); }
   .contact-section h2 {
     font-size: clamp(33px, 8.2vw, 47px);
     letter-spacing: -0.055em;
+  }
+}
+
+
+/* Softer card surfaces. Keep button corners square and v-chip statuses fully
+   pill-shaped, preserving their distinct interaction styles. */
+:root {
+  --card-radius: 22px;
+  --panel-radius: 16px;
+  --inner-radius: 11px;
+}
+.project-stack .stack-card {
+  border-radius: var(--card-radius);
+}
+.stack-card__visual,
+.mini-window,
+.applywise-visual,
+.quality-visual,
+.service-diagram {
+  border-radius: var(--panel-radius);
+  overflow: hidden;
+}
+.finance-flow > div,
+.service-diagram__nodes span,
+.service-diagram__api,
+.tag-row span,
+.skills-tags span {
+  border-radius: 7px;
+}
+.metrics-grid,
+.trace-shell,
+.about-panel,
+.credential-panel {
+  border-radius: var(--panel-radius);
+}
+.metrics-grid,
+.trace-shell {
+  overflow: hidden;
+}
+.trace-detail {
+  border-radius: var(--inner-radius);
+}
+@media (max-width: 700px) {
+  :root {
+    --card-radius: 17px;
+    --panel-radius: 12px;
+    --inner-radius: 9px;
   }
 }
