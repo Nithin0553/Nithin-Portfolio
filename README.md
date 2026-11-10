@@ -7,8 +7,7 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 - **Solid-black hero and page backgrounds** without decorative hero artwork, background gradients, or glow overlays
 - **Selected projects**: Jarvis, ApplyWise, Data Quality & Enrichment, and Healthcare Monitoring
 - **Full-height, winding SVG career journey** with alternating milestones, reverse-on-scroll blue stroke animation, responsive layout, clickable events, and reduced-motion support
-- **Interactive career event stream** with calendar-relative span bars and selectable details
-- **Experience, skills, certifications, and education** sourced from the portfolio owner's resume
+- **Education and certifications** presented separately, with experience in the journey and skills in the scrolling logo strip
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
 - **Logo-only skills marquee** with original full-color technology logos, seamless right-to-left loop, gradient fade, and hover pause
 - **Rounded CTAs and sticky stacking project cards** on desktop and suitably tall mobile screens
@@ -35,7 +34,7 @@ https://nithin0553.github.io/Nithin-Portfolio/
 
 - \`index.html\`: all site content and semantic layout
 - \`styles.css\`: responsive visual system
-- \`script.js\`: mobile navigation, trace filtering, calendar bars, and scroll-progress SVG drawing
+- \`script.js\`: mobile navigation, milestone selection and scroll-progress SVG drawing
 - \`assets/favicon.svg\`: original N monogram
 
 ## Edit content

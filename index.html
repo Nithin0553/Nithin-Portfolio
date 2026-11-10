@@ -209,7 +209,7 @@
       </div>
     </section>
 
-    <section id="timeline" class="section trace-section container" aria-labelledby="timeline-title">
+    <section id="timeline" class="section journey-section container" aria-labelledby="timeline-title">
       <div class="section-header"><h2 id="timeline-title" class="section-heading">A career in <span class="heading-muted">motion.</span></h2><p>A winding path through the work, learning, and projects that shaped my journey. Follow the blue line as you scroll.</p></div>
       <div class="career-journey" aria-label="Scroll-driven career journey">
         <svg class="career-journey__svg career-journey__svg--desktop" viewBox="0 0 1000 2200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
@@ -221,7 +221,7 @@
           <path class="career-journey__progress" d="M 135 -40 C 140 20 60 75 62 160 C 62 295 125 345 127 520 C 125 660 60 730 62 900 C 64 1040 128 1105 127 1260 C 127 1390 190 1420 200 1560"/>
         </svg>
         <div class="career-journey__stops">
-          <button type="button" class="career-journey__stop" data-event="backend" data-side="left" aria-pressed="false" aria-label="Inspect Building the foundation">
+          <button type="button" class="career-journey__stop" data-event="backend" data-side="left" aria-pressed="false" aria-label="Highlight Building the foundation">
             <span class="career-journey__node" aria-hidden="true"></span>
             <span class="career-journey__label">
               <span class="career-journey__date mono">MAY 2022 – NOV 2024</span>
@@ -229,7 +229,7 @@
               <span class="career-journey__description">Software Development Engineer at AD IT Robotics — developing Python backends, APIs, inventory workflows, and faster SQL searches.</span>
             </span>
           </button>
-          <button type="button" class="career-journey__stop" data-event="education" data-side="right" aria-pressed="false" aria-label="Inspect Going deeper">
+          <button type="button" class="career-journey__stop" data-event="education" data-side="right" aria-pressed="false" aria-label="Highlight Going deeper">
             <span class="career-journey__node" aria-hidden="true"></span>
             <span class="career-journey__label">
               <span class="career-journey__date mono">JAN 2025 – DEC 2026*</span>
@@ -237,7 +237,7 @@
               <span class="career-journey__description">Pursuing a Master's in Computer Science at Texas A&M University–Corpus Christi.</span>
             </span>
           </button>
-          <button type="button" class="career-journey__stop is-selected" data-event="research" data-side="left" aria-pressed="true" aria-label="Inspect Research & exploration">
+          <button type="button" class="career-journey__stop is-selected" data-event="research" data-side="left" aria-pressed="true" aria-label="Highlight Research & exploration">
             <span class="career-journey__node" aria-hidden="true"></span>
             <span class="career-journey__label">
               <span class="career-journey__date mono">MAR 2025 – PRESENT</span>
@@ -245,7 +245,7 @@
               <span class="career-journey__description">Graduate Research Assistant — automating AI experiments, validating models, and investigating software behavior.</span>
             </span>
           </button>
-          <button type="button" class="career-journey__stop" data-event="milestone" data-side="right" aria-pressed="false" aria-label="Inspect Leading a team">
+          <button type="button" class="career-journey__stop" data-event="milestone" data-side="right" aria-pressed="false" aria-label="Highlight Leading a team">
             <span class="career-journey__node" aria-hidden="true"></span>
             <span class="career-journey__label">
               <span class="career-journey__date mono">OCT 2026</span>
@@ -255,42 +255,10 @@
           </button>
         </div>
       </div>
-      <div class="trace-shell">
-        <div class="trace-shell__head mono"><div><span class="trace-shell__caption">TRACE ID</span><strong>NTH-ENGINEERING-001</strong></div><div class="trace-shell__head-right"><span class="v-chip v-chip--success"><span class="status-dot"></span>IN PROGRESS</span><span class="v-chip"><span class="status-dot status-dot--blue"></span>4 EVENTS</span></div></div>
-        <div class="trace-shell__body">
-          <aside class="trace-sidebar" aria-label="Career events">
-            <div class="trace-sidebar__title mono">EVENTS <span>04</span></div>
-            <button type="button" class="trace-event" data-event="backend" aria-pressed="false"><span class="trace-event__line"><i class="trace-event__dot"></i><strong class="mono">EVT-001</strong></span><small>Backend engineering</small><span class="trace-event__date mono">MAY 2022</span></button>
-            <button type="button" class="trace-event is-selected" data-event="research" aria-pressed="true"><span class="trace-event__line"><i class="trace-event__dot trace-event__dot--active"></i><strong class="mono">EVT-002</strong></span><small>Graduate research</small><span class="trace-event__date mono">MAR 2025</span></button>
-            <button type="button" class="trace-event" data-event="education" aria-pressed="false"><span class="trace-event__line"><i class="trace-event__dot"></i><strong class="mono">EVT-003</strong></span><small>Master's studies</small><span class="trace-event__date mono">JAN 2025</span></button>
-            <button type="button" class="trace-event" data-event="milestone" aria-pressed="false"><span class="trace-event__line"><i class="trace-event__dot"></i><strong class="mono">EVT-004</strong></span><small>ApplyWise checkpoint</small><span class="trace-event__date mono">OCT 2026</span></button>
-            <div class="trace-sidebar__foot mono">SELECT AN EVENT ↗</div>
-          </aside>
-          <div class="trace-main">
-            <div class="trace-main__header mono"><div><span>SPAN TIMELINE</span><small>2022 — PRESENT</small></div><span class="trace-main__scale">RELATIVE TO CAREER START</span></div>
-            <div class="trace-scroll"><table class="trace-table"><thead><tr><th scope="col">SPAN</th><th scope="col">START / TIMELINE</th><th scope="col">DURATION</th></tr></thead><tbody>
-              <tr data-trace-row="backend"><td><strong>backend.inventory</strong><small>AD IT ROBOTICS</small></td><td><span class="trace-start">MAY '22</span><span class="timeline-track"><i class="timeline-bar" data-start="2022-05" data-end="2024-11"></i></span></td><td>2Y 7M</td></tr>
-              <tr data-trace-row="research" class="is-focused"><td><strong>research.ai_workflows</strong><small>TAMU–CORPUS CHRISTI</small></td><td><span class="trace-start">MAR '25</span><span class="timeline-track"><i class="timeline-bar" data-start="2025-03" data-end="present"></i></span></td><td>ONGOING</td></tr>
-              <tr data-trace-row="education"><td><strong>education.ms_cs</strong><small>MASTER'S DEGREE</small></td><td><span class="trace-start">JAN '25</span><span class="timeline-track"><i class="timeline-bar" data-start="2025-01" data-end="2026-12"></i></span></td><td>DEC '26*</td></tr>
-              <tr data-trace-row="milestone"><td><strong>project.applywise</strong><small>TEAM CHECKPOINT</small></td><td><span class="trace-start">OCT '26</span><span class="timeline-track"><i class="timeline-bar timeline-bar--moment" data-start="2026-10" data-end="2026-10"></i></span></td><td>MILESTONE</td></tr>
-            </tbody></table></div>
-            <div class="trace-detail" id="trace-detail" aria-live="polite"><div class="trace-detail__label mono">INSPECT / EVT-002 <span class="accent-blue">● SELECTED</span></div><h3>Graduate Research Assistant</h3><p>Building Python automation, model evaluation, and validation workflows for AI research, with an emphasis on repeatable experiments and reliable results.</p><div class="trace-detail__footer mono"><span>TEXAS A&M UNIVERSITY–CORPUS CHRISTI</span><span>MAR 2025 — PRESENT</span></div></div>
-            <div class="trace-annotation mono">* MASTER'S DEGREE EXPECTED DECEMBER 2026. TIMELINE REPRESENTS DATED CAREER RECORDS, NOT RUN-TIME PERFORMANCE.</div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <section id="about" class="section about container" aria-labelledby="about-title">
-      <div class="section-header"><h2 id="about-title" class="section-heading">Curiosity, backed by <span class="heading-muted">craft.</span></h2><p>I like understanding a system deeply enough to make it simpler, faster, or more reliable.</p></div>
-      <div class="about-grid">
-        <div class="about-panel about-panel--experience"><div class="panel-label mono">EXPERIENCE / 02 ROLES</div><div class="experience-item"><div class="experience-item__date mono">2025 — PRESENT</div><h3>Graduate Research Assistant</h3><p class="experience-item__org">Texas A&M University–Corpus Christi</p><p>Python research automation, model execution, testing, output validation, performance analysis, and technical documentation.</p></div><div class="experience-item"><div class="experience-item__date mono">2022 — 2024</div><h3>Software Development Engineer — Backend</h3><p class="experience-item__org">AD IT Robotics</p><p>Python/SQL inventory systems, REST APIs, combinable filtering, SQL optimization, pagination, automation, and regression testing.</p></div></div>
-        <div class="about-panel about-panel--skills"><div class="panel-label mono">TOOLBOX / SELECTED SKILLS</div>
-          <div class="skills-group"><h3>LANGUAGES & BACKEND</h3><div class="skills-tags mono"><span>Python</span><span>C#</span><span>Java</span><span>JavaScript</span><span>TypeScript</span><span>SQL</span><span>FastAPI</span><span>REST APIs</span></div></div>
-          <div class="skills-group"><h3>QUALITY & DATA</h3><div class="skills-tags mono"><span>Pytest</span><span>Vitest</span><span>PostgreSQL</span><span>MongoDB</span><span>SQL Performance</span><span>Automation</span></div></div>
-          <div class="skills-group"><h3>CLOUD & ENGINEERING</h3><div class="skills-tags mono"><span>AWS</span><span>Azure</span><span>Docker</span><span>Kubernetes</span><span>GitHub Actions</span><span>Jenkins</span><span>Cloudflare</span></div></div>
-        </div>
-      </div>
+      <div class="section-header"><h2 id="about-title" class="section-heading">Education &amp; <span class="heading-muted">credentials.</span></h2><p>The academic foundation and certifications behind my engineering journey.</p></div>
       <div class="credentials-grid">
         <div class="credential-panel"><div class="panel-label mono">EDUCATION / 02</div><div class="credential-row"><div><strong>Master of Science in Computer Science</strong><small>Texas A&M University–Corpus Christi</small></div><span class="mono">2025 — 2026*</span></div><div class="credential-row"><div><strong>Bachelor of Computer Science</strong><small>JB Institute of Engineering & Technology</small></div><span class="mono">2020 — 2024</span></div></div>
         <div class="credential-panel"><div class="panel-label mono">CERTIFICATIONS / 03</div><div class="credential-row"><div><strong>AWS Certified Cloud Practitioner</strong><small>AMAZON WEB SERVICES</small></div><span aria-hidden="true">↗</span></div><div class="credential-row"><div><strong>Terraform Associate</strong><small>HASHICORP</small></div><span aria-hidden="true">↗</span></div><div class="credential-row"><div><strong>Azure AI Engineer Associate</strong><small>MICROSOFT</small></div><span aria-hidden="true">↗</span></div></div>
