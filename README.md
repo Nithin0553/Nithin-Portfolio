@@ -11,6 +11,8 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
 - **Logo-only skills marquee** with original full-color technology logos, seamless right-to-left loop, gradient fade, and hover pause
 - **Rounded CTAs and sticky stacking project cards** on desktop and suitably tall mobile screens
+- **Clean editorial footer** with large name, contact links, and clear copyright information
+- **Arrow-free controls**, consistent Inter-based labels, and a career SVG that terminates at its final milestone
 
 ## Run locally
 
