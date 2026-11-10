@@ -10,6 +10,8 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 - **Interactive career event stream** with calendar-relative span bars and selectable details
 - **Experience, skills, certifications, and education** sourced from the portfolio owner's resume
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
+- **Logo-only skills marquee** with a seamless right-to-left loop, gradient fade, and hover pause
+- **Sticky stacking project cards** on desktop and suitably tall mobile screens
 
 ## Run locally
 
@@ -42,5 +44,9 @@ https://nithin0553.github.io/Nithin-Portfolio/
 Project descriptions and links live in \`index.html\`. The event-stream detail descriptions live in \`script.js\`. Update both if your work or employment dates change. No analytics, contact-form backend, chatbot, or secret API keys are included.
 
 **Data notes:** 4+ years refers to combined, nonconsecutive employment and graduate research experience. The 230 automated tests figure represents the *ApplyWise team* at its October 2026 checkpoint. Visual data snippets are conceptual, not measured production metrics. Master's graduation is listed as expected in December 2026.
+
+## Open-source attribution
+
+Technology logos are from [Devicon](https://github.com/devicons/devicon), licensed under the MIT License. See `assets/skills/LICENSE-devicon.txt`. Product and technology logos remain trademarks of their respective owners; inclusion does not imply endorsement.
 
 © Nithin Thirumani.
