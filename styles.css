@@ -195,42 +195,6 @@ h1,h2,h3 { font-family: var(--display); }
 .service-diagram__api { border: 1px solid rgba(82,168,255,.26); background: rgba(82,168,255,.07); padding: 13px; text-align: center; font-size: 10px; color: #ededed; margin-top: auto; }
 .visual-note { font-size: 10px; color: #686868; letter-spacing: .025em; margin: 20px 0 0; line-height: 1.7; }
 
-/* Engineering practice bento */
-.approach { border-top: 1px solid var(--border); }
-.feature-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px; }
-.feature-card { min-width: 0; border: 1px solid var(--border); background: var(--surface); padding: 27px; display: flex; flex-direction: column; min-height: 435px; }
-.feature-card__label { color: var(--blue); font-size: 10px; letter-spacing: .04em; margin-bottom: 41px; }
-.feature-card h3 { font-size: clamp(25px,2.4vw,32px); font-weight: 500; letter-spacing: -1.5px; margin-bottom: 15px; color: var(--white); }
-.feature-card p { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 27px; }
-.feature-card__visual { background: #070707; border: 1px solid var(--border); margin-top: auto; min-height: 164px; overflow: hidden; }
-.mini-table__head, .mini-table__row { display: flex; justify-content: space-between; align-items: center; gap: 14px; border-bottom: 1px solid rgba(255,255,255,.075); }
-.mini-table__head { color: #777; font-size: 10px; padding: 10px 12px; }
-.mini-table__row { color: #bcbcbc; font-size: 10px; padding: 9px 12px; }
-.mini-table__row:last-child { border-bottom: 0; }
-.mini-table__row .v-chip { font-size: 9px; min-height: 19px; padding: 3px 8px; }
-.bar-chart__head { font-size: 10px; color: #777; margin-bottom: 22px; }
-.feature-card__visual--bars { padding: 15px 13px; }
-.bar-chart__row { display: grid; grid-template-columns: 86px 1fr; align-items: center; gap: 8px; margin: 15px 0; }
-.bar-chart__row > span { color: #aaa; font-size: 9px; }
-.bar-chart__bar { position: relative; height: 7px; background: #202020; overflow: hidden; }
-.bar-chart__bar i, .bar-chart__bar b { position: absolute; top: 0; height: 100%; }
-.bar-chart__bar i { left: 0; background: rgba(255,255,255,.28); }
-.bar-chart__bar b { background: var(--blue); opacity: .85; }
-.bar-chart__legend { display: flex; gap: 16px; color: #777; font-size: 9px; margin-top: 19px; }
-.bar-chart__legend span { display: inline-flex; align-items: center; gap: 6px; }
-.bar-chart__legend i { display: inline-block; height: 6px; width: 6px; background: rgba(255,255,255,.28); }
-.bar-chart__legend span:last-child i { background: var(--blue); }
-.diff-view { font-size: 11px; }
-.diff-view__header { display: flex; justify-content: space-between; padding: 13px; color: #9a9a9a; background: #101010; border-bottom: 1px solid var(--border); }
-.diff-line { padding: 8px 11px; display: flex; gap: 12px; white-space: nowrap; overflow: hidden; }
-.diff-line span { display: inline-block; width: 10px; }
-.diff-line code { font: inherit; color: #bdbdbd; }
-.diff-line--old { border-left: 2px solid #ededed; background: rgba(237,237,237,.045); }
-.diff-line--new { border-left: 2px solid var(--green); background: rgba(98,192,115,.065); }
-.diff-line--new span { color: var(--green); }
-.diff-line--context { border-left: 2px solid var(--blue); background: rgba(82,168,255,.05); }
-.diff-line--context span { color: var(--blue); }
-
 /* Event trace */
 .trace-section { border-top: 1px solid var(--border); }
 .trace-shell { border: 1px solid var(--border); background: var(--surface); }
@@ -364,9 +328,6 @@ h1,h2,h3 { font-family: var(--display); }
  .project-card--featured { grid-column: span 2; min-height: auto; }
  .project-card--compact { min-height: 595px; }
  .project-card--wide { grid-column: span 2; }
- .feature-grid { grid-template-columns: 1fr 1fr; }
- .feature-card:last-child { grid-column: span 2; }
- .feature-card { min-height: 408px; }
  .about-grid, .credentials-grid { grid-template-columns: 1fr 1fr; }
  .contact-section__content { align-items: start; flex-direction: column; }
  .footer { flex-wrap: wrap; padding-block: 35px; }
@@ -417,9 +378,9 @@ h1,h2,h3 { font-family: var(--display); }
  .metric p { font-size: 11px; }
  .section-header { display: block; margin-bottom: 30px; }
  .section-header p { margin-top: 20px; font-size: 13px; }
- .project-grid, .feature-grid, .about-grid, .credentials-grid { grid-template-columns: 1fr; gap: 12px; }
+ .project-grid, .about-grid, .credentials-grid { grid-template-columns: 1fr; gap: 12px; }
  .project-card { padding: 23px 21px; }
- .project-card--featured, .project-card--wide, .feature-card:last-child { grid-column: auto; }
+ .project-card--featured, .project-card--wide { grid-column: auto; }
  .project-card--compact { min-height: auto; }
  .project-card--wide { min-height: auto; }
  .project-card__top { margin-bottom: 31px; }
@@ -439,8 +400,6 @@ h1,h2,h3 { font-family: var(--display); }
  .project-card--compact .applywise-visual, .quality-visual { margin-top: 20px; }
  .project-card__split { grid-template-columns: 1fr; }
  .service-diagram { min-height: 250px; }
- .feature-card { min-height: 395px; padding: 22px; }
- .feature-card__label { margin-bottom: 33px; }
  .trace-shell__head { padding: 17px; align-items: flex-start; }
  .trace-shell__head > div:first-child { flex-direction: column; align-items: flex-start; gap: 5px; }
  .trace-shell__head strong { font-size: 11px; }
@@ -824,7 +783,6 @@ h1,h2,h3 { font-family: var(--display); }
 .headline-fluid,
 .section-heading,
 .project-card h3,
-.feature-card h3,
 .experience-item h3,
 .contact-section h2,
 .site-header .brand__name {
@@ -854,11 +812,6 @@ h1,h2,h3 { font-family: var(--display); }
   font-size: clamp(36px, 4.6vw, 65px);
   letter-spacing: -0.06em;
 }
-.feature-card h3 {
-  font-size: clamp(23px, 2.25vw, 30px);
-  letter-spacing: -0.05em;
-  line-height: 1.15;
-}
 .experience-item h3 {
   font-size: clamp(17px, 1.5vw, 20px);
   letter-spacing: -0.045em;
@@ -887,9 +840,6 @@ h1,h2,h3 { font-family: var(--display); }
   }
   .project-stack .stack-card h3 {
     font-size: clamp(32px, 8.2vw, 44px);
-  }
-  .feature-card h3 {
-    font-size: 25px;
   }
   .site-header .brand__name {
     font-size: clamp(14px, 4vw, 17px);

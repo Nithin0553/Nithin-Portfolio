@@ -6,7 +6,6 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 
 - **Immersive hero** with original, self-hosted SVG artwork and a fully responsive layout
 - **Selected projects**: Jarvis, ApplyWise, Data Quality & Enrichment, and Healthcare Monitoring
-- **Engineering practice cards** illustrating quality, investigation, and iteration
 - **Interactive career event stream** with calendar-relative span bars and selectable details
 - **Experience, skills, certifications, and education** sourced from the portfolio owner's resume
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
