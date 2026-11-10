@@ -85,6 +85,7 @@ const traceData = {
 const eventButtons = Array.from(document.querySelectorAll(".trace-event[data-event]"));
 const eventRows = Array.from(document.querySelectorAll(".trace-table tr[data-trace-row]"));
 const traceDetail = document.querySelector("#trace-detail");
+const journeyButtons = Array.from(document.querySelectorAll(".career-journey__stop[data-event]"));
 
 function setSelectedEvent(key) {
   const data = traceData[key];
@@ -97,6 +98,11 @@ function setSelectedEvent(key) {
   eventRows.forEach(function (row) {
     row.classList.toggle("is-focused", row.dataset.traceRow === key);
     row.setAttribute("aria-selected", String(row.dataset.traceRow === key));
+  });
+  journeyButtons.forEach(function (button) {
+    const selected = button.dataset.event === key;
+    button.classList.toggle("is-selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
   });
   if (!traceDetail) return;
   traceDetail.replaceChildren();
@@ -122,6 +128,12 @@ function setSelectedEvent(key) {
 }
 
 eventButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    setSelectedEvent(button.dataset.event);
+  });
+});
+
+journeyButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     setSelectedEvent(button.dataset.event);
   });
@@ -159,6 +171,52 @@ document.querySelectorAll(".timeline-bar[data-start]").forEach(function (bar) {
   bar.style.setProperty("--offset", left.toFixed(2) + "%");
   bar.style.setProperty("--span", Math.min(100 - left, span).toFixed(2) + "%");
 });
+
+/* Scroll-linked SVG journey.
+   Progress is 0 when the section starts entering the viewport and 1 near
+   when it leaves. Drawing backwards on reverse scroll is intentional. */
+const careerSection = document.getElementById("timeline");
+const careerPaths = Array.from(document.querySelectorAll(".career-journey__progress"));
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let careerFrameRequested = false;
+
+function updateCareerLine() {
+  if (!careerSection || careerPaths.length === 0) return;
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const bounds = careerSection.getBoundingClientRect();
+  const distance = Math.max(1, bounds.height + viewportHeight * 0.64);
+  const progress = Math.min(1, Math.max(0,
+    (viewportHeight * 0.82 - bounds.top) / distance
+  ));
+
+  careerPaths.forEach(function (path) {
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = String(length);
+    path.style.strokeDashoffset = String(reduceMotion.matches ? 0 : length * (1 - progress));
+  });
+}
+
+function scheduleCareerLineUpdate() {
+  if (careerFrameRequested) return;
+  careerFrameRequested = true;
+  window.requestAnimationFrame(function () {
+    careerFrameRequested = false;
+    updateCareerLine();
+  });
+}
+
+if (careerSection && careerPaths.length > 0) {
+  updateCareerLine();
+  window.addEventListener("scroll", scheduleCareerLineUpdate, { passive: true });
+  window.addEventListener("resize", scheduleCareerLineUpdate);
+  window.addEventListener("load", scheduleCareerLineUpdate);
+  if (typeof reduceMotion.addEventListener === "function") {
+    reduceMotion.addEventListener("change", scheduleCareerLineUpdate);
+  } else if (typeof reduceMotion.addListener === "function") {
+    reduceMotion.addListener(scheduleCareerLineUpdate);
+  }
+}
 
 const copyrightYear = document.getElementById("copyright-year");
 if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());

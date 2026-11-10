@@ -213,7 +213,35 @@
     </section>
 
     <section id="timeline" class="section trace-section container" aria-labelledby="timeline-title">
-      <div class="section-header"><h2 id="timeline-title" class="section-heading">A career in <span class="heading-muted">motion.</span></h2><p>My engineering journey, viewed like a system trace. Select an event to inspect it.</p></div>
+      <div class="section-header"><h2 id="timeline-title" class="section-heading">A career in <span class="heading-muted">motion.</span></h2><p>Follow the line as you scroll. Select a milestone to inspect the experience behind it.</p></div>
+      <div class="career-journey" aria-label="Career journey milestones">
+        <svg class="career-journey__svg career-journey__svg--desktop" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path class="career-journey__rail" d="M125 88 C200 88 200 37 250 37 S315 88 375 88 C450 88 450 138 500 138 S565 88 625 88 C700 88 700 38 750 38 S815 88 875 88"/>
+          <path class="career-journey__progress" d="M125 88 C200 88 200 37 250 37 S315 88 375 88 C450 88 450 138 500 138 S565 88 625 88 C700 88 700 38 750 38 S815 88 875 88"/>
+        </svg>
+        <svg class="career-journey__svg career-journey__svg--mobile" viewBox="0 0 120 560" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path class="career-journey__rail" d="M48 70 C48 140 80 140 48 210 C16 280 16 280 48 350 C80 420 80 420 48 490"/>
+          <path class="career-journey__progress" d="M48 70 C48 140 80 140 48 210 C16 280 16 280 48 350 C80 420 80 420 48 490"/>
+        </svg>
+        <div class="career-journey__stops">
+          <button class="career-journey__stop" data-event="backend" type="button" aria-pressed="false" aria-label="Inspect May 2022: Backend engineering">
+            <span class="career-journey__node" aria-hidden="true"></span>
+            <span class="career-journey__label"><strong class="mono">2022</strong><span>Backend engineering</span></span>
+          </button>
+          <button class="career-journey__stop" data-event="education" type="button" aria-pressed="false" aria-label="Inspect January 2025: Master's studies">
+            <span class="career-journey__node" aria-hidden="true"></span>
+            <span class="career-journey__label"><strong class="mono">JAN 2025</strong><span>Master's studies</span></span>
+          </button>
+          <button class="career-journey__stop is-selected" data-event="research" type="button" aria-pressed="true" aria-label="Inspect March 2025: Graduate research">
+            <span class="career-journey__node" aria-hidden="true"></span>
+            <span class="career-journey__label"><strong class="mono">MAR 2025</strong><span>Graduate research</span></span>
+          </button>
+          <button class="career-journey__stop" data-event="milestone" type="button" aria-pressed="false" aria-label="Inspect October 2026: ApplyWise checkpoint">
+            <span class="career-journey__node" aria-hidden="true"></span>
+            <span class="career-journey__label"><strong class="mono">OCT 2026</strong><span>ApplyWise checkpoint</span></span>
+          </button>
+        </div>
+      </div>
       <div class="trace-shell">
         <div class="trace-shell__head mono"><div><span class="trace-shell__caption">TRACE ID</span><strong>NTH-ENGINEERING-001</strong></div><div class="trace-shell__head-right"><span class="v-chip v-chip--success"><span class="status-dot"></span>IN PROGRESS</span><span class="v-chip"><span class="status-dot status-dot--blue"></span>4 EVENTS</span></div></div>
         <div class="trace-shell__body">

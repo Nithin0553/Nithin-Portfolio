@@ -6,11 +6,12 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 
 - **Immersive hero** with original, self-hosted SVG artwork and a fully responsive layout
 - **Selected projects**: Jarvis, ApplyWise, Data Quality & Enrichment, and Healthcare Monitoring
+- **Scroll-drawn SVG career journey** with responsive milestone connectors, scroll-reversible line progress, selectable events, and reduced-motion support
 - **Interactive career event stream** with calendar-relative span bars and selectable details
 - **Experience, skills, certifications, and education** sourced from the portfolio owner's resume
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
 - **Logo-only skills marquee** with original full-color technology logos, seamless right-to-left loop, gradient fade, and hover pause
-- **Rounded, sticky stacking project cards** on desktop and suitably tall mobile screens
+- **Rounded CTAs and sticky stacking project cards** on desktop and suitably tall mobile screens
 
 ## Run locally
 
