@@ -54,3 +54,5 @@ Project descriptions and links live in \`index.html\`. The event-stream detail d
 Technology logos are from [Devicon](https://github.com/devicons/devicon), licensed under the MIT License. See `assets/skills/LICENSE-devicon.txt`. The social footer includes LinkedIn (from Devicon) and Gmail/iMessage icons from [Simple Icons](https://github.com/simple-icons/simple-icons). Product and technology logos remain trademarks of their respective owners; inclusion does not imply endorsement.
 
 © Nithin Thirumani.
+
+Jarvis uses the real dashboard screenshot from `assets/projects/jarvis-dashboard.webp`.

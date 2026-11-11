@@ -1342,3 +1342,7 @@ h1,h2,h3 { font-family: var(--display); }
     font-size: clamp(24px, 7vw, 36px);
   }
 }
+
+/* Keep the uploaded Jarvis screenshot fully visible, with its 16:9 proportions. */
+#project-jarvis .stack-card__visual.project-visual { aspect-ratio: 16 / 9; background: #fff; }
+#project-jarvis .project-visual__image { aspect-ratio: 16 / 9; object-fit: contain; background: #fff; }
