@@ -1390,78 +1390,26 @@ h1,h2,h3 { font-family: var(--display); }
 }
 
 
-/* Apple-inspired flowing iridescent text, adapted for this static site.
-   Accessible real text is always present in a solid-color base layer.
-   The second, aria-hidden layer renders an animated pastel gradient across
-   the letterforms. Unlike a transparent glint band, it NEVER leaves gaps. */
-.shiny-text {
-  --shine-base: #f2f2f2;
-  --shine-duration: 8.4s;
-  --shine-delay: 0s;
-  position: relative;
-  display: inline-block;
-  vertical-align: baseline;
-  white-space: nowrap;
-  color: var(--shine-base);
-  -webkit-text-fill-color: var(--shine-base);
-}
-.shiny-text__base {
-  position: relative;
-  color: inherit;
-  -webkit-text-fill-color: inherit;
-}
-.shiny-text__glint {
-  position: absolute;
-  inset: 0;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  pointer-events: none;
-  white-space: nowrap;
-  /* Pastel blue → lavender → pink → warm gold → blue.
-     The complete, opaque color ramp stays inside every letter. */
-  background-image: linear-gradient(
-    104deg,
-    #79beff 0%,
-    #c3b0ff 20%,
-    #ffc0df 40%,
-    #ffe4a7 60%,
-    #9cdaff 80%,
-    #79beff 100%
-  );
-  background-size: 270% 100%;
-  background-position: 0% center;
-  background-repeat: no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  opacity: .95;
-  animation: shiny-color-flow var(--shine-duration) ease-in-out var(--shine-delay) infinite alternate;
-}
-.shiny-text--name {
-  --shine-base: #ffffff;
-  --shine-duration: 7.2s;
-}
-.shiny-text--keyword {
-  --shine-base: #f0f0f0;
-  --shine-duration: 8.8s;
-  font-weight: 600;
-}
-.shiny-text--keyword .shiny-text__glint { opacity: .82; }
-@keyframes shiny-color-flow {
-  from { background-position: 0% center; }
-  to { background-position: 100% center; }
-}
-@media (hover: hover) {
-  .shiny-text:hover .shiny-text__glint,
-  .headline-fluid:hover .shiny-text--name .shiny-text__glint {
-    animation-play-state: paused;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .shiny-text__glint {
-    display: none;
-    animation: none;
-  }
-}
 
-/* Keep commas and periods attached to the decorated keyword on mobile. */
+/* ShinyText: faithful opaque gradient sweep, configured through data-* props.
+   The JavaScript sets the gradient only when background-clip:text is supported.
+   Real text remains visible even when scripts or animation are disabled. */
+.shiny-text { display: inline-block; white-space: nowrap; vertical-align: baseline; color: #b5b5b5; }
+.shiny-text--name { color: #b5b5b5; }
+.shiny-text--keyword { color: #999999; font-weight: 600; }
+.shiny-text.shiny-text--ready {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .shiny-keyword-group { display: inline-block; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) {
+  .shiny-text,
+  .shiny-text.shiny-text--ready {
+    color: #b5b5b5;
+    -webkit-text-fill-color: currentColor;
+    background-image: none !important;
+  }
+  .shiny-text--keyword,
+  .shiny-text--keyword.shiny-text--ready { color: #999999; }
+}

@@ -5,7 +5,7 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 ## What is here
 
 - **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a technology-logo ticker; no decorative background effects
-- **Apple-inspired animated gradient text**: a flowing pastel blue, violet, pink, and gold gradient on the name and selected technical keywords, while a solid text layer preserves readability; hover-pause and reduced-motion support without React dependencies
+- **ShinyText component behavior** ported from the supplied React/Motion code to the static portfolio: one opaque 120° linear gradient, base/shine/base at 35%/50%/65%, 200% background size, and an animated 150% to -50% sweep. Configurable via data attributes: disabled, speed, color, shineColor, spread, yoyo, pauseOnHover, direction and delay.
 - **Selected projects**: Jarvis, ApplyWise, Microservices based health care monitoring system, and Website for Automobile spare parts store
 - **Full-height, winding SVG career journey** with alternating milestones, reverse-on-scroll blue stroke animation, responsive layout, clickable events, and reduced-motion support
 - **Education and certifications** presented separately, with experience in the journey and skills in the scrolling logo strip
@@ -60,3 +60,7 @@ Technology logos are from [Devicon](https://github.com/devicons/devicon), licens
 Jarvis uses the real dashboard screenshot from `assets/projects/jarvis-dashboard-4k.webp`.
 
 The Jarvis card uses a 3840×2160 high-quality WebP, carefully upscaled from the owner's original 1920×1080 screenshot. It retains the original UI content; the source is not native 4K.
+
+## Resume download
+
+Desktop and mobile navigation download the owner's supplied, unmodified PDF at `assets/resume/Nithin_Thirumani_Resume.pdf`. This asset is publicly downloadable from the website.

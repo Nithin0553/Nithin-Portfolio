@@ -125,3 +125,124 @@ if (careerJourney && careerPaths.length > 0) {
 
 const copyrightYear = document.getElementById("copyright-year");
 if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
+
+
+/* ShinyText: native JavaScript port of the supplied React/Motion component.
+   The span's textContent is its text prop, its class is className, and
+   data-disabled/speed/color/shine-color/spread/yoyo/pause-on-hover/
+   direction/delay provide the remaining component props. */
+(function initializeShinyText() {
+  const elements = Array.from(document.querySelectorAll(".shiny-text"));
+  if (!elements.length) return;
+
+  const supportsClip = Boolean(window.CSS && (
+    window.CSS.supports("background-clip", "text") ||
+    window.CSS.supports("-webkit-background-clip", "text")
+  ));
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const toNumber = (value, fallback) => {
+    const n = Number(value);
+    return value === undefined || value === "" || !Number.isFinite(n) ? fallback : n;
+  };
+  const isTrue = (value) => value === "true";
+
+  const spans = elements.map((element) => {
+    const data = element.dataset;
+    const state = {
+      element,
+      disabled: isTrue(data.disabled),
+      speed: Math.max(0.1, toNumber(data.speed, 2)),
+      color: data.color || "#b5b5b5",
+      shineColor: data.shineColor || "#ffffff",
+      spread: toNumber(data.spread, 120),
+      yoyo: isTrue(data.yoyo),
+      pauseOnHover: isTrue(data.pauseOnHover),
+      direction: data.direction === "right" ? "right" : "left",
+      delay: Math.max(0, toNumber(data.delay, 0)),
+      paused: false,
+      elapsed: 0,
+      lastTime: null
+    };
+    if (state.pauseOnHover) {
+      element.addEventListener("mouseenter", () => {
+        state.paused = true;
+        state.lastTime = null;
+      });
+      element.addEventListener("mouseleave", () => {
+        state.paused = false;
+        state.lastTime = null;
+      });
+    }
+    return state;
+  });
+
+  function configure(state) {
+    const element = state.element;
+    element.classList.remove("shiny-text--ready");
+    element.style.color = state.color;
+    element.style.backgroundImage = "";
+    element.style.backgroundSize = "";
+    element.style.backgroundPosition = "";
+    if (state.disabled || motionPreference.matches || !supportsClip) return;
+    // Exact opaque gradient stops from the original ShinyText component.
+    element.style.backgroundImage = "linear-gradient(" + state.spread + "deg, " +
+      state.color + " 0%, " + state.color + " 35%, " +
+      state.shineColor + " 50%, " + state.color + " 65%, " +
+      state.color + " 100%)";
+    element.style.backgroundSize = "200% auto";
+    element.style.backgroundRepeat = "no-repeat";
+    element.style.backgroundPosition = state.direction === "left" ? "150% center" : "-50% center";
+    element.classList.add("shiny-text--ready");
+  }
+
+  spans.forEach(configure);
+
+  function animate(time) {
+    for (const state of spans) {
+      if (state.disabled || motionPreference.matches || !supportsClip || state.paused) {
+        state.lastTime = null;
+        continue;
+      }
+      if (state.lastTime === null) {
+        state.lastTime = time;
+        continue;
+      }
+      const dt = Math.max(0, time - state.lastTime);
+      state.lastTime = time;
+      state.elapsed += dt;
+      const duration = state.speed * 1000;
+      const rest = state.delay * 1000;
+      let progress = 0;
+
+      if (state.yoyo) {
+        const cycle = duration + rest;
+        const t = state.elapsed % (2 * cycle);
+        if (t < duration) progress = t / duration * 100;
+        else if (t < cycle) progress = 100;
+        else if (t < cycle + duration) progress = 100 - (t - cycle) / duration * 100;
+        else progress = 0;
+      } else {
+        const t = state.elapsed % (duration + rest);
+        progress = t < duration ? t / duration * 100 : 100;
+      }
+
+      if (state.direction === "right") progress = 100 - progress;
+      state.element.style.backgroundPosition = String(150 - progress * 2) + "% center";
+    }
+    window.requestAnimationFrame(animate);
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    spans.forEach((state) => { state.lastTime = null; });
+  });
+  const refresh = () => spans.forEach((state) => {
+    state.lastTime = null;
+    configure(state);
+  });
+  if (typeof motionPreference.addEventListener === "function")
+    motionPreference.addEventListener("change", refresh);
+  else if (typeof motionPreference.addListener === "function")
+    motionPreference.addListener(refresh);
+
+  window.requestAnimationFrame(animate);
+})();
