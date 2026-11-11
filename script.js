@@ -181,9 +181,13 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
     element.classList.remove("shiny-text--ready");
     element.style.color = state.color;
     element.style.backgroundImage = "";
+    element.style.backgroundColor = "";
     element.style.backgroundSize = "";
     element.style.backgroundPosition = "";
     if (state.disabled || motionPreference.matches || !supportsClip) return;
+    // Fill any space left uncovered when the moving gradient shifts beyond the letters.
+    // The color is clipped to text alongside the image, so it never paints a box.
+    element.style.backgroundColor = state.color;
     // Exact opaque gradient stops from the original ShinyText component.
     element.style.backgroundImage = "linear-gradient(" + state.spread + "deg, " +
       state.color + " 0%, " + state.color + " 35%, " +

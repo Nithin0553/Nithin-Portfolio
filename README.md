@@ -5,7 +5,7 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 ## What is here
 
 - **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a technology-logo ticker; no decorative background effects
-- **ShinyText component behavior** ported from the supplied React/Motion code to the static portfolio: one opaque 120° linear gradient, base/shine/base at 35%/50%/65%, 200% background size, and an animated 150% to -50% sweep. Configurable via data attributes: disabled, speed, color, shineColor, spread, yoyo, pauseOnHover, direction and delay.
+- **ShinyText component behavior** ported from the supplied React/Motion code to the static portfolio: one 120° linear gradient, base/shine/base at 35%/50%/65%, 200% background size, and an animated 150% to -50% sweep. An always-present background color is clipped to the glyphs beneath the gradient so letters never disappear when the gradient moves off-screen. Configurable via data attributes: disabled, speed, color, shineColor, spread, yoyo, pauseOnHover, direction and delay.
 - **Selected projects**: Jarvis, ApplyWise, Microservices based health care monitoring system, and Website for Automobile spare parts store
 - **Full-height, winding SVG career journey** with alternating milestones, reverse-on-scroll blue stroke animation, responsive layout, clickable events, and reduced-motion support
 - **Education and certifications** presented separately, with experience in the journey and skills in the scrolling logo strip
