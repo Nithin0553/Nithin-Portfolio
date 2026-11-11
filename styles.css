@@ -1383,3 +1383,56 @@ h1,h2,h3 { font-family: var(--display); }
   .hero__summary { gap: 13px; margin-bottom: 28px; }
   .hero__summary p { font-size: 14px; line-height: 1.75; }
 }
+
+
+/* ShinyText, adapted to this static (non-React) portfolio.
+   The gradient animates only the name and selected technical keywords. */
+.shiny-text {
+  --shine-base: #ededed;
+  --shine-color: #ffffff;
+  --shine-accent: #52a8ff;
+  --shine-duration: 8.5s;
+  --shine-delay: 0s;
+  color: var(--shine-base);
+  background-image: linear-gradient(
+    115deg,
+    var(--shine-base) 0%,
+    var(--shine-base) 36%,
+    var(--shine-color) 45%,
+    var(--shine-accent) 50%,
+    var(--shine-color) 55%,
+    var(--shine-base) 64%,
+    var(--shine-base) 100%
+  );
+  background-size: 240% 100%;
+  background-position: 155% center;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shiny-text-sweep var(--shine-duration) linear var(--shine-delay) infinite;
+}
+.shiny-text--name {
+  --shine-base: #ffffff;
+  --shine-duration: 7.5s;
+}
+.shiny-text--keyword {
+  --shine-base: #e1eaf5;
+  --shine-duration: 9s;
+  font-weight: 600;
+}
+/* One deliberate sweep, followed by a rest; delays stagger keyword flashes. */
+@keyframes shiny-text-sweep {
+  0%, 10% { background-position: 155% center; }
+  45%, 100% { background-position: -65% center; }
+}
+@media (hover: hover) {
+  .shiny-text:hover { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shiny-text {
+    animation: none;
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}

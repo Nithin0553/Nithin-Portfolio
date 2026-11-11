@@ -5,6 +5,7 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 ## What is here
 
 - **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a technology-logo ticker; no decorative background effects
+- **ShinyText-inspired hero accents** on the name and selected technical keywords, implemented in CSS without React dependencies, hover-paused, and disabled for reduced-motion preferences
 - **Selected projects**: Jarvis, ApplyWise, Microservices based health care monitoring system, and Website for Automobile spare parts store
 - **Full-height, winding SVG career journey** with alternating milestones, reverse-on-scroll blue stroke animation, responsive layout, clickable events, and reduced-motion support
 - **Education and certifications** presented separately, with experience in the journey and skills in the scrolling logo strip
