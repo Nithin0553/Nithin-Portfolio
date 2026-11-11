@@ -1346,14 +1346,19 @@ h1,h2,h3 { font-family: var(--display); }
 
 /* Consistent circular accent dots for hero, project titles, and footer.
    Shape is independent of display font glyphs (which can be square). */
+/* Keep each accent dot with its final word, even when a title wraps. */
+.dot-joined {
+  display: inline-block;
+  white-space: nowrap;
+}
 .decorative-dot {
   display: inline-block;
-  width: .205em;
-  height: .205em;
-  margin-left: .055em;
+  width: .155em;
+  height: .155em;
+  margin-inline-start: .2em;
   border-radius: 50%;
   background-color: var(--blue);
-  vertical-align: .055em;
+  vertical-align: .035em;
   flex: none;
 }
 
