@@ -55,4 +55,6 @@ Technology logos are from [Devicon](https://github.com/devicons/devicon), licens
 
 © Nithin Thirumani.
 
-Jarvis uses the real dashboard screenshot from `assets/projects/jarvis-dashboard.webp`.
+Jarvis uses the real dashboard screenshot from `assets/projects/jarvis-dashboard-4k.webp`.
+
+The Jarvis card uses a 3840×2160 high-quality WebP, carefully upscaled from the owner's original 1920×1080 screenshot. It retains the original UI content; the source is not native 4K.
