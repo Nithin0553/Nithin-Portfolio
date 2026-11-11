@@ -1364,3 +1364,30 @@ h1,h2,h3 { font-family: var(--display); }
   vertical-align: .055em;
   flex: none;
 }
+
+
+/* Resume-style hero summary: readable editorial text instead of a slogan. */
+.hero .hero__copy { max-width: 880px; }
+.hero .headline-fluid { max-width: 850px; margin-bottom: 25px; }
+.hero__summary {
+  display: grid;
+  gap: 16px;
+  max-width: 800px;
+  margin-bottom: 34px;
+}
+.hero__summary p {
+  margin: 0;
+  color: #d0d0d0;
+  font: 400 clamp(14px, 1.18vw, 17px)/1.78 var(--display);
+  letter-spacing: -.005em;
+}
+.hero__summary strong {
+  font-weight: 600;
+  color: #fff;
+}
+@media (max-width: 700px) {
+  .hero .hero__copy { max-width: 100%; }
+  .hero .headline-fluid { font-size: clamp(32px, 8vw, 46px); margin-bottom: 22px; }
+  .hero__summary { gap: 13px; margin-bottom: 28px; }
+  .hero__summary p { font-size: 14px; line-height: 1.75; }
+}
