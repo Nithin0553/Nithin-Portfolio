@@ -1350,3 +1350,17 @@ h1,h2,h3 { font-family: var(--display); }
 /* Preserve the full 4K shop screenshot with its original content and proportions. */
 #project-auto-spares .stack-card__visual.project-visual { aspect-ratio: 16 / 9; background: #fff; }
 #project-auto-spares .project-visual__image { aspect-ratio: 16 / 9; object-fit: contain; object-position: center; background: #fff; }
+
+
+/* Consistent circular accent dots for hero, project titles, and footer.
+   Shape is independent of display font glyphs (which can be square). */
+.decorative-dot {
+  display: inline-block;
+  width: .205em;
+  height: .205em;
+  margin-left: .055em;
+  border-radius: 50%;
+  background-color: var(--blue);
+  vertical-align: .055em;
+  flex: none;
+}
