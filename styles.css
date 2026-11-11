@@ -1390,14 +1390,13 @@ h1,h2,h3 { font-family: var(--display); }
 }
 
 
-/* ShinyText — safe two-layer highlight for this static portfolio.
-   The visible text is a normal solid color. The independent overlay alone
-   receives an animated clipped gradient, so no animation frame can hide text. */
+/* Apple-inspired flowing iridescent text, adapted for this static site.
+   Accessible real text is always present in a solid-color base layer.
+   The second, aria-hidden layer renders an animated pastel gradient across
+   the letterforms. Unlike a transparent glint band, it NEVER leaves gaps. */
 .shiny-text {
   --shine-base: #f2f2f2;
-  --shine-accent: #52a8ff;
-  --shine-light: #ffffff;
-  --shine-duration: 4.8s;
+  --shine-duration: 8.4s;
   --shine-delay: 0s;
   position: relative;
   display: inline-block;
@@ -1418,35 +1417,38 @@ h1,h2,h3 { font-family: var(--display); }
   -webkit-text-fill-color: transparent;
   pointer-events: none;
   white-space: nowrap;
+  /* Pastel blue → lavender → pink → warm gold → blue.
+     The complete, opaque color ramp stays inside every letter. */
   background-image: linear-gradient(
-    115deg,
-    transparent 0%,
-    transparent 43%,
-    var(--shine-light) 48%,
-    var(--shine-accent) 50%,
-    var(--shine-light) 52%,
-    transparent 57%,
-    transparent 100%
+    104deg,
+    #79beff 0%,
+    #c3b0ff 20%,
+    #ffc0df 40%,
+    #ffe4a7 60%,
+    #9cdaff 80%,
+    #79beff 100%
   );
-  background-size: 300% 100%;
+  background-size: 270% 100%;
   background-position: 0% center;
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: shiny-glint-sweep var(--shine-duration) ease-in-out var(--shine-delay) infinite alternate;
+  opacity: .95;
+  animation: shiny-color-flow var(--shine-duration) ease-in-out var(--shine-delay) infinite alternate;
 }
 .shiny-text--name {
   --shine-base: #ffffff;
-  --shine-duration: 4s;
+  --shine-duration: 7.2s;
 }
 .shiny-text--keyword {
   --shine-base: #f0f0f0;
-  --shine-duration: 5.5s;
+  --shine-duration: 8.8s;
   font-weight: 600;
 }
-@keyframes shiny-glint-sweep {
-  0%, 12% { background-position: 0% center; }
-  88%, 100% { background-position: 100% center; }
+.shiny-text--keyword .shiny-text__glint { opacity: .82; }
+@keyframes shiny-color-flow {
+  from { background-position: 0% center; }
+  to { background-position: 100% center; }
 }
 @media (hover: hover) {
   .shiny-text:hover .shiny-text__glint,
@@ -1460,3 +1462,6 @@ h1,h2,h3 { font-family: var(--display); }
     animation: none;
   }
 }
+
+/* Keep commas and periods attached to the decorated keyword on mobile. */
+.shiny-keyword-group { display: inline-block; white-space: nowrap; }
