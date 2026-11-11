@@ -1390,54 +1390,73 @@ h1,h2,h3 { font-family: var(--display); }
 }
 
 
-/* ShinyText, adapted to this static (non-React) portfolio.
-   The gradient animates only the name and selected technical keywords. */
+/* ShinyText — safe two-layer highlight for this static portfolio.
+   The visible text is a normal solid color. The independent overlay alone
+   receives an animated clipped gradient, so no animation frame can hide text. */
 .shiny-text {
-  --shine-base: #ededed;
-  --shine-color: #ffffff;
+  --shine-base: #f2f2f2;
   --shine-accent: #52a8ff;
-  --shine-duration: 8.5s;
+  --shine-light: #ffffff;
+  --shine-duration: 4.8s;
   --shine-delay: 0s;
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+  white-space: nowrap;
   color: var(--shine-base);
+  -webkit-text-fill-color: var(--shine-base);
+}
+.shiny-text__base {
+  position: relative;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
+.shiny-text__glint {
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  white-space: nowrap;
   background-image: linear-gradient(
     115deg,
-    var(--shine-base) 0%,
-    var(--shine-base) 36%,
-    var(--shine-color) 45%,
+    transparent 0%,
+    transparent 43%,
+    var(--shine-light) 48%,
     var(--shine-accent) 50%,
-    var(--shine-color) 55%,
-    var(--shine-base) 64%,
-    var(--shine-base) 100%
+    var(--shine-light) 52%,
+    transparent 57%,
+    transparent 100%
   );
-  background-size: 240% 100%;
-  background-position: 155% center;
+  background-size: 300% 100%;
+  background-position: 0% center;
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shiny-text-sweep var(--shine-duration) linear var(--shine-delay) infinite;
+  animation: shiny-glint-sweep var(--shine-duration) ease-in-out var(--shine-delay) infinite alternate;
 }
 .shiny-text--name {
   --shine-base: #ffffff;
-  --shine-duration: 7.5s;
+  --shine-duration: 4s;
 }
 .shiny-text--keyword {
-  --shine-base: #e1eaf5;
-  --shine-duration: 9s;
+  --shine-base: #f0f0f0;
+  --shine-duration: 5.5s;
   font-weight: 600;
 }
-/* One deliberate sweep, followed by a rest; delays stagger keyword flashes. */
-@keyframes shiny-text-sweep {
-  0%, 10% { background-position: 155% center; }
-  45%, 100% { background-position: -65% center; }
+@keyframes shiny-glint-sweep {
+  0%, 12% { background-position: 0% center; }
+  88%, 100% { background-position: 100% center; }
 }
 @media (hover: hover) {
-  .shiny-text:hover { animation-play-state: paused; }
+  .shiny-text:hover .shiny-text__glint,
+  .headline-fluid:hover .shiny-text--name .shiny-text__glint {
+    animation-play-state: paused;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .shiny-text {
+  .shiny-text__glint {
+    display: none;
     animation: none;
-    background-image: none;
-    -webkit-text-fill-color: currentColor;
   }
 }
