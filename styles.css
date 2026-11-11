@@ -64,8 +64,6 @@ h1,h2,h3 { font-family: var(--display); }
 .hero__eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 33px; }
 .eyebrow-line { height: 1px; width: 27px; background: var(--border-strong); }
 .eyebrow-secondary { color: #b6b6b6; font-size: 11px; letter-spacing: .065em; }
-.hero__name { display: flex; align-items: center; gap: 15px; color: #bebebe; font-size: 12px; font-weight: 500; letter-spacing: .065em; margin: 0 0 18px; }
-.hero__name-line { display: inline-block; width: 48px; height: 1px; background: rgba(255,255,255,.2); }
 .headline-fluid { font-size: clamp(32px, 5.2vw, 60px); font-weight: 500; letter-spacing: clamp(-3.36px, -.24vw, -1px); line-height: 1.075; max-width: 752px; color: var(--white); margin: 0 0 26px; }
 .headline-fluid em { font-style: normal; color: var(--text); }
 .headline-period { color: var(--blue); }
@@ -366,7 +364,6 @@ h1,h2,h3 { font-family: var(--display); }
  .hero__content { padding-top: 135px; padding-bottom: 115px; }
  .hero__eyebrow { margin-bottom: 27px; flex-wrap: wrap; gap: 10px; }
  .eyebrow-secondary { font-size: 9px; }
- .hero__name { font-size: 10px; margin-bottom: 18px; }
  .headline-fluid { font-size: clamp(35px,9vw,56px); line-height: 1.09; letter-spacing: -2.1px; }
  .hero__description { font-size: 14px; line-height: 1.8; margin-bottom: 27px; max-width: 440px; }
  .btn-square--large { font-size: 16px; gap: 20px; padding: 17px 16px; }
@@ -453,9 +450,6 @@ h1,h2,h3 { font-family: var(--display); }
 }
 .hero__copy {
   max-width: 790px;
-}
-.hero__name {
-  margin-bottom: 22px;
 }
 .hero__description {
   max-width: 575px;
@@ -1050,7 +1044,6 @@ h1,h2,h3 { font-family: var(--display); }
    Numeric metrics and actual technical data may continue to use Geist Mono. */
 .panel-label,
 .metric__label,
-.hero__name,
 .contact-section__overline,
 .project-card__top .v-chip,
 .stack-card__visual-note,
@@ -1069,7 +1062,6 @@ h1,h2,h3 { font-family: var(--display); }
 .credential-panel .panel-label { margin-bottom: 22px; }
 .metric__label { font-size: 12px; letter-spacing: .02em; }
 .contact-section__overline { font-size: 12px; }
-.hero__name { font-size: 12px; }
 .project-card__top .v-chip { font-size: 11px; font-weight: 600; }
 .credential-row small {
   font-family: var(--display);
