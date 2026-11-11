@@ -1346,3 +1346,7 @@ h1,h2,h3 { font-family: var(--display); }
 /* Keep the uploaded Jarvis screenshot fully visible, with its 16:9 proportions. */
 #project-jarvis .stack-card__visual.project-visual { aspect-ratio: 16 / 9; background: #fff; }
 #project-jarvis .project-visual__image { aspect-ratio: 16 / 9; object-fit: contain; background: #fff; }
+
+/* Preserve the full 4K shop screenshot with its original content and proportions. */
+#project-auto-spares .stack-card__visual.project-visual { aspect-ratio: 16 / 9; background: #fff; }
+#project-auto-spares .project-visual__image { aspect-ratio: 16 / 9; object-fit: contain; object-position: center; background: #fff; }

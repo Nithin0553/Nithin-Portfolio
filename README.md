@@ -38,12 +38,13 @@ https://nithin0553.github.io/Nithin-Portfolio/
 - \`styles.css\`: responsive visual system
 - \`script.js\`: mobile navigation, milestone selection and scroll-progress SVG drawing
 - \`assets/favicon.svg\`: original N monogram
+- \`assets/projects/shop-website-home-4k.webp\`: 3840×2160 upscale of the owner's 1856×868 Shop Website screenshot, white-letterboxed to keep the entire page visible
 
 ## Edit content
 
-Project descriptions and links live in \`index.html\`. The event-stream detail descriptions live in \`script.js\`. Update both if your work or employment dates change. No analytics, contact-form backend, chatbot, or secret API keys are included.
+Project descriptions and links live in \`index.html\`. The career timeline interactions live in \`script.js\`. Update both if your work or employment dates change. No analytics, contact-form backend, chatbot, or secret API keys are included.
 
-**Data notes:** 4+ years refers to combined, nonconsecutive employment and graduate research experience. The 230 automated tests figure represents the *ApplyWise team* at its October 2026 checkpoint. Project images are original illustrative UI previews, not captured screenshots or measured production metrics. The numeric highlights use Inter instead of the former slashed-zero monospace font. Master's graduation is listed as expected in December 2026.
+**Data notes:** 4+ years refers to combined, nonconsecutive employment and graduate research experience. The 230 automated tests figure represents the *ApplyWise team* at its October 2026 checkpoint. Jarvis and Shop Website use user-supplied homepage screenshots; the other project previews are illustrative, not measured production metrics. The numeric highlights use Inter instead of the former slashed-zero monospace font. Master's graduation is listed as expected in December 2026.
 
 **Repository links:** ApplyWise and Shop-Website link to their public repositories. Jarvis links to its private repository, which visitors cannot access without permission. The healthcare card is labeled as a related but distinct public implementation.
 
