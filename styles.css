@@ -1400,8 +1400,8 @@ h1,h2,h3 { font-family: var(--display); }
    This avoids large-font WebKit/Chromium clipping artifacts that hid letters. */
 .shiny-text--name {
   position: relative;
-  color: #b5b5b5;
-  -webkit-text-fill-color: #b5b5b5;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
 }
 .shiny-name__base {
   position: relative;
@@ -1438,6 +1438,11 @@ h1,h2,h3 { font-family: var(--display); }
   }
   .shiny-text--keyword,
   .shiny-text--keyword.shiny-text--ready { color: #999999; }
+  .shiny-text--name,
+  .shiny-text--name.shiny-text--ready {
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+  }
   .shiny-text--name .shiny-name__overlay {
     visibility: hidden !important;
   }
