@@ -162,6 +162,16 @@ function updateCareerLine() {
   });
   if (scene.plane) scene.plane.setAttribute("transform", "rotate(" + angle + ")");
 
+  // The blue stroke and the WebGL traveler use this identical path point.
+  // Coordinate percentages account for the SVG's preserveAspectRatio="none".
+  if (typeof window.__journey3DUpdate === "function") {
+    const box = scene.svg.viewBox.baseVal;
+    window.__journey3DUpdate({
+      x: point.x, y: point.y, width: box.width, height: box.height,
+      mode: mode, angle: angle, dx: dx
+    });
+  }
+
   let active = 0;
   scene.boundaries.forEach(function (boundary, index) {
     const reached = reduceMotion.matches || progress >= boundary - .0005;

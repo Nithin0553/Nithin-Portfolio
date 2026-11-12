@@ -7,7 +7,7 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 - **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a technology-logo ticker; headings and bold project titles use Inter 800 from the same family as the summary, while technical metadata retains Geist Mono
 - **Solid-white hero typography** with selective bold technical keywords, no animated gradient or shimmer effect.
 - **Selected projects**: Jarvis, ApplyWise, Microservices based health care monitoring system, and Website for Automobile spare parts store
-- **Scroll-driven career journey** from Bachelor’s degree (2020–2024) to AD IT Robotics (2022–2024), Master’s study and graduate research (2025–2026 expected graduation), and ApplyWise team leadership (October 2026). A backpack-wearing walking character follows the blue SVG path, transforms to an airplane at AD IT Robotics, then changes into a running character at the Master’s milestone. The route reverses on upward scroll and has desktop/mobile layouts, clickable stops, and a reduced-motion fallback
+- **Scroll-driven 3D career journey** from Bachelor’s degree (2020–2024) to AD IT Robotics (2022–2024), Master’s study and graduate research (2025–2026 expected graduation), and ApplyWise team leadership (October 2026). An original, Three.js-rendered 3D student with backpack walks along the SVG path, transitions to a 3D airplane at AD IT Robotics, then becomes an older 3D running character wearing a coat and glasses after Master’s. The blue stroke and traveler position are derived from the same SVG path point; upward scrolling reverses the journey. Responsive desktop/mobile layouts and a reduced-motion/SVG fallback are retained.
 - **Education and certifications** presented separately, with experience in the journey and skills in the scrolling logo strip
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
 - **Logo-only skills marquee** with original full-color technology logos, seamless right-to-left loop, gradient fade, and hover pause
@@ -37,7 +37,8 @@ https://nithin0553.github.io/Nithin-Portfolio/
 
 - \`index.html\`: all site content and semantic layout
 - \`styles.css\`: responsive visual system
-- \`script.js\`: mobile navigation, milestone selection, scroll-linked SVG drawing, and path-following walk → airplane → run animation
+- \`script.js\`: mobile navigation, milestone selection and scroll-linked path coordinates for both the blue line and traveler
+- \`journey-3d.js\`: original 3D models and animation implemented with Three.js via a pinned ES-module CDN; falls back to built-in SVG figures without WebGL
 - \`assets/favicon.svg\`: original N monogram
 - \`assets/projects/shop-website-home-4k.webp\`: 3840×2160 upscale of the owner's 1856×868 Shop Website screenshot, white-letterboxed to keep the entire page visible
 
@@ -64,3 +65,5 @@ The Jarvis card uses a 3840×2160 high-quality WebP, carefully upscaled from the
 ## Resume download
 
 Desktop and mobile navigation download the owner's supplied, unmodified PDF at `assets/resume/Nithin_Thirumani_Resume.pdf`. This asset is publicly downloadable from the website.
+
+**3D engine:** Three.js 0.170.0 is loaded as an ES module from jsDelivr (MIT license). The models are original procedural meshes: no third-party character models or external images are required. The browser must be able to reach the CDN to enable WebGL; if it cannot, the original SVG traveler remains available.

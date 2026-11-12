@@ -1438,3 +1438,39 @@ h1,h2,h3 { font-family: var(--display); }
   .journey-traveler__mode { transition: none; }
   .journey-boy__leg, .journey-boy__arm { animation: none !important; }
 }
+
+
+/* Actual Three.js mesh traveler, attached to the exact tip of the scroll-drawn
+   path. SVG fallback remains visible until the 3D module initializes. */
+.career-journey .journey-3d-cursor {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: clamp(115px, 11vw, 166px);
+  height: clamp(126px, 12vw, 180px);
+  transform: translate(-50%, -88%);
+  pointer-events: none;
+  will-change: left, top;
+}
+.career-journey .journey-3d-cursor.is-plane {
+  transform: translate(-50%, -54%);
+}
+.journey-3d-cursor canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent;
+}
+.journey-3d-ready .career-journey__svg .journey-traveler {
+  visibility: hidden;
+}
+@media (max-width: 900px) {
+  .career-journey .journey-3d-cursor {
+    width: clamp(102px, 24vw, 140px);
+    height: clamp(119px, 27vw, 165px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .career-journey .journey-3d-cursor { display: none; }
+}
