@@ -1151,7 +1151,7 @@ h1,h2,h3 { font-family: var(--display); }
   font-weight: 500;
   line-height: 1.5;
 }
-.project-stack .stack-card .stack-card__copy > p:not(.project-card__subtitle):not(.project-repo-note) {
+.project-stack .stack-card .stack-card__copy > p:not(.project-card__subtitle) {
   margin: 0;
   max-width: 520px;
   color: #b7b7b7;
@@ -1244,12 +1244,6 @@ h1,h2,h3 { font-family: var(--display); }
   filter: brightness(0) invert(1);
   opacity: .65;
 }
-.project-repo-note {
-  color: #8e8e8e !important;
-  margin: 13px 0 0 !important;
-  font: 400 11px/1.6 var(--display) !important;
-  max-width: 460px;
-}
 .metric__number {
   font-family: var(--display);
   font-weight: 600;
@@ -1293,13 +1287,12 @@ h1,h2,h3 { font-family: var(--display); }
   }
   .project-stack .stack-card .stack-card__layout { gap: 19px; }
   .project-stack .stack-card .stack-card__copy h3 { font-size: clamp(32px, 8.2vw, 44px); }
-  .project-stack .stack-card .stack-card__copy > p:not(.project-card__subtitle):not(.project-repo-note) { font-size: 13px; line-height: 1.6; }
+  .project-stack .stack-card .stack-card__copy > p:not(.project-card__subtitle) { font-size: 13px; line-height: 1.6; }
   .project-stack .stack-card .stack-card__visual.project-visual { border-radius: 12px; }
   .project-tech__logo { width: 42px; height: 42px; flex-basis: 42px; }
   .project-tech__logo img { width: 28px; height: 28px; }
   .project-actions { gap: 9px; margin-top: 18px; }
   .project-github,.project-actions__secondary { font-size: 12px; padding: 11px 12px; min-height: 43px; }
-  .project-repo-note { font-size: 10px !important; }
   .metric__number { font-size: 44px; }
 }
 @media (max-width: 700px) and (max-height: 830px) {
