@@ -7,7 +7,7 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 - **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a technology-logo ticker; headings and bold project titles use Inter 800 from the same family as the summary, while technical metadata retains Geist Mono
 - **Solid-white hero typography** with selective bold technical keywords, no animated gradient or shimmer effect.
 - **Selected projects**: Jarvis, ApplyWise, Microservices based health care monitoring system, and Website for Automobile spare parts store
-- **Full-height, winding SVG career journey** with alternating milestones, reverse-on-scroll blue stroke animation, responsive layout, clickable events, and reduced-motion support
+- **Scroll-driven career journey** from Bachelor’s degree (2020–2024) to AD IT Robotics (2022–2024), Master’s study and graduate research (2025–2026 expected graduation), and ApplyWise team leadership (October 2026). A backpack-wearing walking character follows the blue SVG path, transforms to an airplane at AD IT Robotics, then changes into a running character at the Master’s milestone. The route reverses on upward scroll and has desktop/mobile layouts, clickable stops, and a reduced-motion fallback
 - **Education and certifications** presented separately, with experience in the journey and skills in the scrolling logo strip
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
 - **Logo-only skills marquee** with original full-color technology logos, seamless right-to-left loop, gradient fade, and hover pause
@@ -37,7 +37,7 @@ https://nithin0553.github.io/Nithin-Portfolio/
 
 - \`index.html\`: all site content and semantic layout
 - \`styles.css\`: responsive visual system
-- \`script.js\`: mobile navigation, milestone selection and scroll-progress SVG drawing
+- \`script.js\`: mobile navigation, milestone selection, scroll-linked SVG drawing, and path-following walk → airplane → run animation
 - \`assets/favicon.svg\`: original N monogram
 - \`assets/projects/shop-website-home-4k.webp\`: 3840×2160 upscale of the owner's 1856×868 Shop Website screenshot, white-letterboxed to keep the entire page visible
 

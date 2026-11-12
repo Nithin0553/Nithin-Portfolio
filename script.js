@@ -49,9 +49,16 @@ if (menuButton && mobileMenu) {
   });
 }
 
-/* The winding journey is the single experience view. Milestones can
-   be selected without a duplicate table, sidebar, or detail panel. */
+/* One career journey: Bachelor’s → AD IT Robotics → Master’s → ApplyWise.
+   Both SVGs use 3 measurable path segments. Their accumulated actual SVG
+   lengths define precisely where the walking boy changes into a plane,
+   and then back to a running boy. The blue line and traveler share one
+   scroll-driven progress value, reversible on upward scrolling. */
 const journeyButtons = Array.from(document.querySelectorAll(".career-journey__stop[data-event]"));
+const careerJourney = document.querySelector(".career-journey");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const narrowJourney = window.matchMedia("(max-width: 900px)");
+let careerFrameRequested = false;
 
 function selectJourneyMilestone(key) {
   journeyButtons.forEach(function (button) {
@@ -67,39 +74,103 @@ journeyButtons.forEach(function (button) {
   });
 });
 
-const now = new Date();
+function createJourneyScene(size) {
+  if (!careerJourney) return null;
+  const svg = careerJourney.querySelector(".career-journey__svg--" + size);
+  if (!svg) return null;
+  const path = svg.querySelector(".career-journey__progress");
+  const legs = Array.from(svg.querySelectorAll(".career-journey__leg"));
+  const traveler = svg.querySelector(".journey-traveler");
+  if (!path || legs.length !== 3 || !traveler) return null;
 
-/* Scroll-linked winding SVG journey.
-   Progress is derived from the journey container itself and is reversible. */
-const careerJourney = document.querySelector(".career-journey");
-const careerPaths = Array.from(document.querySelectorAll(".career-journey__progress"));
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-let careerFrameRequested = false;
+  const legLengths = legs.map(function (leg) { return leg.getTotalLength(); });
+  const length = path.getTotalLength();
+  if (length <= 0 || legLengths.some(function (n) { return n <= 0; })) return null;
+  const segmentTotal = legLengths.reduce(function (sum, n) { return sum + n; }, 0);
+  const boundaries = [0,
+    legLengths[0] / segmentTotal,
+    (legLengths[0] + legLengths[1]) / segmentTotal,
+    1
+  ];
+  path.style.strokeDasharray = String(length);
+  path.style.strokeDashoffset = String(length);
+  return {
+    svg: svg, path: path, length: length, boundaries: boundaries,
+    traveler: traveler,
+    modes: Array.from(traveler.querySelectorAll(".journey-traveler__mode")),
+    plane: traveler.querySelector(".journey-plane__facing"),
+    boys: Array.from(traveler.querySelectorAll(".journey-boy__facing"))
+  };
+}
+
+const journeyScenes = {
+  desktop: createJourneyScene("desktop"),
+  mobile: createJourneyScene("mobile")
+};
+
+function clampJourney(n) { return Math.max(0, Math.min(1, n)); }
+
+function currentJourneyProgress(scene) {
+  if (reduceMotion.matches) return 1;
+  if (journeyButtons.length !== 4) return 0;
+
+  // Match each change of vehicle to its real milestone marker as it crosses
+  // the viewport's reading line, rather than guessing fixed percentages.
+  const readingLine = (window.innerHeight || document.documentElement.clientHeight) * 0.54;
+  const positions = journeyButtons.map(function (button) {
+    const rect = button.getBoundingClientRect();
+    return rect.top + rect.height / 2;
+  });
+  if (readingLine <= positions[0]) return 0;
+  if (readingLine >= positions[3]) return 1;
+
+  for (let i = 0; i < 3; i += 1) {
+    if (readingLine <= positions[i + 1]) {
+      const fraction = clampJourney((readingLine - positions[i]) /
+        Math.max(1, positions[i + 1] - positions[i]));
+      return scene.boundaries[i] +
+        (scene.boundaries[i + 1] - scene.boundaries[i]) * fraction;
+    }
+  }
+  return 1;
+}
 
 function updateCareerLine() {
-  if (!careerJourney || careerPaths.length === 0) return;
+  const scene = narrowJourney.matches ? journeyScenes.mobile : journeyScenes.desktop;
+  if (!scene) return;
 
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  const bounds = careerJourney.getBoundingClientRect();
-  // Start when the winding path approaches the viewport. Finish near the
-  // final milestone, with reverse scrolling naturally erasing the line.
-  const drawingDistance = Math.max(1, bounds.height - viewportHeight * 0.1);
-  const progress = Math.min(1, Math.max(0,
-    (viewportHeight * 0.78 - bounds.top) / drawingDistance
-  ));
-  const visibleProgress = reduceMotion.matches ? 1 : progress;
+  const progress = currentJourneyProgress(scene);
+  const length = scene.length;
+  const distance = length * progress;
+  scene.path.style.strokeDashoffset = String(length - distance);
 
-  careerPaths.forEach(function (path) {
-    const length = path.getTotalLength();
-    if (length <= 0) return;
-    path.style.strokeDasharray = String(length);
-    path.style.strokeDashoffset = String(length * (1 - visibleProgress));
+  const point = scene.path.getPointAtLength(distance);
+  const near = scene.path.getPointAtLength(Math.min(length, distance + 2));
+  const prev = scene.path.getPointAtLength(Math.max(0, distance - 2));
+  const dx = near.x - prev.x;
+  const dy = near.y - prev.y;
+  const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+  scene.traveler.setAttribute("transform", "translate(" + point.x + " " + point.y + ")");
+
+  const mode = progress < scene.boundaries[1] ? "walk" :
+    progress < scene.boundaries[2] ? "plane" : "run";
+  scene.modes.forEach(function (part) {
+    part.classList.toggle("is-active", part.dataset.mode === mode);
   });
-
-  const thresholds = [0.18, 0.41, 0.64, 0.88];
-  journeyButtons.forEach(function (button, index) {
-    button.classList.toggle("is-reached", visibleProgress >= thresholds[index]);
+  scene.boys.forEach(function (boy) {
+    if (Math.abs(dx) > .01) boy.setAttribute("transform", "scale(" + (dx < 0 ? -1 : 1) + " 1)");
   });
+  if (scene.plane) scene.plane.setAttribute("transform", "rotate(" + angle + ")");
+
+  let active = 0;
+  scene.boundaries.forEach(function (boundary, index) {
+    const reached = reduceMotion.matches || progress >= boundary - .0005;
+    if (journeyButtons[index]) journeyButtons[index].classList.toggle("is-reached", reached);
+    if (reached) active = index;
+  });
+  if (journeyButtons[active]) {
+    selectJourneyMilestone(journeyButtons[active].dataset.event);
+  }
 }
 
 function scheduleCareerLineUpdate() {
@@ -111,17 +182,21 @@ function scheduleCareerLineUpdate() {
   });
 }
 
-if (careerJourney && careerPaths.length > 0) {
+if (careerJourney && journeyScenes.desktop && journeyScenes.mobile) {
   updateCareerLine();
   window.addEventListener("scroll", scheduleCareerLineUpdate, { passive: true });
   window.addEventListener("resize", scheduleCareerLineUpdate);
   window.addEventListener("load", scheduleCareerLineUpdate);
   if (typeof reduceMotion.addEventListener === "function") {
     reduceMotion.addEventListener("change", scheduleCareerLineUpdate);
+    narrowJourney.addEventListener("change", scheduleCareerLineUpdate);
   } else if (typeof reduceMotion.addListener === "function") {
     reduceMotion.addListener(scheduleCareerLineUpdate);
+    narrowJourney.addListener(scheduleCareerLineUpdate);
   }
 }
+
+const now = new Date();
 
 const copyrightYear = document.getElementById("copyright-year");
 if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());

@@ -905,10 +905,10 @@ h1,h2,h3 { font-family: var(--display); }
   transform: translate(-50%,-50%);
   cursor: pointer;
 }
-.career-journey__stop:nth-child(1) { left: 59%; top: 21.7172%; }
-.career-journey__stop:nth-child(2) { left: 26%; top: 45.4545%; }
-.career-journey__stop:nth-child(3) { left: 72.5%; top: 69.6970%; }
-.career-journey__stop:nth-child(4) { left: 45.5%; top: 95.9596%; }
+.career-journey__stop:nth-child(1) { left: 59%; top: 15.6566%; }
+.career-journey__stop:nth-child(2) { left: 29%; top: 36.3636%; }
+.career-journey__stop:nth-child(3) { left: 72%; top: 61.6162%; }
+.career-journey__stop:nth-child(4) { left: 45%; top: 87.8788%; }
 .career-journey__node {
   display: block;
   width: 20px;
@@ -980,10 +980,10 @@ h1,h2,h3 { font-family: var(--display); }
   }
   .career-journey__svg--desktop { display: none; }
   .career-journey__svg--mobile { display: block; }
-  .career-journey__stop:nth-child(1) { left: 15.5%; top: 12.1212%; }
-  .career-journey__stop:nth-child(2) { left: 31.75%; top: 39.3939%; }
-  .career-journey__stop:nth-child(3) { left: 15.5%; top: 68.1818%; }
-  .career-journey__stop:nth-child(4) { left: 31.75%; top: 95.4545%; }
+  .career-journey__stop:nth-child(1) { left: 15.5%; top: 10.9848%; }
+  .career-journey__stop:nth-child(2) { left: 31.75%; top: 35.6061%; }
+  .career-journey__stop:nth-child(3) { left: 15.5%; top: 62.8788%; }
+  .career-journey__stop:nth-child(4) { left: 31.75%; top: 90.1515%; }
   .career-journey__stop[data-side="left"] .career-journey__label,
   .career-journey__stop[data-side="right"] .career-journey__label {
     left: calc(100% + 23px);
@@ -1388,4 +1388,53 @@ h1,h2,h3 { font-family: var(--display); }
 }
 @media (max-width: 700px) {
   .site-header .brand__code { font-size: clamp(14px, 3.8vw, 17px); }
+}
+
+
+/* Traveler follows the SAME scroll-drawn SVG route. Invisible segment
+   paths are kept measurable so the walk → flight → run transitions land
+   exactly at the AD IT Robotics and Master's milestone nodes. */
+.career-journey__leg {
+  fill: none;
+  stroke: none;
+  pointer-events: none;
+}
+.journey-traveler {
+  pointer-events: none;
+  filter: drop-shadow(0 0 7px rgba(82,168,255,.34));
+}
+.journey-traveler__mode {
+  opacity: 0;
+  transition: opacity .24s ease;
+}
+.journey-traveler__mode.is-active { opacity: 1; }
+.journey-boy__leg,
+.journey-boy__arm {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+}
+.journey-traveler__mode--walk.is-active .journey-boy__leg--front,
+.journey-traveler__mode--walk.is-active .journey-boy__arm--back {
+  animation: journey-walk-forward .68s ease-in-out infinite alternate;
+}
+.journey-traveler__mode--walk.is-active .journey-boy__leg--back,
+.journey-traveler__mode--walk.is-active .journey-boy__arm--front {
+  animation: journey-walk-back .68s ease-in-out infinite alternate;
+}
+.journey-traveler__mode--run.is-active .journey-boy__leg--front,
+.journey-traveler__mode--run.is-active .journey-boy__arm--back {
+  animation: journey-run-forward .32s ease-in-out infinite alternate;
+}
+.journey-traveler__mode--run.is-active .journey-boy__leg--back,
+.journey-traveler__mode--run.is-active .journey-boy__arm--front {
+  animation: journey-run-back .32s ease-in-out infinite alternate;
+}
+@keyframes journey-walk-forward { from { transform: rotate(-16deg); } to { transform: rotate(20deg); } }
+@keyframes journey-walk-back { from { transform: rotate(20deg); } to { transform: rotate(-16deg); } }
+@keyframes journey-run-forward { from { transform: rotate(-34deg); } to { transform: rotate(42deg); } }
+@keyframes journey-run-back { from { transform: rotate(42deg); } to { transform: rotate(-34deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .journey-traveler { display: none; }
+  .journey-traveler__mode { transition: none; }
+  .journey-boy__leg, .journey-boy__arm { animation: none !important; }
 }
