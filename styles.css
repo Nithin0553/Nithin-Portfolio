@@ -1391,3 +1391,17 @@ h1,h2,h3 { font-family: var(--display); }
 
 /* Hero introduction uses solid white lettering, without animated highlights. */
 .hero .headline-fluid, .hero__summary p, .hero__summary strong { color: #ffffff; }
+
+/* Header wordmark: a simple code expression, without a logo icon. */
+.site-header .brand__code {
+  color: #ffffff;
+  font-family: var(--mono);
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 600;
+  letter-spacing: -.055em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .site-header .brand__code { font-size: clamp(14px, 3.8vw, 17px); }
+}
