@@ -1374,7 +1374,7 @@ h1,h2,h3 { font-family: var(--display); }
 }
 .hero__summary p {
   margin: 0;
-  color: #d0d0d0;
+  color: #ffffff;
   font: 400 clamp(14px, 1.18vw, 17px)/1.78 var(--display);
   letter-spacing: -.005em;
 }
@@ -1389,61 +1389,5 @@ h1,h2,h3 { font-family: var(--display); }
   .hero__summary p { font-size: 14px; line-height: 1.75; }
 }
 
-
-
-/* ShinyText: faithful opaque gradient sweep, configured through data-* props.
-   The JavaScript sets the gradient only when background-clip:text is supported.
-   Real text remains visible even when scripts or animation are disabled. */
-.shiny-text { display: inline-block; white-space: nowrap; vertical-align: baseline; color: #b5b5b5; }
-/* The big headline uses a permanently visible base layer. A separate
-   aria-hidden text overlay receives the same shimmer as the smaller keywords.
-   This avoids large-font WebKit/Chromium clipping artifacts that hid letters. */
-.shiny-text--name {
-  position: relative;
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
-}
-.shiny-name__base {
-  position: relative;
-  color: inherit;
-  -webkit-text-fill-color: inherit;
-}
-.shiny-name__overlay {
-  position: absolute;
-  inset: 0;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  pointer-events: none;
-  white-space: nowrap;
-  visibility: hidden;
-}
-.shiny-text--name.shiny-text--ready .shiny-name__overlay {
-  visibility: visible;
-}
-.shiny-text--keyword { color: #999999; font-weight: 600; }
-.shiny-text--keyword.shiny-text--ready {
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.shiny-keyword-group { display: inline-block; white-space: nowrap; }
-@media (prefers-reduced-motion: reduce) {
-  .shiny-text,
-  .shiny-text.shiny-text--ready {
-    color: #b5b5b5;
-    -webkit-text-fill-color: currentColor;
-    background-image: none !important;
-  }
-  .shiny-text--keyword,
-  .shiny-text--keyword.shiny-text--ready { color: #999999; }
-  .shiny-text--name,
-  .shiny-text--name.shiny-text--ready {
-    color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
-  }
-  .shiny-text--name .shiny-name__overlay {
-    visibility: hidden !important;
-  }
-}
+/* Hero introduction uses solid white lettering, without animated highlights. */
+.hero .headline-fluid, .hero__summary p, .hero__summary strong { color: #ffffff; }
