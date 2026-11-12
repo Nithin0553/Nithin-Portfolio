@@ -1134,9 +1134,6 @@ h1,h2,h3 { font-family: var(--display); }
   min-width: 0;
   max-width: 560px;
 }
-.stack-card__copy > .v-chip {
-  margin-bottom: 26px;
-}
 .project-stack .stack-card .stack-card__copy h3 {
   font-size: clamp(36px, 4.4vw, 66px);
   line-height: 1.06;
@@ -1272,7 +1269,6 @@ h1,h2,h3 { font-family: var(--display); }
   }
   .project-stack .stack-card .stack-card__visual.project-visual { max-height: 370px; }
   .project-stack .stack-card .stack-card__copy { max-width: none; }
-  .stack-card__copy > .v-chip { margin-bottom: 16px; }
   .project-stack .stack-card .stack-card__copy h3 { font-size: clamp(33px, 6.8vw, 50px); }
   .project-stack .stack-card .stack-card__copy .project-card__subtitle { margin-bottom: 12px !important; }
   .project-tech { margin-top: 21px; }
