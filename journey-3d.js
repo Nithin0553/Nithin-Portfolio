@@ -12,7 +12,7 @@ function initJourney3D(container){
   catch(_) { return; }
   renderer.setClearColor(0x000000,0);
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));
-  renderer.setSize(190,210,false);
+  renderer.setSize(190,210,false); // calibrated to the host after model initialization
   renderer.outputColorSpace=THREE.SRGBColorSpace;
   renderer.toneMapping=THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure=1.35;
@@ -25,6 +25,19 @@ function initJourney3D(container){
   const camera=new THREE.OrthographicCamera(-2.1,2.1,2.35,-2.35,.01,60);
   camera.position.set(5.2,3.1,8.5);
   camera.lookAt(0,1.48,0);
+  // Keep the Three.js projection at the same aspect ratio as its CSS host.
+  // The prior fixed 190 x 210 buffer was being stretched horizontally.
+  function fitRenderer(){
+    const width=Math.max(1,host.clientWidth||190);
+    const height=Math.max(1,host.clientHeight||210);
+    const halfHeight=2.35;
+    camera.left=-halfHeight*(width/height);
+    camera.right=halfHeight*(width/height);
+    camera.top=halfHeight;
+    camera.bottom=-halfHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width,height,false);
+  }
   scene.add(new THREE.HemisphereLight(0xf2f6ff,0x27364a,3));
   const light=new THREE.DirectionalLight(0xffffff,3);
   light.position.set(-3,8,7);scene.add(light);
@@ -191,8 +204,9 @@ function initJourney3D(container){
     body.add(speedLines);
     speedLines.visible=false;
     root.userData.speedLines=speedLines;
-    root.rotation.y=.28;
-    root.scale.setScalar(.77);
+    root.userData.airframe=body; // Roll the aircraft around its fuselage, not the ground.
+    root.rotation.y=.10;
+    root.scale.setScalar(.86);
     return root;
   }
   const student=person(false),grown=person(true),airliner=plane();
@@ -200,7 +214,9 @@ function initJourney3D(container){
   Object.values(figures).forEach(f=>{f.visible=false;scene.add(f);});
   figures.walk.visible=true;
   let mode="walk",from=null,transitionAt=0,visible=false,playing=false;
-  let lastFrame=null,gaitClock=0,gaitBlend=0,planeBank=0,planeYaw=.28;
+  let lastFrame=null,gaitClock=0,gaitBlend=0,planeBank=0,planeYaw=.10;
+  let lastPose=null;
+  const airframe=airliner.userData.airframe;
   const baseScales={
     walk:figures.walk.scale.x,plane:figures.plane.scale.x,
     run:figures.run.scale.x
@@ -209,6 +225,7 @@ function initJourney3D(container){
 
   function position(p){
     if(!p?.width||!p?.height)return;
+    lastPose=p;
     host.style.left=(100*p.x/p.width)+"%";
     host.style.top=(100*p.y/p.height)+"%";
     host.classList.toggle("is-plane",p.mode==="plane");
@@ -226,11 +243,12 @@ function initJourney3D(container){
       figures[mode].visible=true;
     }
 
-    // Passenger aircraft remains predominantly level, with a small bank
-    // into the path rather than spinning like a spacecraft around bends.
+    // Bank the fuselage into the direction of the descending/ascending
+    // curve. Because the roll is applied about the fuselage center, the
+    // plane stays on the path instead of orbiting away from the blue tip.
     const tangent=(p.angle||0)*Math.PI/180;
-    planeBank=Math.max(-.19,Math.min(.19,-tangent*.12));
-    planeYaw=.28+((p.dx||1)<0?-.16:.16);
+    planeBank=Math.max(-.39,Math.min(.39,-tangent*.67));
+    planeYaw=.08+((p.dx||1)<0?-.08:.08);
     const face=(p.dx||1)<0?-.32:.32;
     student.figure.rotation.y=face;
     grown.figure.rotation.y=face;
@@ -272,8 +290,8 @@ function initJourney3D(container){
       Math.sin(time*1.62)*(moving?.012:.028):0;
     airliner.rotation.y=planeYaw+
       (mode==="plane"&&!moving?Math.sin(time*1.15)*.025:0);
-    airliner.rotation.z=planeBank+
-      (mode==="plane"?Math.sin(time*1.43)*(moving?.009:.028):0);
+    airframe.rotation.z=planeBank+
+      (mode==="plane"?Math.sin(time*1.43)*(moving?.009:.020):0);
     if(speedLines){
       speedLines.visible=mode==="plane"&&moving;
       if(speedLines.visible){
@@ -319,5 +337,18 @@ function initJourney3D(container){
   observer.observe(container);
   window.__journey3DUpdate=position;
   container.classList.add("journey-3d-ready");
+  fitRenderer();
+  if(typeof ResizeObserver==="function"){
+    const sizeObserver=new ResizeObserver(()=>{
+      fitRenderer();
+      if(lastPose)position(lastPose);
+    });
+    sizeObserver.observe(host);
+  }else{
+    window.addEventListener("resize",()=>{
+      fitRenderer();
+      if(lastPose)position(lastPose);
+    });
+  }
   window.dispatchEvent(new Event("scroll"));
 }

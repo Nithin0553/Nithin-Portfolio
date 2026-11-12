@@ -1503,3 +1503,35 @@ h1,h2,h3 { font-family: var(--display); }
     animation: none;
   }
 }
+
+
+/* Precise 3D path alignment and a subtle depth treatment for the airliner.
+   The SVG blue stroke is now rendered from the same rail points that place
+   the plane, rather than from a non-scaling dash. */
+.career-journey .journey-3d-cursor.is-plane {
+  width: clamp(174px, 16vw, 244px);
+  height: clamp(162px, 14vw, 208px);
+  isolation: isolate;
+}
+.career-journey .journey-3d-cursor.is-plane::before {
+  content: "";
+  position: absolute;
+  inset: 24% 9% 18%;
+  background: radial-gradient(ellipse at center,
+    rgba(82,168,255,.12) 0%,
+    rgba(82,168,255,.055) 37%,
+    rgba(82,168,255,0) 76%);
+  filter: blur(13px);
+  pointer-events: none;
+  z-index: 0;
+}
+.career-journey .journey-3d-cursor canvas {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .career-journey .journey-3d-cursor.is-plane {
+    width: clamp(116px, 30vw, 158px);
+    height: clamp(122px, 31vw, 174px);
+  }
+}

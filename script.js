@@ -83,12 +83,16 @@ function createJourneyScene(size) {
   const svg = careerJourney.querySelector(".career-journey__svg--" + size);
   if (!svg) return null;
   const path = svg.querySelector(".career-journey__progress");
+  const rail = svg.querySelector(".career-journey__rail");
   const legs = Array.from(svg.querySelectorAll(".career-journey__leg"));
   const traveler = svg.querySelector(".journey-traveler");
-  if (!path || legs.length !== 3 || !traveler) return null;
+  if (!path || !rail || legs.length !== 3 || !traveler) return null;
 
   const legLengths = legs.map(function (leg) { return leg.getTotalLength(); });
-  const length = path.getTotalLength();
+  // The permanent rail is the sole source of path coordinates. We draw the
+  // visible blue path from sampled rail points, not stroke-dash lengths.
+  // This prevents stretched/non-scaling SVG dashes from ending behind the 3D plane.
+  const length = rail.getTotalLength();
   if (length <= 0 || legLengths.some(function (n) { return n <= 0; })) return null;
   const segmentTotal = legLengths.reduce(function (sum, n) { return sum + n; }, 0);
   const boundaries = [0,
@@ -96,10 +100,20 @@ function createJourneyScene(size) {
     (legLengths[0] + legLengths[1]) / segmentTotal,
     1
   ];
-  path.style.strokeDasharray = String(length);
-  path.style.strokeDashoffset = String(length);
+  const sampleStep = 5;
+  const samples = [];
+  for (let d = 0; d < length; d += sampleStep) {
+    const p = rail.getPointAtLength(d);
+    samples.push((samples.length ? "L " : "M ") +
+      p.x.toFixed(2) + " " + p.y.toFixed(2));
+  }
+  const startPoint = rail.getPointAtLength(0);
+  path.style.strokeDasharray = "none";
+  path.style.strokeDashoffset = "0";
+  path.setAttribute("d", "M " + startPoint.x + " " + startPoint.y);
   return {
-    svg: svg, path: path, length: length, boundaries: boundaries,
+    svg: svg, path: path, rail: rail, sampleStep: sampleStep,
+    samples: samples, length: length, boundaries: boundaries,
     traveler: traveler,
     modes: Array.from(traveler.querySelectorAll(".journey-traveler__mode")),
     plane: traveler.querySelector(".journey-plane__facing"),
@@ -164,11 +178,19 @@ function updateCareerLine() {
   journeyLastDistance = distance;
   journeyLastScene = sceneKey;
   journeyWasScrolled = false;
-  scene.path.style.strokeDashoffset = String(length - distance);
 
-  const point = scene.path.getPointAtLength(distance);
-  const near = scene.path.getPointAtLength(Math.min(length, distance + 2));
-  const prev = scene.path.getPointAtLength(Math.max(0, distance - 2));
+  // Draw the blue line to the exact point the traveler uses. Drawing a
+  // partial polyline rather than a dashed full path keeps it perfectly
+  // synchronized even with preserveAspectRatio="none" and uneven scaling.
+  const point = scene.rail.getPointAtLength(distance);
+  const sampledCount = Math.min(scene.samples.length, Math.floor(distance / scene.sampleStep) + 1);
+  const commands = scene.samples.slice(0, sampledCount);
+  commands.push("L " + point.x.toFixed(2) + " " + point.y.toFixed(2));
+  scene.path.setAttribute("d", commands.join(" "));
+  scene.path.style.visibility = distance < .2 ? "hidden" : "visible";
+
+  const near = scene.rail.getPointAtLength(Math.min(length, distance + 2));
+  const prev = scene.rail.getPointAtLength(Math.max(0, distance - 2));
   const dx = near.x - prev.x;
   const dy = near.y - prev.y;
   const angle = Math.atan2(dy, dx) * 180 / Math.PI;
