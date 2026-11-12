@@ -59,6 +59,10 @@ const careerJourney = document.querySelector(".career-journey");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const narrowJourney = window.matchMedia("(max-width: 900px)");
 let careerFrameRequested = false;
+let journeyWasScrolled = false;
+let journeyLastDistance = null;
+let journeyLastScene = null;
+let journeyMotionTimeout = null;
 
 function selectJourneyMilestone(key) {
   journeyButtons.forEach(function (button) {
@@ -136,12 +140,30 @@ function currentJourneyProgress(scene) {
 }
 
 function updateCareerLine() {
-  const scene = narrowJourney.matches ? journeyScenes.mobile : journeyScenes.desktop;
+  const sceneKey = narrowJourney.matches ? "mobile" : "desktop";
+  const scene = journeyScenes[sceneKey];
   if (!scene) return;
 
   const progress = currentJourneyProgress(scene);
   const length = scene.length;
   const distance = length * progress;
+  // Trigger gait and flight streaks only when a real scroll moves the
+  // traveler along this route. Do not animate on load, idle or resize.
+  const advanced = journeyWasScrolled && journeyLastScene === sceneKey &&
+    journeyLastDistance !== null && Math.abs(distance - journeyLastDistance) > .35;
+  if (advanced && !reduceMotion.matches) {
+    careerJourney.classList.add("journey-is-moving");
+    window.clearTimeout(journeyMotionTimeout);
+    journeyMotionTimeout = window.setTimeout(function () {
+      careerJourney.classList.remove("journey-is-moving");
+    }, 140);
+  } else if (reduceMotion.matches) {
+    window.clearTimeout(journeyMotionTimeout);
+    careerJourney.classList.remove("journey-is-moving");
+  }
+  journeyLastDistance = distance;
+  journeyLastScene = sceneKey;
+  journeyWasScrolled = false;
   scene.path.style.strokeDashoffset = String(length - distance);
 
   const point = scene.path.getPointAtLength(distance);
@@ -194,7 +216,10 @@ function scheduleCareerLineUpdate() {
 
 if (careerJourney && journeyScenes.desktop && journeyScenes.mobile) {
   updateCareerLine();
-  window.addEventListener("scroll", scheduleCareerLineUpdate, { passive: true });
+  window.addEventListener("scroll", function () {
+    journeyWasScrolled = true;
+    scheduleCareerLineUpdate();
+  }, { passive: true });
   window.addEventListener("resize", scheduleCareerLineUpdate);
   window.addEventListener("load", scheduleCareerLineUpdate);
   if (typeof reduceMotion.addEventListener === "function") {

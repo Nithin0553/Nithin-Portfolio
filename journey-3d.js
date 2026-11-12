@@ -94,23 +94,105 @@ function initJourney3D(container){
     }
     return {root,figure,legs,arms};
   }
+  // Original Boeing-737-style twin-engine narrow-body airliner: a long tapered
+  // fuselage, swept wings, blue winglets, tall tail, two underwing turbofans,
+  // cockpit glazing and two rows of passenger windows. No Boeing branding.
   function plane(){
-    const root=new THREE.Group(),body=new THREE.Group();
-    body.position.y=1.5;root.add(body);
-    add(body,new THREE.CapsuleGeometry(.3,2.74,8,20),m.white,0,0,0,0,0,-Math.PI/2);
-    add(body,new THREE.ConeGeometry(.29,.56,20),m.white,1.68,0,0,0,0,-Math.PI/2);
-    add(body,new THREE.BoxGeometry(1.08,.09,3.23),m.white,-.23,-.035,0,0,-.23);
-    add(body,new THREE.BoxGeometry(.68,.075,1.29),m.planeBlue,-1.42,.16,0,0,-.11);
-    const tail=new THREE.Shape();tail.moveTo(-1.67,.14);tail.lineTo(-1.48,.88);tail.lineTo(-1.0,.2);tail.closePath();
-    add(body,new THREE.ExtrudeGeometry(tail,{depth:.09,bevelEnabled:true,bevelThickness:.03,bevelSize:.02,bevelSegments:2}),m.planeBlue,0,0,-.04);
-    for(const side of [-1,1]){
-      add(body,new THREE.CapsuleGeometry(.14,.53,6,12),m.silver,-.18,-.29,side*.92,0,0,-Math.PI/2);
-      add(body,new THREE.CylinderGeometry(.115,.115,.07,14),m.glass,.20,-.3,side*.92,0,0,-Math.PI/2);
+    const root=new THREE.Group();
+    const body=new THREE.Group();
+    body.position.y=1.55;
+    root.add(body);
+
+    // Lathe is rotated so its longitudinal axis is +X (nose forward).
+    const profile=[
+      [0,-1.93],[.12,-1.91],[.25,-1.7],[.31,-1.44],
+      [.34,-1.18],[.355,-.55],[.36,.65],[.34,1.18],
+      [.29,1.48],[.19,1.77],[0,1.93]
+    ].map(([radius,x])=>new THREE.Vector2(radius,x));
+    add(body,new THREE.LatheGeometry(profile,32),m.white,0,0,0,0,0,-Math.PI/2);
+
+    function wing(side,stabilizer=false){
+      const shape=new THREE.Shape();
+      if(!stabilizer){
+        shape.moveTo(.50,side*.25);
+        shape.lineTo(-.68,side*.25);
+        shape.lineTo(-1.21,side*1.98);
+        shape.lineTo(-.94,side*2.10);
+        shape.lineTo(-.48,side*1.82);
+      }else{
+        shape.moveTo(-1.34,side*.19);
+        shape.lineTo(-1.87,side*.19);
+        shape.lineTo(-2.02,side*.93);
+        shape.lineTo(-1.83,side*1.0);
+        shape.lineTo(-1.56,side*.83);
+      }
+      shape.closePath();
+      const geo=new THREE.ExtrudeGeometry(shape,{
+        depth:stabilizer?.065:.095,bevelEnabled:true,
+        bevelSize:.022,bevelThickness:.018,bevelSegments:2
+      });
+      add(body,geo,m.white,0,stabilizer?.15:-.055,0,-Math.PI/2);
     }
-    for(let i=0;i<7;i++)ball(body,m.glass,.053,-1.06+i*.34,.13,.28,.9,.8,.65);
-    box(body,2.7,.075,.05,m.blue,-.04,-.17,.30);
-    ball(body,m.glass,.18,1.46,.11,.15);
-    root.scale.setScalar(.88);
+
+    for(const side of [-1,1]){
+      wing(side);
+      wing(side,true);
+      // Distinct commercial-airliner winglets.
+      const winglet=box(body,.19,.34,.075,m.planeBlue,-1.04,.12,side*2.03);
+      winglet.rotation.x=side*.20;
+      // Turbofans sit below and slightly ahead of the swept wings.
+      add(body,new THREE.CylinderGeometry(.20,.17,.68,20),m.white,
+        .19,-.37,side*.98,0,0,-Math.PI/2);
+      add(body,new THREE.CylinderGeometry(.145,.145,.023,20),m.glass,
+        .54,-.37,side*.98,0,0,-Math.PI/2);
+      add(body,new THREE.TorusGeometry(.153,.029,8,22),m.silver,
+        .55,-.37,side*.98,0,Math.PI/2,0);
+      ball(body,m.silver,.053,.56,-.37,side*.98);
+      // Blue cabin stripe and regularly spaced passenger windows.
+      box(body,2.80,.046,.038,m.blue,-.025,-.12,side*.345);
+      for(let i=0;i<10;i++){
+        ball(body,m.glass,.045,-1.30+i*.262,.105,side*.337,.82,.74,.36);
+      }
+      // Slanted cockpit side windows near the curved nose.
+      const cockpit=ball(body,m.glass,.15,1.54,.16,side*.18,1.20,.56,.54);
+      cockpit.rotation.z=-.28;
+    }
+
+    // Upright rear stabilizer with a recognizable blue airline tail.
+    const fin=new THREE.Shape();
+    fin.moveTo(-1.90,.19);
+    fin.lineTo(-1.50,.95);
+    fin.lineTo(-1.24,.95);
+    fin.lineTo(-1.34,.19);
+    fin.closePath();
+    add(body,new THREE.ExtrudeGeometry(fin,{
+      depth:.10,bevelEnabled:true,bevelSize:.018,
+      bevelThickness:.025,bevelSegments:2
+    }),m.planeBlue,0,0,-.05);
+
+    // Thin luminous lines follow the rearward (-X) axis. They are never
+    // visible when the page is stationary.
+    const speedLines=new THREE.Group();
+    const blueTrail=new THREE.MeshBasicMaterial({
+      color:0x52a8ff,transparent:true,opacity:.78,depthWrite:false
+    });
+    const whiteTrail=new THREE.MeshBasicMaterial({
+      color:0xd5eaff,transparent:true,opacity:.68,depthWrite:false
+    });
+    for(const [x,y,z,w,material] of [
+      [-2.40,.20,-.19,1.12,blueTrail],
+      [-2.26,-.20,.17,.87,whiteTrail],
+      [-2.45,-.07,.36,1.00,blueTrail],
+      [-2.27,.28,.27,.72,whiteTrail]
+    ]){
+      const streak=box(speedLines,w,.018,.022,material,x,y,z);
+      streak.rotation.z=.045;
+    }
+    body.add(speedLines);
+    speedLines.visible=false;
+    root.userData.speedLines=speedLines;
+    root.rotation.y=.28;
+    root.scale.setScalar(.77);
     return root;
   }
   const student=person(false),grown=person(true),airliner=plane();
@@ -118,54 +200,122 @@ function initJourney3D(container){
   Object.values(figures).forEach(f=>{f.visible=false;scene.add(f);});
   figures.walk.visible=true;
   let mode="walk",from=null,transitionAt=0,visible=false,playing=false;
+  let lastFrame=null,gaitClock=0,gaitBlend=0,planeBank=0,planeYaw=.28;
+  const baseScales={
+    walk:figures.walk.scale.x,plane:figures.plane.scale.x,
+    run:figures.run.scale.x
+  };
+  const speedLines=airliner.userData.speedLines;
+
   function position(p){
     if(!p?.width||!p?.height)return;
     host.style.left=(100*p.x/p.width)+"%";
     host.style.top=(100*p.y/p.height)+"%";
     host.classList.toggle("is-plane",p.mode==="plane");
-    // Align the actual projected feet (or airplane center) with the route
-    // point. This avoids the visual offset of a hard-coded CSS anchor.
+
+    // Anchor the projected feet (or airplane's fuselage center) exactly
+    // at the same SVG path point that controls the blue stroke.
     camera.updateMatrixWorld();
-    const attachment = new THREE.Vector3(0,p.mode==="plane"?1.5:0,0).project(camera);
-    const anchor=(1-attachment.y)*50;
-    host.style.transform="translate(-50%, -"+anchor+"%)";
+    const attachment=new THREE.Vector3(0,p.mode==="plane"?1.55:0,0).project(camera);
+    host.style.transform="translate(-50%, -"+((1-attachment.y)*50)+"%)";
+
     if(figures[p.mode]&&p.mode!==mode){
-      from=mode;mode=p.mode;transitionAt=performance.now();
+      from=mode;
+      mode=p.mode;
+      transitionAt=performance.now();
       figures[mode].visible=true;
     }
-    airliner.rotation.z=-Math.max(-1,Math.min(1,(p.angle||0)*Math.PI/180));
+
+    // Passenger aircraft remains predominantly level, with a small bank
+    // into the path rather than spinning like a spacecraft around bends.
+    const tangent=(p.angle||0)*Math.PI/180;
+    planeBank=Math.max(-.19,Math.min(.19,-tangent*.12));
+    planeYaw=.28+((p.dx||1)<0?-.16:.16);
     const face=(p.dx||1)<0?-.32:.32;
     student.figure.rotation.y=face;
     grown.figure.rotation.y=face;
     renderer.render(scene,camera);
   }
+
   function animate(t){
     if(!playing)return;
-    if(visible&&!document.hidden){
-      const time=t*.001;
-      for(const [model,name,speed,amount] of [[student,"walk",7,.4],[grown,"run",14,.63]]){
-        const amp=mode===name?amount:0;
-        model.legs.forEach((l,i)=>{l.rotation.x=Math.sin(time*speed+i*Math.PI)*amp;});
-        model.arms.forEach((a,i)=>{a.rotation.x=-Math.sin(time*speed+i*Math.PI)*amp*.72;});
-      }
-      airliner.rotation.x=Math.sin(time*1.7)*.06;
-      if(from){
-        const step=Math.min(1,(t-transitionAt)/230);
-        figures[from].scale.setScalar(Math.max(.001,1-step));
-        figures[mode].scale.setScalar(Math.max(.001,step));
-        if(step>=1){
-          figures[from].visible=false;figures[from].scale.setScalar(1);
-          figures[mode].scale.setScalar(1);from=null;
-        }
-      }
-      renderer.render(scene,camera);
+    if(!visible||document.hidden){
+      playing=false;
+      lastFrame=null;
+      return;
     }
+    const dt=lastFrame===null?0:Math.max(0,Math.min(.05,(t-lastFrame)/1000));
+    lastFrame=t;
+    const time=t*.001;
+    const moving=container.classList.contains("journey-is-moving");
+
+    // Pause walking/running as soon as scrolling has settled. Keeping the
+    // gait phase still (rather than looping on wall time) avoids foot sliding.
+    // The 100-ms blend returns the arms/legs to a natural standing position.
+    gaitBlend+=(Number(moving)-gaitBlend)*Math.min(1,dt*15);
+    if(moving)gaitClock+=dt*(mode==="run"?15.5:7.5);
+    for(const [rig,name,amp] of [[student,"walk",.43],[grown,"run",.67]]){
+      const stride=mode===name?amp*gaitBlend:0;
+      rig.legs.forEach((leg,i)=>{
+        leg.rotation.x=Math.sin(gaitClock+i*Math.PI)*stride;
+      });
+      rig.arms.forEach((arm,i)=>{
+        arm.rotation.x=-Math.sin(gaitClock+i*Math.PI)*stride*.76;
+      });
+    }
+
+    // No flight speed streaks while idle. Only the airplane gently
+    // floats / rocks in place; its animated trail appears while scrolling.
+    airliner.position.y=mode==="plane"?
+      Math.sin(time*1.85)*(moving?.015:.052):0;
+    airliner.rotation.x=mode==="plane"?
+      Math.sin(time*1.62)*(moving?.012:.028):0;
+    airliner.rotation.y=planeYaw+
+      (mode==="plane"&&!moving?Math.sin(time*1.15)*.025:0);
+    airliner.rotation.z=planeBank+
+      (mode==="plane"?Math.sin(time*1.43)*(moving?.009:.028):0);
+    if(speedLines){
+      speedLines.visible=mode==="plane"&&moving;
+      if(speedLines.visible){
+        speedLines.scale.x=.94+Math.sin(time*13)*.10;
+        speedLines.position.x=-.025+Math.sin(time*10)*.04;
+      }
+    }
+
+    if(from){
+      const fraction=Math.min(1,(t-transitionAt)/230);
+      figures[from].scale.setScalar(baseScales[from]*Math.max(.001,1-fraction));
+      figures[mode].scale.setScalar(baseScales[mode]*Math.max(.001,fraction));
+      figures[from].visible=fraction<1;
+      figures[mode].visible=true;
+      if(fraction>=1){
+        figures[from].scale.setScalar(baseScales[from]);
+        figures[mode].scale.setScalar(baseScales[mode]);
+        from=null;
+      }
+    }
+    for(const [name,obj] of Object.entries(figures)){
+      if(name!==mode&&name!==from){
+        obj.visible=false;
+        obj.scale.setScalar(baseScales[name]);
+      }
+    }
+    renderer.render(scene,camera);
     requestAnimationFrame(animate);
+  }
+
+  function resumeAnimation(){
+    if(visible&&!document.hidden&&!playing){
+      playing=true;
+      lastFrame=null;
+      requestAnimationFrame(animate);
+    }
   }
   const observer=new IntersectionObserver(entries=>{
     visible=entries[0].isIntersecting;
-    if(visible&&!playing){playing=true;requestAnimationFrame(animate);}
+    resumeAnimation();
   },{rootMargin:"200px"});
+  document.addEventListener("visibilitychange",resumeAnimation);
   observer.observe(container);
   window.__journey3DUpdate=position;
   container.classList.add("journey-3d-ready");

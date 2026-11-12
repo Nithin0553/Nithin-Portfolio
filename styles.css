@@ -1413,20 +1413,20 @@ h1,h2,h3 { font-family: var(--display); }
   transform-box: fill-box;
   transform-origin: 50% 0%;
 }
-.journey-traveler__mode--walk.is-active .journey-boy__leg--front,
-.journey-traveler__mode--walk.is-active .journey-boy__arm--back {
+.journey-is-moving .journey-traveler__mode--walk.is-active .journey-boy__leg--front,
+.journey-is-moving .journey-traveler__mode--walk.is-active .journey-boy__arm--back {
   animation: journey-walk-forward .68s ease-in-out infinite alternate;
 }
-.journey-traveler__mode--walk.is-active .journey-boy__leg--back,
-.journey-traveler__mode--walk.is-active .journey-boy__arm--front {
+.journey-is-moving .journey-traveler__mode--walk.is-active .journey-boy__leg--back,
+.journey-is-moving .journey-traveler__mode--walk.is-active .journey-boy__arm--front {
   animation: journey-walk-back .68s ease-in-out infinite alternate;
 }
-.journey-traveler__mode--run.is-active .journey-boy__leg--front,
-.journey-traveler__mode--run.is-active .journey-boy__arm--back {
+.journey-is-moving .journey-traveler__mode--run.is-active .journey-boy__leg--front,
+.journey-is-moving .journey-traveler__mode--run.is-active .journey-boy__arm--back {
   animation: journey-run-forward .32s ease-in-out infinite alternate;
 }
-.journey-traveler__mode--run.is-active .journey-boy__leg--back,
-.journey-traveler__mode--run.is-active .journey-boy__arm--front {
+.journey-is-moving .journey-traveler__mode--run.is-active .journey-boy__leg--back,
+.journey-is-moving .journey-traveler__mode--run.is-active .journey-boy__arm--front {
   animation: journey-run-back .32s ease-in-out infinite alternate;
 }
 @keyframes journey-walk-forward { from { transform: rotate(-16deg); } to { transform: rotate(20deg); } }
@@ -1473,4 +1473,33 @@ h1,h2,h3 { font-family: var(--display); }
 }
 @media (prefers-reduced-motion: reduce) {
   .career-journey .journey-3d-cursor { display: none; }
+}
+
+
+/* Fallback SVG figures only animate when the scroll-driven path is advancing.
+   The 3D airliner renders its own speed streaks when moving and gentle
+   airborne wobble when stationary. */
+.career-journey:not(.journey-3d-ready):not(.journey-is-moving)
+  .journey-traveler__mode--plane.is-active .journey-plane__facing {
+  animation: journey-svg-plane-idle 2.6s ease-in-out infinite alternate;
+}
+@keyframes journey-svg-plane-idle {
+  from { transform: translateY(-1px) rotate(-1.5deg); }
+  to { transform: translateY(1px) rotate(1.5deg); }
+}
+.career-journey .journey-3d-cursor.is-plane {
+  width: clamp(152px, 14vw, 212px);
+  height: clamp(145px, 13vw, 196px);
+}
+@media (max-width: 900px) {
+  .career-journey .journey-3d-cursor.is-plane {
+    width: clamp(108px, 28vw, 145px);
+    height: clamp(112px, 29vw, 158px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .career-journey:not(.journey-3d-ready):not(.journey-is-moving)
+    .journey-traveler__mode--plane.is-active .journey-plane__facing {
+    animation: none;
+  }
 }
