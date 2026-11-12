@@ -1080,8 +1080,9 @@ h1,h2,h3 { font-family: var(--display); }
    the LEFT and all project details on the RIGHT. Retains sticky stacking. */
 .project-stack .stack-card {
   display: block;
-  padding: clamp(22px, 3vw, 42px);
-  min-height: clamp(540px, 75svh, 760px);
+  padding: clamp(22px, 2.7vw, 38px);
+  /* Size to image + copy, not to the viewport; sticky stacking still applies. */
+  min-height: 0;
   margin-bottom: 13svh;
 }
 .project-stack .stack-card:last-child { margin-bottom: 0; }
@@ -1090,7 +1091,6 @@ h1,h2,h3 { font-family: var(--display); }
   grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
   gap: clamp(30px, 4vw, 72px);
   align-items: center;
-  min-height: 100%;
 }
 .project-stack .stack-card .stack-card__visual.project-visual {
   position: relative;
