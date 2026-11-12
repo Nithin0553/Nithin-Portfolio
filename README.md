@@ -4,7 +4,7 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 
 ## What is here
 
-- **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a technology-logo ticker; no decorative background effects
+- **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a technology-logo ticker; headings and bold project titles use Inter 800 from the same family as the summary, while technical metadata retains Geist Mono
 - **Solid-white hero typography** with selective bold technical keywords, no animated gradient or shimmer effect.
 - **Selected projects**: Jarvis, ApplyWise, Microservices based health care monitoring system, and Website for Automobile spare parts store
 - **Full-height, winding SVG career journey** with alternating milestones, reverse-on-scroll blue stroke animation, responsive layout, clickable events, and reduced-motion support

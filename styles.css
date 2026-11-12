@@ -225,7 +225,7 @@ h1,h2,h3 { font-family: var(--display); }
 .footer__identity { min-width: 0; }
 .footer__wordmark {
   display: inline-block;
-  font: 400 clamp(40px, 5vw, 68px)/1.04 var(--headline-heavy);
+  font: 800 clamp(40px, 5vw, 68px)/1.04 var(--display);
   letter-spacing: -.058em;
   color: var(--white);
 }
@@ -745,20 +745,15 @@ h1,h2,h3 { font-family: var(--display); }
 }
 
 
-/* HEAVY EDITORIAL TYPOGRAPHY
-   Archivo Black is a freely available, visually close substitute for the
-   supplied EVOLUTION headline sample; the source typeface is not verified.
-   Keep Inter for body copy and Geist Mono for metadata and tables. */
-:root {
-  --headline-heavy: "Archivo Black", "Arial Black", "Helvetica Neue", sans-serif;
-}
+/* A unified Inter type system: headings now use the bold 800 weight
+   of the same Inter family as the hero summary, rather than Archivo Black.
+   Keep Geist Mono for code, metrics labels and technical metadata. */
 .headline-fluid,
 .section-heading,
 .project-card h3,
-.contact-section h2,
-.site-header .brand__name {
-  font-family: var(--headline-heavy);
-  font-weight: 400;
+.contact-section h2 {
+  font-family: var(--display);
+  font-weight: 800;
   font-synthesis: none;
   text-wrap: pretty;
 }
@@ -787,7 +782,7 @@ h1,h2,h3 { font-family: var(--display); }
 .site-header .brand__name {
   font-size: 19px;
   letter-spacing: -0.055em;
-  font-weight: 400;
+  font-weight: 800;
 }
 .contact-section h2 {
   font-size: clamp(35px, 4.6vw, 65px);
@@ -965,7 +960,7 @@ h1,h2,h3 { font-family: var(--display); }
   letter-spacing: .055em;
 }
 .career-journey__label strong {
-  font: 400 clamp(23px,2.7vw,35px)/1.15 var(--headline-heavy);
+  font: 800 clamp(23px,2.7vw,35px)/1.15 var(--display);
   letter-spacing: -.05em;
   color: var(--white);
 }
