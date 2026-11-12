@@ -163,6 +163,9 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
       elapsed: 0,
       lastTime: null
     };
+    // For the large headline, animate the duplicate glyph overlay instead
+    // of clipping the real text. Keywords keep their proven original behavior.
+    state.paintElement = element.querySelector(".shiny-name__overlay") || element;
     if (state.pauseOnHover) {
       element.addEventListener("mouseenter", () => {
         state.paused = true;
@@ -178,24 +181,25 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
 
   function configure(state) {
     const element = state.element;
+    const target = state.paintElement;
     element.classList.remove("shiny-text--ready");
     element.style.color = state.color;
-    element.style.backgroundImage = "";
-    element.style.backgroundColor = "";
-    element.style.backgroundSize = "";
-    element.style.backgroundPosition = "";
+    target.style.backgroundImage = "";
+    target.style.backgroundColor = "";
+    target.style.backgroundSize = "";
+    target.style.backgroundPosition = "";
     if (state.disabled || motionPreference.matches || !supportsClip) return;
     // Fill any space left uncovered when the moving gradient shifts beyond the letters.
     // The color is clipped to text alongside the image, so it never paints a box.
-    element.style.backgroundColor = state.color;
+    target.style.backgroundColor = state.color;
     // Exact opaque gradient stops from the original ShinyText component.
-    element.style.backgroundImage = "linear-gradient(" + state.spread + "deg, " +
+    target.style.backgroundImage = "linear-gradient(" + state.spread + "deg, " +
       state.color + " 0%, " + state.color + " 35%, " +
       state.shineColor + " 50%, " + state.color + " 65%, " +
       state.color + " 100%)";
-    element.style.backgroundSize = "200% auto";
-    element.style.backgroundRepeat = "no-repeat";
-    element.style.backgroundPosition = state.direction === "left" ? "150% center" : "-50% center";
+    target.style.backgroundSize = "200% auto";
+    target.style.backgroundRepeat = "no-repeat";
+    target.style.backgroundPosition = state.direction === "left" ? "150% center" : "-50% center";
     element.classList.add("shiny-text--ready");
   }
 
@@ -231,7 +235,7 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
       }
 
       if (state.direction === "right") progress = 100 - progress;
-      state.element.style.backgroundPosition = String(150 - progress * 2) + "% center";
+      state.paintElement.style.backgroundPosition = String(150 - progress * 2) + "% center";
     }
     window.requestAnimationFrame(animate);
   }
