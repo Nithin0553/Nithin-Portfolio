@@ -1760,207 +1760,238 @@ h1,h2,h3 { font-family: var(--display); }
   outline-offset: -4px;
   border-radius: 18px;
 }
-/* A near-square carrying case, built from layered CSS rather than a static image. */
+/* A compact hard-shell tool chest, not a carry bag: flat lid, straight
+   blue walls, two steel snap latches, molded ribs and a small top grip. */
 .toolbox-art {
   position: relative;
   display: block;
   flex: none;
-  width: 236px;
-  height: 218px;
-  perspective: 800px;
-  transform: rotateY(-6deg) rotateX(2deg) scale(1.05);
-  transform-origin: 50% 70%;
-  filter: drop-shadow(0 16px 15px rgba(0, 0, 0, .58));
+  width: 250px;
+  height: 230px;
+  perspective: 850px;
+  transform: rotateY(-5deg) rotateX(2deg) scale(1.06);
+  transform-origin: 50% 78%;
+  filter: drop-shadow(0 19px 14px rgba(0, 10, 30, .64));
   transition: transform .3s ease, filter .3s ease;
 }
 .toolkit-box__toggle:hover .toolbox-art,
 .toolkit-box__toggle:focus-visible .toolbox-art {
-  transform: translateY(-4px) rotateY(-5deg) rotateX(2deg) scale(1.08);
-  filter: drop-shadow(0 18px 18px rgba(42, 140, 237, .22));
+  transform: translateY(-5px) rotateY(-4deg) rotateX(2deg) scale(1.09);
+  filter: drop-shadow(0 21px 16px rgba(24, 105, 196, .3));
 }
 .toolbox-art__shadow {
   position: absolute;
-  bottom: -10px;
-  left: -1%;
-  width: 102%;
-  height: 34px;
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+  height: 23px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(60, 147, 236, .31), transparent 74%);
+  background: radial-gradient(ellipse, rgba(47, 139, 244, .3), transparent 73%);
+  filter: blur(5px);
 }
+/* The visible black opening is deliberately behind the moving lid. */
 .toolbox-art__cavity {
   position: absolute;
-  top: 85px;
-  left: 14px;
-  right: 12px;
-  height: 41px;
   z-index: 1;
-  border: 2px solid #6aaee8;
-  border-radius: 12px 12px 3px 3px;
-  background: linear-gradient(180deg, #061d42 0%, #0d356b 65%, #2175b7 100%);
-  box-shadow: inset 0 10px 15px #04142b;
+  top: 81px;
+  left: 9px;
+  right: 17px;
+  height: 54px;
+  border: 3px solid #397fba;
+  border-radius: 7px 7px 2px 2px;
+  background: linear-gradient(180deg, #040f22, #092a56 72%, #166db3);
+  box-shadow: inset 0 13px 16px #020d1b, 0 0 0 2px #104e8f;
 }
+/* A visible right wall makes this a rigid plastic toolbox, not flat luggage. */
 .toolbox-art__side {
   position: absolute;
   z-index: 2;
-  top: 105px;
+  top: 100px;
+  bottom: 12px;
   right: 0;
-  bottom: 9px;
-  width: 42px;
-  transform: skewY(-8deg);
-  border: 2px solid #3577b9;
-  border-radius: 3px 6px 12px 3px;
-  background: linear-gradient(92deg, #1b73c4, #0e468d 68%, #0a3269);
-  box-shadow: inset -5px 0 10px rgba(2, 26, 67, .3);
+  width: 35px;
+  transform: skewY(-9deg);
+  transform-origin: left top;
+  border: 2px solid #327cbf;
+  border-radius: 2px 4px 8px 2px;
+  background: linear-gradient(95deg, #2486d5 0%, #145b9f 50%, #082e66 100%);
+  box-shadow: inset -6px 0 8px rgba(1, 16, 39, .35);
 }
+.toolbox-art__side::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  height: 82%;
+  width: 4px;
+  border-radius: 3px;
+  background: rgba(157, 212, 255, .2);
+}
+/* Deep, almost square lower compartment with hard molded corners. */
 .toolbox-art__front {
   position: absolute;
   z-index: 3;
-  left: 6px;
-  right: 14px;
-  top: 105px;
-  bottom: 6px;
-  border: 2px solid #77b6ed;
-  border-radius: 6px 6px 15px 15px;
+  top: 99px;
+  bottom: 11px;
+  left: 5px;
+  right: 15px;
+  border: 2px solid #5aaef0;
+  border-radius: 3px 3px 9px 9px;
   background:
-    radial-gradient(ellipse at 22% 6%, rgba(177, 225, 255, .27), transparent 52%),
-    linear-gradient(175deg, #389cef 0%, #2687dd 29%, #1568bd 70%, #0c4b99 100%);
+    radial-gradient(ellipse at 13% 2%, rgba(157, 216, 255, .27), transparent 45%),
+    linear-gradient(165deg, #2f9af1, #1d7cce 38%, #145dad 75%, #0d468d 100%);
   box-shadow:
-    inset 0 3px 0 rgba(218, 245, 255, .25),
-    inset 2px 0 5px rgba(231, 245, 255, .14),
-    inset 0 -9px 0 rgba(5, 45, 101, .25),
-    0 8px 12px rgba(0, 0, 0, .35);
+    inset 0 3px 1px rgba(225, 246, 255, .28),
+    inset 4px 0 6px rgba(169, 225, 255, .13),
+    inset 0 -12px 0 rgba(7, 47, 111, .24),
+    0 8px 10px rgba(1, 12, 34, .38);
 }
 .toolbox-art__front::before {
   content: "";
   position: absolute;
-  inset: 20px 15px 13px;
-  border: 1px solid rgba(203, 239, 255, .23);
-  border-radius: 9px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(7, 48, 109, .08));
+  inset: 21px 12px 15px;
+  border: 0;
+  border-top: 2px solid rgba(193, 234, 255, .2);
+  border-bottom: 2px solid rgba(4, 51, 112, .4);
+  background:
+    linear-gradient(90deg, rgba(5, 63, 129, .27) 0 8px, transparent 9px calc(100% - 9px), rgba(6, 52, 107, .3) calc(100% - 8px)),
+    linear-gradient(180deg, rgba(255, 255, 255, .07), transparent 26%, rgba(10, 43, 93, .08) 75%, rgba(227, 247, 255, .05));
+  box-shadow: inset 0 3px 0 rgba(255,255,255,.04);
 }
 .toolbox-art__front::after {
   content: "";
   position: absolute;
-  top: 19px;
-  left: 12px;
-  right: 12px;
-  height: 3px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, transparent, rgba(225, 246, 255, .34), transparent);
+  bottom: 8px;
+  left: 13px;
+  right: 13px;
+  height: 7px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(8, 50, 107, .25), rgba(118, 197, 255, .1));
 }
+/* Thick rectangular lip and horizontal hinge seam like a real tool chest. */
 .toolbox-art__rim {
   position: absolute;
   z-index: 5;
-  top: 97px;
+  top: 92px;
   left: 5px;
-  right: 14px;
-  height: 18px;
-  border: 2px solid #62aff1;
-  border-radius: 8px 8px 6px 6px;
-  background: linear-gradient(180deg, #8bd0ff, #398fdb 65%, #125bb0);
-  box-shadow: inset 0 2px 0 rgba(236, 249, 255, .6), 0 3px 3px rgba(7, 36, 84, .32);
+  right: 16px;
+  height: 22px;
+  border: 2px solid #65b6f7;
+  border-radius: 5px 5px 3px 3px;
+  background: linear-gradient(180deg, #8fd0ff, #398dd6 32%, #1562b1 80%, #093f84);
+  box-shadow: inset 0 2px 1px rgba(239, 252, 255, .52), 0 4px 5px rgba(4, 33, 87, .3);
 }
-/* The blue cap and handle are one hinged assembly. */
+/* Flat hinged blue lid with a raised reinforced central panel. */
 .toolbox-art__lid {
   position: absolute;
   z-index: 6;
-  left: 9px;
-  right: 15px;
-  top: 60px;
-  height: 54px;
-  border: 2px solid #8ac5f5;
-  border-radius: 16px 16px 7px 7px;
-  background: linear-gradient(172deg, #8bd1ff 0%, #52aff6 17%, #2e91e3 54%, #135cac 100%);
+  left: 8px;
+  right: 18px;
+  top: 62px;
+  height: 47px;
+  border: 2px solid #85c9ff;
+  border-radius: 7px 7px 3px 3px;
+  background:
+    linear-gradient(90deg, #1c73c5, #67b7f5 7%, #3c9bea 19%, #2c87d7 75%, #135da8),
+    linear-gradient(180deg, #6ebffd, #1b6bbc);
   box-shadow:
-    inset 0 2px 2px rgba(245, 251, 255, .48),
-    inset 0 -10px 0 rgba(12, 60, 122, .23),
-    0 5px 5px rgba(3, 29, 74, .36);
+    inset 0 3px 1px rgba(234, 251, 255, .42),
+    inset 0 -10px 0 rgba(5, 47, 109, .26),
+    0 5px 3px rgba(3, 32, 78, .32);
   transform-origin: 50% 100%;
-  transition: transform .6s cubic-bezier(.16, .82, .18, 1) .5s;
+  transition: transform .63s cubic-bezier(.16, .82, .18, 1) .55s;
   backface-visibility: visible;
 }
 .toolbox-art__lid::before {
   content: "";
   position: absolute;
   top: 7px;
-  left: 12px;
-  right: 12px;
-  height: 14px;
-  border: 1px solid rgba(229, 249, 255, .25);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, .07);
+  left: 11px;
+  right: 11px;
+  bottom: 15px;
+  border: 1px solid rgba(223, 247, 255, .23);
+  border-radius: 3px;
+  background: linear-gradient(180deg, rgba(232, 248, 255, .12), rgba(8, 71, 148, .05));
 }
 .toolbox-art__lid::after {
   content: "";
   position: absolute;
-  left: 8px;
-  right: 8px;
-  bottom: 5px;
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
   height: 4px;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #1f72c0, #b0dfff 45%, #277bcb);
+  border-radius: 2px;
+  background: linear-gradient(90deg, #165ea8, #b9e6ff 45%, #13599f);
 }
+/* Small low-profile folding grip on the LID, instead of an office-bag arch. */
 .toolbox-art__handle {
   position: absolute;
-  z-index: 1;
+  top: -28px;
   left: 50%;
-  top: -67px;
-  width: 92px;
-  height: 78px;
+  width: 82px;
+  height: 31px;
   transform: translateX(-50%);
-  border: 11px solid #367cbd;
+  border: 9px solid #357ebf;
   border-bottom: 0;
-  border-radius: 26px 26px 0 0;
+  border-radius: 14px 14px 0 0;
   background: transparent;
   box-shadow:
-    inset 3px 0 0 rgba(235, 251, 255, .29),
-    inset -4px 0 0 #17528f,
-    0 -2px 0 #a6dbff,
-    3px 3px 0 #0c396f;
+    inset 3px 0 0 rgba(232, 247, 255, .2),
+    inset -3px 0 0 #0c4d8c,
+    0 -2px 0 #a0d9ff,
+    2px 2px 0 #073970;
 }
 .toolbox-art__handle::before {
   content: "";
   position: absolute;
-  top: -12px;
-  left: 7px;
-  right: 7px;
-  height: 20px;
-  border: 1px solid #6692b5;
-  border-radius: 6px;
-  background:
-    repeating-linear-gradient(45deg, transparent 0 3px, rgba(232, 248, 255, .11) 3px 4px, transparent 4px 6px),
-    linear-gradient(180deg, #466d91, #183a65 55%, #0c2c50);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .32);
+  top: -10px;
+  left: 4px;
+  right: 4px;
+  height: 14px;
+  border: 1px solid #497aa9;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #426d9c, #153a6d 55%, #09244a);
+  box-shadow: inset 0 1px 1px rgba(230, 244, 255, .25);
 }
-/* Front clasps stay connected to the fixed body as the lid swings upward. */
+/* Paired rigid rectangular steel locks with real locking slots. */
 .toolbox-art__latch {
   position: absolute;
   z-index: 7;
-  top: 103px;
-  width: 20px;
-  height: 32px;
-  border: 2px solid #547998;
-  border-radius: 4px 4px 6px 6px;
-  background: linear-gradient(90deg, #58839f, #e2f2fb 42%, #94b4c9 76%, #426b8a);
-  box-shadow: inset 0 -6px 0 rgba(21, 65, 104, .26), 0 3px 4px rgba(2, 28, 65, .31);
+  top: 101px;
+  width: 23px;
+  height: 40px;
+  border: 2px solid #42627e;
+  border-radius: 3px 3px 5px 5px;
+  background: linear-gradient(90deg, #4d789b, #c8ddea 23%, #edf6fc 42%, #a0b8cc 70%, #3c607b);
+  box-shadow: inset 0 -6px 0 rgba(26, 64, 99, .26), 0 3px 5px rgba(0, 25, 66, .3);
 }
-.toolbox-art__latch::after {
+.toolbox-art__latch::before {
   content: "";
   position: absolute;
   top: 7px;
   left: 5px;
   right: 5px;
-  height: 10px;
+  height: 15px;
   border-radius: 2px;
-  background: #326b9a;
-  box-shadow: inset 0 1px 2px #143f76;
+  background: linear-gradient(90deg, #17395c, #3977a8 50%, #17436a);
+  box-shadow: inset 0 2px 4px #0a3159;
 }
-.toolbox-art__latch--left { left: 38px; }
-.toolbox-art__latch--right { right: 47px; }
-/* Interaction sequence: first raise the lid, then release the technology logos.
-   When closing, logos retract before the lid comes down again. */
+.toolbox-art__latch::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 3px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #f5fdff, #6c92ad);
+}
+.toolbox-art__latch--left { left: 43px; }
+.toolbox-art__latch--right { right: 56px; }
+/* Lid pivots up before the existing technology-logo choreography begins.
+   On closing the logos return first; the lid follows after a short delay. */
 .toolkit-box.is-open .toolbox-art__lid {
-  transform: translateY(-29px) rotateX(68deg);
+  transform: translateY(-29px) rotateX(77deg);
   transition-delay: 0s;
 }
 .toolkit-box__skills {
