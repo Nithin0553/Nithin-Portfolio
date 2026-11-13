@@ -1665,9 +1665,9 @@ h1,h2,h3 { font-family: var(--display); }
 
 
 
-/* Premium, industrial-inspired square toolboxes.
-   Each case is still genuine CSS artwork, so the lid and floating logo
-   choreography remain interactive and usable on GitHub Pages. */
+/* Open-top illustrative toolboxes, inspired by a real blue tool caddy.
+   Original local SVG: no watermarked artwork, no external image requests.
+   All technology badges remain native HTML elements and independently animated. */
 .toolkit-section {
   background: #000;
   border-top: 1px solid var(--border);
@@ -1714,7 +1714,6 @@ h1,h2,h3 { font-family: var(--display); }
   min-width: 0;
   padding: 0;
   border: 0;
-  border-radius: 0;
   background: transparent;
   box-shadow: none;
 }
@@ -1733,26 +1732,25 @@ h1,h2,h3 { font-family: var(--display); }
 .toolkit-box__scene {
   position: relative;
   isolation: isolate;
-  height: 286px;
+  height: 316px;
   transition: height .72s cubic-bezier(.2, .8, .25, 1) .18s;
 }
 .toolkit-box.is-open .toolkit-box__scene {
-  height: 468px;
+  height: 484px;
   transition-delay: 0s;
 }
 .toolkit-box__toggle {
   position: absolute;
-  left: calc(50% - 18px);
+  left: calc(50% - 12px);
   bottom: 0;
   z-index: 4;
   display: grid;
   place-items: center;
-  width: min(100%, 308px);
-  height: 254px;
+  width: min(100%, 328px);
+  height: 316px;
   padding: 0;
   border: 0;
-  background: transparent;
-  color: #d9eafa;
+  background: none;
   cursor: pointer;
   transform: translateX(-50%);
   -webkit-tap-highlight-color: transparent;
@@ -1760,317 +1758,39 @@ h1,h2,h3 { font-family: var(--display); }
 .toolkit-box__toggle:focus-visible {
   outline: 2px solid #52a8ff;
   outline-offset: -3px;
-  border-radius: 18px;
+  border-radius: 22px;
 }
-/* Square silhouette: the handle, hinged lid, tall body and feet are one case. */
 .toolbox-art {
   position: relative;
   display: block;
   flex: none;
-  width: 238px;
-  height: 242px;
-  perspective: 950px;
-  transform: rotateY(-7deg) rotateX(2deg) scale(1.06);
-  transform-origin: 50% 67%;
-  filter: drop-shadow(0 20px 16px rgba(0, 0, 0, .7));
-  transition: transform .3s ease, filter .3s ease;
+  width: min(100%, 316px);
+  aspect-ratio: 1;
+  transform: translate3d(0, 0, 0) rotate(-1.5deg);
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1), filter .35s ease;
+  filter: drop-shadow(0 16px 15px rgba(1, 24, 55, .12));
+}
+.toolbox-art__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 .toolkit-box__toggle:hover .toolbox-art,
 .toolkit-box__toggle:focus-visible .toolbox-art {
-  transform: translateY(-4px) rotateY(-5deg) rotateX(2deg) scale(1.09);
-  filter: drop-shadow(0 20px 17px rgba(38, 105, 168, .26));
+  transform: translate3d(0, -6px, 0) rotate(0deg) scale(1.035);
+  filter: drop-shadow(0 16px 15px rgba(28, 117, 207, .24));
 }
-.toolbox-art::before,
-.toolbox-art::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
+.toolkit-box.is-open .toolbox-art {
+  transform: translate3d(0, 3px, 0) rotate(1deg);
 }
-/* Steel-reinforced lower feet, with small illuminated edge detail. */
-.toolbox-art::before {
-  left: 12px;
-  bottom: 4px;
-  z-index: 7;
-  width: 28px;
-  height: 22px;
-  border: 1px solid #455361;
-  border-radius: 4px 5px 3px 8px;
-  background: linear-gradient(145deg, #6a7886, #26313d 37%, #0b131d 82%);
-  box-shadow: 180px 0 0 -1px #26313d, 180px 0 0 0 #455361;
+.toolkit-box.is-open .toolkit-box__toggle:hover .toolbox-art,
+.toolkit-box.is-open .toolkit-box__toggle:focus-visible .toolbox-art {
+  transform: translate3d(0, -3px, 0) rotate(0deg) scale(1.025);
 }
-.toolbox-art::after {
-  left: 27px;
-  right: 27px;
-  bottom: 1px;
-  z-index: 1;
-  height: 13px;
-  border-radius: 50%;
-  background: rgba(37, 137, 228, .22);
-  filter: blur(14px);
-}
-.toolbox-art__shadow {
-  position: absolute;
-  left: -2%;
-  bottom: -9px;
-  width: 104%;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(27, 99, 168, .27), transparent 74%);
-}
-/* Heavy U-shaped steel handle with knurled rubber grip and hinge bolts. */
-.toolbox-art__handle {
-  position: absolute;
-  z-index: 2;
-  top: 6px;
-  left: 65px;
-  width: 108px;
-  height: 92px;
-  border: 12px solid #667889;
-  border-bottom: 0;
-  border-radius: 27px 27px 0 0;
-  background: transparent;
-  box-shadow:
-    inset 4px 3px 0 rgba(238, 245, 252, .18),
-    inset -5px 0 0 #1d2b38,
-    0 -2px 0 #d5e0e9,
-    -3px 4px 0 #0b111a,
-    3px 5px 0 #0a141f;
-  transform-origin: 50% 100%;
-  transition: transform .68s cubic-bezier(.18, .8, .18, 1) .3s;
-}
-.toolbox-art__handle::before {
-  content: "";
-  position: absolute;
-  top: -13px;
-  left: 8px;
-  right: 8px;
-  height: 22px;
-  border: 1px solid #66727c;
-  border-radius: 6px;
-  background:
-    repeating-linear-gradient(45deg, transparent 0 2px, rgba(210, 223, 235, .12) 2px 3px, transparent 3px 5px),
-    repeating-linear-gradient(-45deg, transparent 0 2px, rgba(210, 223, 235, .09) 2px 3px, transparent 3px 5px),
-    linear-gradient(180deg, #4d5963 0%, #1b242d 27%, #070c13 67%, #36414c 100%);
-  box-shadow: inset 0 2px 1px rgba(255, 255, 255, .22), 0 3px 6px #02070d;
-}
-.toolbox-art__handle::after {
-  content: "";
-  position: absolute;
-  left: -18px;
-  bottom: 0;
-  width: 22px;
-  height: 22px;
-  border: 3px solid #303e4d;
-  border-radius: 50%;
-  background: radial-gradient(circle at 48% 50%, #9caebb 0 3px, #17222e 4px 7px, #657889 8px);
-  box-shadow: 98px 0 0 -1px #243341, 98px 0 0 2px #607281;
-}
-/* Dark well revealed when the lid swings back. */
-.toolbox-art__interior {
-  position: absolute;
-  z-index: 1;
-  left: 11px;
-  right: 15px;
-  top: 73px;
-  height: 55px;
-  border: 2px solid #61788c;
-  border-radius: 12px 12px 3px 3px;
-  background: linear-gradient(180deg, #010407, #07121e 50%, #152d40 100%);
-  box-shadow: inset 0 12px 18px #000, 0 0 14px rgba(82, 168, 255, .12);
-}
-.toolbox-art__lid {
-  position: absolute;
-  z-index: 3;
-  top: 73px;
-  left: 8px;
-  right: 14px;
-  height: 48px;
-  border: 2px solid #708494;
-  border-radius: 14px 14px 5px 5px;
-  background:
-    linear-gradient(90deg, rgba(69, 136, 188, .2), transparent 25%, transparent 78%, rgba(4, 12, 21, .55)),
-    linear-gradient(165deg, #54677a 0%, #293b4e 19%, #182533 54%, #080f19 100%);
-  box-shadow:
-    inset 0 2px 0 rgba(223, 238, 248, .34),
-    inset 0 -10px 0 rgba(5, 12, 19, .44),
-    0 4px 2px #09131e,
-    0 7px 10px rgba(0, 0, 0, .35);
-  transform-origin: 50% 100%;
-  transition: transform .68s cubic-bezier(.16, .82, .18, 1) .28s;
-}
-.toolbox-art__lid::before {
-  content: "";
-  position: absolute;
-  left: 11px;
-  right: 11px;
-  top: 6px;
-  height: 15px;
-  border: 1px solid rgba(176, 205, 225, .19);
-  border-radius: 5px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .07), transparent);
-}
-.toolbox-art__lid::after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  right: 6px;
-  bottom: 3px;
-  height: 3px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #142a3e, #4395d6 38%, #1b4e78 60%, #11263a);
-  box-shadow: 0 0 8px rgba(59, 156, 242, .24);
-}
-/* Offset side wall gives the box a genuine three-dimensional body. */
-.toolbox-art__side {
-  position: absolute;
-  z-index: 2;
-  right: 0;
-  top: 109px;
-  width: 38px;
-  height: 127px;
-  border: 2px solid #50697e;
-  border-radius: 2px 6px 11px 2px;
-  background:
-    repeating-linear-gradient(0deg, transparent 0 12px, rgba(181, 201, 218, .055) 13px 14px),
-    linear-gradient(95deg, #273e54, #111e2b 48%, #060e17);
-  box-shadow: inset -7px -3px 10px #060c14;
-  transform: skewY(-12deg);
-  transform-origin: top left;
-}
-.toolbox-art__front {
-  position: absolute;
-  z-index: 5;
-  left: 10px;
-  right: 15px;
-  top: 109px;
-  height: 128px;
-  border: 2px solid #61788b;
-  border-radius: 5px 5px 11px 11px;
-  background:
-    radial-gradient(ellipse at 12% 6%, rgba(96, 171, 228, .15), transparent 43%),
-    repeating-linear-gradient(0deg, transparent 0 17px, rgba(226, 241, 252, .014) 18px 19px),
-    linear-gradient(145deg, #263a4d 0%, #142436 30%, #0b1623 70%, #070e18 100%);
-  box-shadow:
-    inset 0 3px 0 rgba(206, 230, 248, .21),
-    inset 2px 0 5px rgba(202, 227, 246, .10),
-    inset 0 -5px 0 #071019,
-    0 8px 10px rgba(0, 0, 0, .45);
-}
-.toolbox-art__front::before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  inset: 13px 15px 11px;
-  border: 1px solid rgba(125, 158, 183, .25);
-  border-radius: 5px 5px 10px 10px;
-  background: linear-gradient(130deg, rgba(255, 255, 255, .025), transparent 46%, rgba(0, 0, 0, .08));
-  box-shadow: inset 0 2px 7px rgba(0, 0, 0, .25);
-}
-.toolbox-art__front::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  inset: 8px 7px;
-  background:
-    linear-gradient(47deg, transparent 47%, rgba(46, 146, 231, .62) 49%, transparent 52%) left bottom / 56px 50px no-repeat,
-    linear-gradient(-47deg, transparent 47%, rgba(46, 146, 231, .62) 49%, transparent 52%) right bottom / 56px 50px no-repeat;
-  opacity: .72;
-  pointer-events: none;
-}
-/* Real clasp shape: chrome hinge, recessed black slot and locking tongue. */
-.toolbox-art__latch {
-  position: absolute;
-  z-index: 8;
-  top: -28px;
-  width: 24px;
-  height: 47px;
-  border: 2px solid #4f5e69;
-  border-radius: 5px 5px 7px 7px;
-  background: linear-gradient(90deg, #4a5865, #c1d0d8 23%, #d9e1e7 49%, #6b7d89 82%, #26333d);
-  box-shadow: inset 0 3px 2px rgba(255, 255, 255, .65), inset 0 -6px 1px #344451, 0 3px 6px #02080f;
-}
-.toolbox-art__latch::before {
-  content: "";
-  position: absolute;
-  top: 7px;
-  left: 6px;
-  right: 6px;
-  height: 17px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #13202c, #415262 50%, #17212a);
-  box-shadow: inset 0 1px 2px #06101a;
-}
-.toolbox-art__latch::after {
-  content: "";
-  position: absolute;
-  bottom: 3px;
-  left: 4px;
-  right: 4px;
-  height: 5px;
-  border-radius: 2px;
-  background: linear-gradient(#edf4f7, #627687);
-}
-.toolbox-art__latch--left { left: 31px; }
-.toolbox-art__latch--right { right: 31px; }
-/* A quiet blue tech accent, rather than a large cartoon badge. */
-.toolbox-art__emblem {
-  position: absolute;
-  z-index: 6;
-  left: calc(50% - 17px);
-  top: 57px;
-  width: 34px;
-  height: 34px;
-  border: 1px solid #375675;
-  border-radius: 9px;
-  background: linear-gradient(150deg, #17293d, #06101a 80%);
-  box-shadow: inset 0 1px 3px #040b15, 0 0 14px rgba(30, 117, 202, .14);
-}
-.toolbox-art__emblem::after {
-  content: "";
-  position: absolute;
-  inset: 9px;
-  border: 3px solid #299afe;
-  border-radius: 5px;
-  box-shadow: 0 0 9px rgba(41, 154, 254, .38), inset 0 0 5px rgba(41, 154, 254, .17);
-}
-.toolkit-box.is-open .toolbox-art__lid {
-  transform: translateY(-34px) rotateX(70deg);
-  transition-delay: 0s;
-}
-.toolkit-box.is-open .toolbox-art__handle {
-  transform: translateY(-31px) rotateX(63deg);
-  transition-delay: 0s;
-}
-/* Three cohesive cases with restrained, purposeful details. */
-.toolkit-box[data-toolbox="apps-data"] .toolbox-art__handle::before {
-  background:
-    linear-gradient(90deg, transparent 0 9%, #248cd8 9% 13%, transparent 13% 87%, #248cd8 87% 91%, transparent 91%),
-    repeating-linear-gradient(45deg, transparent 0 2px, rgba(210, 223, 235, .12) 2px 3px, transparent 3px 5px),
-    linear-gradient(180deg, #4a5764, #080e15 68%, #344150);
-}
-.toolkit-box[data-toolbox="apps-data"] .toolbox-art__lid::after {
-  height: 5px;
-  background: linear-gradient(90deg, #263746, #97abbc 34%, #4c5d6c 70%, #152331);
-  box-shadow: inset 0 1px rgba(255, 255, 255, .3);
-}
-.toolkit-box[data-toolbox="apps-data"] .toolbox-art__front::after {
-  background: none;
-}
-.toolkit-box[data-toolbox="delivery-testing"] .toolbox-art__front::after {
-  inset: 19px 9px 9px;
-  background:
-    repeating-linear-gradient(135deg, transparent 0 4px, rgba(92, 120, 145, .22) 5px 7px, transparent 8px 11px) left bottom / 43px 54px no-repeat,
-    repeating-linear-gradient(135deg, transparent 0 4px, rgba(92, 120, 145, .22) 5px 7px, transparent 8px 11px) right bottom / 43px 54px no-repeat;
-  opacity: .9;
-}
-.toolkit-box[data-toolbox="delivery-testing"] .toolbox-art__lid::after {
-  left: 39%;
-  right: 39%;
-  height: 4px;
-  background: #328fee;
-  box-shadow: 0 0 9px rgba(60, 150, 255, .42);
-}
-/* Keep the existing logo choreography entirely separate from the case. */
 .toolkit-box__skills {
   position: absolute;
   inset: 0;
@@ -2082,8 +1802,8 @@ h1,h2,h3 { font-family: var(--display); }
 }
 .toolbox-token {
   position: absolute;
-  left: calc(50% - 18px);
-  bottom: 146px;
+  left: calc(50% - 12px);
+  bottom: 160px;
   width: 64px;
   height: 64px;
   opacity: 0;
@@ -2103,7 +1823,7 @@ h1,h2,h3 { font-family: var(--display); }
   width: 56px;
   height: 56px;
   object-fit: contain;
-  filter: drop-shadow(0 7px 8px rgba(0, 0, 0, .5)) drop-shadow(0 0 8px rgba(82, 168, 255, .12));
+  filter: drop-shadow(0 7px 8px rgba(0, 0, 0, .5)) drop-shadow(0 0 8px rgba(82, 168, 255, .13));
 }
 .toolkit-box.is-open .toolbox-token {
   opacity: 1;
@@ -2119,12 +1839,8 @@ h1,h2,h3 { font-family: var(--display); }
 }
 @media (max-width: 1100px) {
   .toolkit-grid { gap: 9px; }
-  .toolkit-box__toggle { left: calc(50% - 10px); }
-  .toolbox-art { transform: rotateY(-6deg) rotateX(2deg) scale(1.01); }
-  .toolkit-box__toggle:hover .toolbox-art,
-  .toolkit-box__toggle:focus-visible .toolbox-art {
-    transform: translateY(-4px) rotateY(-5deg) scale(1.04);
-  }
+  .toolkit-box__toggle { left: calc(50% - 8px); }
+  .toolbox-art { width: min(100%, 300px); }
 }
 @media (max-width: 900px) {
   .toolkit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
@@ -2138,27 +1854,20 @@ h1,h2,h3 { font-family: var(--display); }
   .toolkit-grid { grid-template-columns: minmax(0, 1fr); gap: 25px; }
   .toolkit-box:last-child { grid-column: auto; max-width: none; }
   .toolkit-box__heading h3 { font-size: 22px; }
-  .toolkit-box__toggle { left: calc(50% - 12px); }
+  .toolkit-box__toggle { left: 50%; }
 }
 @media (max-width: 360px) {
-  .toolkit-box__toggle { left: 50%; width: min(100%, 288px); }
-  .toolbox-art { transform: rotateY(-5deg) scale(.94); }
-  .toolkit-box__toggle:hover .toolbox-art,
-  .toolkit-box__toggle:focus-visible .toolbox-art {
-    transform: translateY(-3px) rotateY(-5deg) scale(.97);
-  }
+  .toolkit-box__toggle { width: min(100%, 288px); height: 294px; }
+  .toolkit-box__scene { height: 294px; }
+  .toolkit-box.is-open .toolkit-box__scene { height: 468px; }
+  .toolbox-art { width: min(100%, 288px); }
   .toolbox-token { left: 50%; width: 58px; height: 58px; }
   .toolbox-token__float img { width: 50px; height: 50px; }
   .toolkit-box.is-open .toolbox-token:nth-child(1) { --x: -86px; }
   .toolkit-box.is-open .toolbox-token:nth-child(3) { --x: 86px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .toolkit-box__scene,
-  .toolbox-art,
-  .toolbox-art__handle,
-  .toolbox-art__lid,
-  .toolbox-token,
-  .toolbox-token__float {
+  .toolkit-box__scene, .toolbox-art, .toolbox-token, .toolbox-token__float {
     transition: none !important;
     animation: none !important;
   }

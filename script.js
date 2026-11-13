@@ -258,7 +258,7 @@ const now = new Date();
 const copyrightYear = document.getElementById("copyright-year");
 if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
 
-/* Interactive toolbox lids and reversible floating skills.
+/* Interactive open-top toolbox illustrations and reversible floating skills.
    Native buttons support click, Enter and Space; Escape closes an open box.
    All visual choreography is in CSS, including the reduced-motion fallback. */
 (function initPortfolioToolboxes() {
@@ -271,7 +271,7 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
     function setOpen(open) {
       box.classList.toggle("is-open", open);
       button.setAttribute("aria-expanded", String(open));
-      button.setAttribute("aria-label", (open ? "Close " : "Open ") + name + " toolbox");
+      button.setAttribute("aria-label", (open ? "Hide " : "Show ") + name + " technologies");
       skills.setAttribute("aria-hidden", String(!open));
     }
     button.addEventListener("click", function () {
