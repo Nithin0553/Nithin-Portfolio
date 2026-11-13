@@ -1608,3 +1608,56 @@ h1,h2,h3 { font-family: var(--display); }
   }
   .credential-panel .credential-row strong { font-size: 15px; }
 }
+
+
+/* Larger landing-page introduction, scaled for wide desktop screens.
+   Keep the same Inter typography and minimal black / white / blue design. */
+.hero .hero__copy {
+  max-width: 1130px;
+}
+.hero .headline-fluid {
+  font-size: clamp(45px, 5.5vw, 84px);
+  line-height: 1.06;
+  letter-spacing: -.057em;
+  max-width: 1130px;
+  margin-bottom: 32px;
+}
+.hero .hero__summary {
+  max-width: 900px;
+  margin-bottom: 39px;
+}
+.hero .hero__summary p {
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.72;
+}
+.hero .hero__actions {
+  gap: 23px;
+}
+.hero .btn-square--large {
+  font-size: 21px;
+  padding: 20px 26px;
+}
+.hero .text-link {
+  font-size: 16px;
+  padding: 17px 20px;
+}
+@media (max-width: 700px) {
+  .hero .hero__copy { max-width: 100%; }
+  .hero .headline-fluid {
+    font-size: clamp(38px, 9.6vw, 49px);
+    line-height: 1.08;
+    letter-spacing: -.054em;
+    max-width: 100%;
+    margin-bottom: 25px;
+  }
+  .hero .hero__summary {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+  .hero .hero__summary p {
+    font-size: clamp(15px, 3.8vw, 17px);
+    line-height: 1.72;
+  }
+  .hero .btn-square--large { font-size: 18px; padding: 17px 21px; }
+  .hero .text-link { font-size: 15px; padding: 15px 19px; }
+}
