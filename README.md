@@ -4,13 +4,13 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 
 ## What is here
 
-- **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a technology-logo ticker; headings and bold project titles use Inter 800 from the same family as the summary, while technical metadata retains Geist Mono
+- **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a compact, grouped toolkit; headings and bold project titles use Inter 800 from the same family as the summary, while technical metadata retains Geist Mono
 - **Solid-white hero typography** with selective bold technical keywords, no animated gradient or shimmer effect.
 - **Selected projects**: Jarvis, ApplyWise, Microservices based health care monitoring system, and Website for Automobile spare parts store
 - **Scroll-driven 3D career journey** from Bachelor’s degree (2020–2024) to AD IT Robotics (2022–2024), Master’s study and graduate research (2025–2026 expected graduation), and ApplyWise team leadership (October 2026). The backpack-wearing 3D student travels along the same SVG path as the blue progress line, transforms into an original Boeing-style twin-engine passenger airliner with swept wings, engines, tail, cockpit and windows, then into an older runner wearing a coat and glasses. Walking/running gaits and airplane speed streaks animate **only while scrolling moves the route**; characters stop when scrolling settles, while the airplane gently floats/rocks without speed streaks. The blue stroke now draws from sampled rail geometry to the airplane’s exact 3D anchor, preventing drift on stretched SVGs. The airplane banks around its fuselage center, with a responsive aspect-correct canvas, a slightly larger silhouette, and subtle blue halo. Upward scrolling reverses the journey. Desktop/mobile and reduced-motion/SVG fallbacks remain supported.
-- **Education and certifications** presented separately, with experience in the journey and skills in the scrolling logo strip
+- **Education and certifications** presented separately, with experience in the journey and skills in categorized, readable cards
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
-- **Logo-only skills marquee** with original full-color technology logos, seamless right-to-left loop, gradient fade, and hover pause
+- **Grouped toolkit section** with labeled technology icons in Languages, Apps & Data, and Delivery & Testing. Dark outlined cards and monochrome icons reveal the original Devicon colors on hover; the layout stays static and responsive.
 - **Sticky stacking project cards with image-left, information-right design**, original technology logos and GitHub actions
 - **Clean editorial footer** with a bold name, direct email, and GitHub, Gmail, LinkedIn, and iMessage icons
 - **Arrow-free controls**, consistent Inter-based labels, and a career SVG that terminates at its final milestone
