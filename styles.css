@@ -1535,3 +1535,76 @@ h1,h2,h3 { font-family: var(--display); }
     height: clamp(122px, 31vw, 174px);
   }
 }
+
+
+/* Education & certifications: consistent bold Inter hierarchy and a restrained
+   blue accent beside each degree/certification, rather than small plain rows. */
+.credential-panel .credential-row {
+  align-items: flex-start;
+}
+.credential-panel .credential-row > div {
+  position: relative;
+  min-width: 0;
+  padding-left: 17px;
+}
+.credential-panel .credential-row > div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 3px;
+  height: 23px;
+  border-radius: 3px;
+  background: var(--blue);
+  box-shadow: 0 0 12px rgba(82,168,255,.22);
+}
+.credential-panel .credential-row strong {
+  color: var(--white);
+  font: 700 clamp(15px,1.25vw,17px)/1.4 var(--display);
+  letter-spacing: -.025em;
+}
+.credential-panel .credential-row small {
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.credential-panel .credential-row > .credential-date {
+  color: #bdbdbd;
+  font: 400 13px/1.5 var(--display);
+  letter-spacing: 0;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+/* Career milestone dates use the same Inter family as their descriptions,
+   while keeping their established blue accent color. */
+.career-journey .career-journey__date {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+/* Trim only the empty space below the final journey milestone.
+   Preserve the SVG's 1980/1320 viewBox coordinates and the stop positions:
+   altering their height would desynchronize the scroll-linked traveler. */
+.journey-section.section {
+  padding-bottom: 34px;
+}
+.journey-section .career-journey {
+  margin-bottom: -115px;
+}
+@media (max-width: 900px) {
+  .journey-section.section { padding-bottom: 28px; }
+  .journey-section .career-journey { margin-bottom: -24px; }
+  .career-journey .career-journey__date { font-size: 12px; }
+}
+@media (max-width: 700px) {
+  .credential-panel .credential-row { flex-wrap: wrap; row-gap: 5px; }
+  .credential-panel .credential-row > div { flex: 1 1 210px; }
+  .credential-panel .credential-row > .credential-date {
+    margin-left: auto;
+    font-size: 12px;
+  }
+  .credential-panel .credential-row strong { font-size: 15px; }
+}
