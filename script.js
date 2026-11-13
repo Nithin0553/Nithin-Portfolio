@@ -265,10 +265,11 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
   // Respect reduced motion: the default open state remains visible.
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  const device = stage.querySelector(".skills-laptop__device");
   const screen = stage.querySelector(".skills-laptop__screen-shell");
   const cover = stage.querySelector(".skills-laptop__closed-cover");
   const elements = Array.from(stage.querySelectorAll(".skills-laptop__logo"));
-  if (!screen || !cover || !elements.length) return;
+  if (!device || !screen || !cover || !elements.length) return;
 
   function coord(el, prop) {
     const value = Number.parseFloat(el.style.getPropertyValue(prop));
@@ -292,11 +293,15 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
   let pending = false;
   function update() {
     pending = false;
-    const rect = stage.getBoundingClientRect();
+    // Key the reveal to the actual laptop, not the earlier section heading.
+    // Remain closed until the laptop is almost fully in view. Finish opening
+    // while it is still visible, using scroll distance rather than a timer.
+    const deviceRect = device.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const start = viewportHeight * 0.92;
-    const end = -rect.height * 0.10;
-    const progress = clamp((start - rect.top) / Math.max(1, start - end));
+    const startBottom = viewportHeight * 0.97;
+    const finishBottom = viewportHeight * 0.23 + deviceRect.height;
+    const travel = Math.max(200, startBottom - finishBottom);
+    const progress = clamp((startBottom - deviceRect.bottom) / travel);
 
     // Full lid opening is spread across hundreds of scroll pixels.
     const opened = smoothstep((progress - 0.02) / 0.65);
