@@ -1845,3 +1845,55 @@ h1,h2,h3 { font-family: var(--display); }
   .skills-laptop__screen-shell,.skills-laptop__closed-cover,.skills-laptop__logo { transition:none !important; }
   .skills-laptop__float,.skills-laptop__cursor { animation:none !important; }
 }
+
+
+/* Scroll-scrubbed laptop: JS sets the exact screen angle, lid opacity,
+   and logo flight positions for the current scroll position. Disable the
+   old timed transitions so reversing scroll immediately reverses motion. */
+.toolkit-section__intro { justify-content:flex-start; margin-bottom:18px; }
+.skills-laptop__screen-shell { transition:none; will-change:transform; }
+.skills-laptop__closed-cover { visibility:visible; transition:none; will-change:opacity; }
+.skills-laptop__logo { transition:none; will-change:transform,opacity; }
+
+/* Authentic terminal styling: dark window, macOS controls, shell output. */
+.skills-laptop__display {
+  background:#0d1117;
+  border:1px solid #30363d;
+  border-radius:7px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
+}
+.skills-laptop__terminal-top {
+  height:33px;
+  flex-basis:33px;
+  background:#161b22;
+  border-bottom:1px solid #30363d;
+  color:#9da8b4;
+  font:500 10px/1 var(--mono);
+}
+.skills-laptop__window-dots { gap:7px; }
+.skills-laptop__window-dots i { width:10px; height:10px; }
+.skills-laptop__window-dots i.dot-red { background:#ff5f57; }
+.skills-laptop__window-dots i.dot-yellow { background:#febc2e; }
+.skills-laptop__window-dots i.dot-green { background:#28c840; }
+.skills-laptop__window-name { letter-spacing:.012em; }
+.skills-laptop__terminal-body {
+  padding:17px 22px;
+  font:500 11px/1.5 var(--mono);
+  color:#e6edf3;
+}
+.skills-laptop__terminal-body p { margin:0 0 3px; white-space:nowrap; }
+.skills-laptop__terminal-body .skills-laptop__prompt { color:#7ee787; }
+.skills-laptop__terminal-path { color:#9cdcfe; }
+.skills-laptop__symbol { color:#58a6ff; }
+.skills-laptop__terminal-output { color:#8b949e; }
+.skills-laptop__terminal-dim { color:#a4adb9; }
+.skills-laptop__terminal-body p.skills-laptop__terminal-spacer { height:6px; margin:0; }
+.skills-laptop__terminal-success { color:#7ee787; }
+.skills-laptop__terminal-success span { color:#d2dae3; }
+.skills-laptop__terminal-success .skills-laptop__count { color:#7ee787; }
+.skills-laptop__terminal-body .skills-laptop__terminal-ready { color:#7ee787; margin-top:9px; }
+.skills-laptop__cursor { color:#58a6ff; animation:skills-cursor 1.1s steps(1) infinite; }
+@media (prefers-reduced-motion:reduce) {
+  .skills-laptop__screen-shell,.skills-laptop__closed-cover,.skills-laptop__logo { transition:none !important; }
+  .skills-laptop__float,.skills-laptop__cursor { animation:none !important; }
+}

@@ -258,17 +258,74 @@ const now = new Date();
 const copyrightYear = document.getElementById("copyright-year");
 if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
 
-/* Laptop opens as the user scrolls to the skills section. */
+/* Scroll-synchronized laptop: positions respond continuously to scroll. */
 (function initScrollSkillsLaptop() {
   const stage = document.getElementById("skills-laptop-stage");
-  if (!stage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  if (!("IntersectionObserver" in window)) return;
-  stage.classList.add("is-enhanced");
-  const observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) stage.classList.add("is-awake");
-      else if (entry.boundingClientRect.top > 0) stage.classList.remove("is-awake");
+  if (!stage) return;
+  // Respect reduced motion: the default open state remains visible.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const screen = stage.querySelector(".skills-laptop__screen-shell");
+  const cover = stage.querySelector(".skills-laptop__closed-cover");
+  const elements = Array.from(stage.querySelectorAll(".skills-laptop__logo"));
+  if (!screen || !cover || !elements.length) return;
+
+  function coord(el, prop) {
+    const value = Number.parseFloat(el.style.getPropertyValue(prop));
+    return Number.isFinite(value) ? value : 0;
+  }
+  const logos = elements.map(function (el) {
+    return {
+      el: el,
+      desktop: [coord(el, "--dx"), coord(el, "--dy")],
+      tablet: [coord(el, "--mx"), coord(el, "--my")],
+      mobile: [coord(el, "--sx"), coord(el, "--sy")]
+    };
+  });
+
+  const clamp = value => Math.max(0, Math.min(1, value));
+  function smoothstep(value) {
+    const t = clamp(value);
+    return t * t * (3 - 2 * t);
+  }
+
+  let pending = false;
+  function update() {
+    pending = false;
+    const rect = stage.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const start = viewportHeight * 0.92;
+    const end = -rect.height * 0.10;
+    const progress = clamp((start - rect.top) / Math.max(1, start - end));
+
+    // Full lid opening is spread across hundreds of scroll pixels.
+    const opened = smoothstep((progress - 0.02) / 0.65);
+    screen.style.transform = "rotateX(" + (-88 + 88 * opened).toFixed(2) + "deg)";
+    cover.style.opacity = (1 - smoothstep(opened * 3)).toFixed(3);
+
+    const width = window.innerWidth;
+    const mode = width <= 700 ? "mobile" : width <= 1200 ? "tablet" : "desktop";
+    logos.forEach(function (item, index) {
+      // Each skill leaves the display at a slightly different scroll position.
+      const reveal = smoothstep((progress - 0.35 - index * 0.014) / 0.42);
+      const [targetX, targetY] = item[mode];
+      const x = targetX * reveal;
+      const y = 104 + (targetY - 104) * reveal;
+      const scale = 0.08 + 0.92 * reveal;
+      item.el.style.opacity = reveal.toFixed(3);
+      item.el.style.transform =
+        "translate(-50%, -50%) translate(" + x.toFixed(2) + "px, " +
+        y.toFixed(2) + "px) scale(" + scale.toFixed(3) + ")";
     });
-  }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
-  observer.observe(stage);
+  }
+
+  function scheduleUpdate() {
+    if (pending) return;
+    pending = true;
+    window.requestAnimationFrame(update);
+  }
+
+  update();
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", scheduleUpdate);
 })();

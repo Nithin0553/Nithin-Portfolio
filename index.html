@@ -67,7 +67,7 @@
 <div class="container toolkit-section__inner">
   <div class="toolkit-section__intro">
     <h2 id="toolkit-title">The toolkit<span class="toolkit-section__dot" aria-hidden="true"></span></h2>
-    <p>Scroll into my workspace and watch the technologies I use come to life.</p>
+    
   </div>
   <div class="skills-laptop-stage" id="skills-laptop-stage">
     <span class="skills-laptop-stage__halo" aria-hidden="true"></span>
@@ -76,16 +76,20 @@
         <span class="skills-laptop__camera"></span>
         <div class="skills-laptop__display">
           <div class="skills-laptop__terminal-top">
-            <span class="skills-laptop__window-dots"><i></i><i></i><i></i></span>
-            <span>nithin.dev / toolkit</span>
+            <span class="skills-laptop__window-dots" aria-hidden="true"><i class="dot-red"></i><i class="dot-yellow"></i><i class="dot-green"></i></span>
+            <span class="skills-laptop__window-name">nithin@portfolio — zsh</span>
           </div>
           <div class="skills-laptop__terminal-body">
-            <p><span class="skills-laptop__prompt">➜</span> <span class="skills-laptop__path">~/portfolio</span> npm run skills</p>
-            <p><span class="skills-laptop__blue">const</span> toolkit = <span class="skills-laptop__blue">await</span> loadSkills();</p>
-            <p class="skills-laptop__comment">// technologies behind my work</p>
-            <p class="skills-laptop__ready">✓ 14 technologies loaded<span class="skills-laptop__cursor">_</span></p>
+            <p><span class="skills-laptop__prompt">nithin@portfolio</span><span class="skills-laptop__terminal-path"> ~ </span><span class="skills-laptop__symbol">%</span> npm run skills</p>
+            <p class="skills-laptop__terminal-output">› portfolio@1.0.0 skills</p>
+            <p class="skills-laptop__terminal-output">› node scripts/skills.js</p>
+            <p class="skills-laptop__terminal-spacer"></p>
+            <p class="skills-laptop__terminal-dim">Loading developer toolkit...</p>
+            <p class="skills-laptop__terminal-success">✓ <span>Languages</span> <span class="skills-laptop__count">5</span></p>
+            <p class="skills-laptop__terminal-success">✓ <span>Apps &amp; Data</span> <span class="skills-laptop__count">4</span></p>
+            <p class="skills-laptop__terminal-success">✓ <span>Delivery &amp; Testing</span> <span class="skills-laptop__count">5</span></p>
+            <p class="skills-laptop__terminal-ready">14 technologies ready <span class="skills-laptop__cursor">▋</span></p>
           </div>
-          <div class="skills-laptop__status">READY <span>●</span> BUILDING IN PUBLIC</div>
         </div>
       </div>
       <div class="skills-laptop__hinge"></div>
@@ -112,12 +116,8 @@
 <li class="skills-laptop__logo" data-group="delivery" style="--dx:385px;--dy:129px;--mx:283px;--my:122px;--sx:-78px;--sy:27px;--delay:1950ms"><span class="skills-laptop__float"><img src="./assets/skills/linux.svg" alt="Linux" title="Linux" width="52" height="52" loading="lazy" decoding="async"></span></li>
 <li class="skills-laptop__logo" data-group="delivery" style="--dx:465px;--dy:215px;--mx:344px;--my:220px;--sx:78px;--sy:27px;--delay:2020ms"><span class="skills-laptop__float"><img src="./assets/skills/pytest.svg" alt="Pytest" title="Pytest" width="52" height="52" loading="lazy" decoding="async"></span></li>
     </ul>
-    <p class="skills-laptop__eyebrow" aria-hidden="true">THE TECHNOLOGIES BEHIND MY WORK</p>
+    </div>
   </div>
-  <div class="skills-laptop__groups" aria-label="Skill categories">
-    <span>Languages</span><i aria-hidden="true"></i><span>Apps &amp; Data</span><i aria-hidden="true"></i><span>Delivery &amp; Testing</span>
-  </div>
-</div>
 </section>
 
         <section id="intro" class="section intro container" aria-labelledby="intro-title">
