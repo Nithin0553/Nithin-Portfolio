@@ -266,18 +266,13 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
   toolboxes.forEach(function (box) {
     const button = box.querySelector(".toolkit-box__toggle");
     const skills = box.querySelector(".toolkit-box__skills");
-    const hint = box.querySelector(".toolkit-box__action-text");
-    const count = box.querySelector(".toolkit-box__footer > span");
-    if (!button || !skills || !hint || !count) return;
+    if (!button || !skills) return;
     const name = box.getAttribute("data-toolbox-name") || "skills";
-    const total = skills.querySelectorAll(".toolbox-token").length;
     function setOpen(open) {
       box.classList.toggle("is-open", open);
       button.setAttribute("aria-expanded", String(open));
       button.setAttribute("aria-label", (open ? "Close " : "Open ") + name + " toolbox");
       skills.setAttribute("aria-hidden", String(!open));
-      hint.textContent = open ? "Click to close" : "Click to open";
-      count.textContent = total + (open ? " tools floating" : " tools inside");
     }
     button.addEventListener("click", function () {
       setOpen(!box.classList.contains("is-open"));
