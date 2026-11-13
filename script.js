@@ -257,3 +257,36 @@ const now = new Date();
 
 const copyrightYear = document.getElementById("copyright-year");
 if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
+
+/* Interactive toolbox lids and reversible floating skills.
+   Native buttons support click, Enter and Space; Escape closes an open box.
+   All visual choreography is in CSS, including the reduced-motion fallback. */
+(function initPortfolioToolboxes() {
+  const toolboxes = Array.from(document.querySelectorAll(".toolkit-box[data-toolbox]"));
+  toolboxes.forEach(function (box) {
+    const button = box.querySelector(".toolkit-box__toggle");
+    const skills = box.querySelector(".toolkit-box__skills");
+    const hint = box.querySelector(".toolkit-box__action-text");
+    const count = box.querySelector(".toolkit-box__footer > span");
+    if (!button || !skills || !hint || !count) return;
+    const name = box.getAttribute("data-toolbox-name") || "skills";
+    const total = skills.querySelectorAll(".toolbox-token").length;
+    function setOpen(open) {
+      box.classList.toggle("is-open", open);
+      button.setAttribute("aria-expanded", String(open));
+      button.setAttribute("aria-label", (open ? "Close " : "Open ") + name + " toolbox");
+      skills.setAttribute("aria-hidden", String(!open));
+      hint.textContent = open ? "Click to close" : "Click to open";
+      count.textContent = total + (open ? " tools floating" : " tools inside");
+    }
+    button.addEventListener("click", function () {
+      setOpen(!box.classList.contains("is-open"));
+    });
+    button.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && box.classList.contains("is-open")) {
+        setOpen(false);
+        event.preventDefault();
+      }
+    });
+  });
+})();
