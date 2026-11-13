@@ -258,30 +258,17 @@ const now = new Date();
 const copyrightYear = document.getElementById("copyright-year");
 if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
 
-/* Interactive open-top toolbox illustrations and reversible floating skills.
-   Native buttons support click, Enter and Space; Escape closes an open box.
-   All visual choreography is in CSS, including the reduced-motion fallback. */
-(function initPortfolioToolboxes() {
-  const toolboxes = Array.from(document.querySelectorAll(".toolkit-box[data-toolbox]"));
-  toolboxes.forEach(function (box) {
-    const button = box.querySelector(".toolkit-box__toggle");
-    const skills = box.querySelector(".toolkit-box__skills");
-    if (!button || !skills) return;
-    const name = box.getAttribute("data-toolbox-name") || "skills";
-    function setOpen(open) {
-      box.classList.toggle("is-open", open);
-      button.setAttribute("aria-expanded", String(open));
-      button.setAttribute("aria-label", (open ? "Hide " : "Show ") + name + " technologies");
-      skills.setAttribute("aria-hidden", String(!open));
-    }
-    button.addEventListener("click", function () {
-      setOpen(!box.classList.contains("is-open"));
+/* Laptop opens as the user scrolls to the skills section. */
+(function initScrollSkillsLaptop() {
+  const stage = document.getElementById("skills-laptop-stage");
+  if (!stage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!("IntersectionObserver" in window)) return;
+  stage.classList.add("is-enhanced");
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) stage.classList.add("is-awake");
+      else if (entry.boundingClientRect.top > 0) stage.classList.remove("is-awake");
     });
-    button.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && box.classList.contains("is-open")) {
-        setOpen(false);
-        event.preventDefault();
-      }
-    });
-  });
+  }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+  observer.observe(stage);
 })();

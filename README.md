@@ -4,13 +4,13 @@ A ground-up, static personal portfolio with a Dark Tech visual system, built for
 
 ## What is here
 
-- **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by an interactive three-toolbox skills display; headings and bold project titles use Inter 800 from the same family as the summary, while technical metadata retains Geist Mono
+- **Solid-black hero with a professional engineering summary** drawn from resume experience, followed by a scroll-activated laptop that reveals floating technology logos; headings and bold project titles use Inter 800 from the same family as the summary, while technical metadata retains Geist Mono
 - **Solid-white hero typography** with selective bold technical keywords, no animated gradient or shimmer effect.
 - **Selected projects**: Jarvis, ApplyWise, Microservices based health care monitoring system, and Website for Automobile spare parts store
 - **Scroll-driven 3D career journey** from Bachelor’s degree (2020–2024) to AD IT Robotics (2022–2024), Master’s study and graduate research (2025–2026 expected graduation), and ApplyWise team leadership (October 2026). The backpack-wearing 3D student travels along the same SVG path as the blue progress line, transforms into an original Boeing-style twin-engine passenger airliner with swept wings, engines, tail, cockpit and windows, then into an older runner wearing a coat and glasses. Walking/running gaits and airplane speed streaks animate **only while scrolling moves the route**; characters stop when scrolling settles, while the airplane gently floats/rocks without speed streaks. The blue stroke now draws from sampled rail geometry to the airplane’s exact 3D anchor, preventing drift on stretched SVGs. The airplane banks around its fuselage center, with a responsive aspect-correct canvas, a slightly larger silhouette, and subtle blue halo. Upward scrolling reverses the journey. Desktop/mobile and reduced-motion/SVG fallbacks remain supported.
-- **Education and certifications** presented separately, with experience in the journey and skills inside three interactive toolboxes
+- **Education and certifications** presented separately, with experience in the journey and skills emerging from an animated laptop
 - **Full-screen mobile menu**, keyboard navigation, reduced-motion support, and semantic page structure
-- **Interactive wooden tool caddies** for Languages, Apps & Data, and Delivery & Testing. Each is an original SVG of a lidless open-top carpenter's wooden box with timber planks, visible woodgrain, and a fixed straight wooden carrying bar on two end uprights. There is no lid, no latch, and no hammer or other physical tools. Clicking releases 14 Devicon logos in their original staggered floating positions; clicking again returns them. Keyboard buttons, Escape, mobile layout, and reduced-motion support remain.
+- **Scroll-triggered laptop skills showcase** replaces the three toolboxes with one CSS-built laptop. Its screen rises as the visitor scrolls into view; all 14 original Devicon logos fly out and float around the laptop. Language, Apps & Data, and Delivery & Testing remain represented. Returning above the section resets the animation. Responsive layouts, a reduced-motion fallback, and a no-JavaScript open state are supported.
 - **Sticky stacking project cards with image-left, information-right design**, original technology logos and GitHub actions
 - **Clean editorial footer** with a bold name, direct email, and GitHub, Gmail, LinkedIn, and iMessage icons
 - **Arrow-free controls**, consistent Inter-based labels, and a career SVG that terminates at its final milestone
@@ -40,7 +40,6 @@ https://nithin0553.github.io/Nithin-Portfolio/
 - \`script.js\`: mobile navigation, milestone selection and scroll-linked path coordinates for both the blue line and traveler
 - \`journey-3d.js\`: original 3D models and animation implemented with Three.js via a pinned ES-module CDN; falls back to built-in SVG figures without WebGL
 - \`assets/favicon.svg\`: original N monogram
-- \`assets/skills/wooden-toolbox.svg\`: original no-lid wooden tool caddy illustration
 - \`assets/projects/shop-website-home-4k.webp\`: 3840×2160 upscale of the owner's 1856×868 Shop Website screenshot, white-letterboxed to keep the entire page visible
 
 ## Edit content
