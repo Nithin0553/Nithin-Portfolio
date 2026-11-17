@@ -1891,3 +1891,51 @@ h1,h2,h3 { font-family: var(--display); }
   .skills-laptop__screen-shell,.skills-laptop__closed-cover,.skills-laptop__logo { transition:none !important; }
   .skills-laptop__float,.skills-laptop__cursor { animation:none !important; }
 }
+
+/* A pin-and-scrub section prevents the laptop leaving the screen
+   before all fourteen skills have finished appearing. The scroll runway
+   is activated only by JS; no-JS and reduced-motion readers do not get
+   unnecessary blank scrolling distance. */
+.toolkit-section {
+  overflow:clip; /* Unlike overflow:hidden, does not break sticky descendants. */
+}
+.skills-laptop-scroll {
+  position:relative;
+  width:100%;
+}
+.skills-laptop-pin {
+  position:relative;
+  width:100%;
+}
+.skills-laptop-scroll.is-scroll-enhanced {
+  height:calc(100svh + clamp(960px, 130svh, 1480px));
+}
+.skills-laptop-scroll.is-scroll-enhanced .skills-laptop-pin {
+  position:sticky;
+  top:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100svh;
+}
+.skills-laptop-scroll.is-scroll-enhanced .skills-laptop-stage {
+  flex:0 0 auto;
+}
+@media (max-width:700px) and (max-height:740px) {
+  .skills-laptop-scroll.is-scroll-enhanced .skills-laptop-stage {
+    height:min(640px, 94svh);
+  }
+  .skills-laptop-scroll.is-scroll-enhanced .skills-laptop__device {
+    bottom:42px;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .skills-laptop-scroll.is-scroll-enhanced {
+    height:auto;
+  }
+  .skills-laptop-scroll.is-scroll-enhanced .skills-laptop-pin {
+    position:relative;
+    height:auto;
+    display:block;
+  }
+}

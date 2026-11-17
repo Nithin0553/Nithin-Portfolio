@@ -261,7 +261,8 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
 /* Scroll-synchronized laptop: positions respond continuously to scroll. */
 (function initScrollSkillsLaptop() {
   const stage = document.getElementById("skills-laptop-stage");
-  if (!stage) return;
+  const runway = document.getElementById("skills-laptop-scroll");
+  if (!stage || !runway) return;
   // Respect reduced motion: the default open state remains visible.
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -293,18 +294,16 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
   let pending = false;
   function update() {
     pending = false;
-    // Key the reveal to the actual laptop, not the earlier section heading.
-    // Remain closed until the laptop is almost fully in view. Finish opening
-    // while it is still visible, using scroll distance rather than a timer.
-    const deviceRect = device.getBoundingClientRect();
+    // The laptop is stationary while the scroll runway passes behind it.
+    // Progress begins only when the pinned scene reaches the viewport top,
+    // and completes BEFORE that sticky scene is released.
+    const runwayRect = runway.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const startBottom = viewportHeight * 0.97;
-    const finishBottom = viewportHeight * 0.23 + deviceRect.height;
-    const travel = Math.max(200, startBottom - finishBottom);
-    const progress = clamp((startBottom - deviceRect.bottom) / travel);
+    const scrollDistance = Math.max(1, runway.offsetHeight - viewportHeight);
+    const progress = clamp(-runwayRect.top / scrollDistance);
 
     // Full lid opening is spread across hundreds of scroll pixels.
-    const opened = smoothstep((progress - 0.02) / 0.65);
+    const opened = smoothstep((progress - 0.02) / 0.43);
     screen.style.transform = "rotateX(" + (-88 + 88 * opened).toFixed(2) + "deg)";
     cover.style.opacity = (1 - smoothstep(opened * 3)).toFixed(3);
 
@@ -312,7 +311,7 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
     const mode = width <= 700 ? "mobile" : width <= 1200 ? "tablet" : "desktop";
     logos.forEach(function (item, index) {
       // Each skill leaves the display at a slightly different scroll position.
-      const reveal = smoothstep((progress - 0.35 - index * 0.014) / 0.42);
+      const reveal = smoothstep((progress - 0.43 - index * 0.014) / 0.26);
       const [targetX, targetY] = item[mode];
       const x = targetX * reveal;
       const y = 104 + (targetY - 104) * reveal;
@@ -330,6 +329,8 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
     window.requestAnimationFrame(update);
   }
 
+  // Activate the scroll runway after validating all required elements.
+  runway.classList.add("is-scroll-enhanced");
   update();
   window.addEventListener("scroll", scheduleUpdate, { passive: true });
   window.addEventListener("resize", scheduleUpdate);
