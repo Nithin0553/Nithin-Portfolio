@@ -268,9 +268,12 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
 
   const device = stage.querySelector(".skills-laptop__device");
   const screen = stage.querySelector(".skills-laptop__screen-shell");
-  const cover = stage.querySelector(".skills-laptop__closed-cover");
+  const lid = stage.querySelector(".skills-laptop__lid-back");
+  const bezel = stage.querySelector(".skills-laptop__screen-bezel");
+  const deck = stage.querySelector(".skills-laptop__deck");
+  const hinge = stage.querySelector(".skills-laptop__hinge");
   const elements = Array.from(stage.querySelectorAll(".skills-laptop__logo"));
-  if (!device || !screen || !cover || !elements.length) return;
+  if (!device || !screen || !lid || !bezel || !deck || !hinge || !elements.length) return;
 
   function coord(el, prop) {
     const value = Number.parseFloat(el.style.getPropertyValue(prop));
@@ -304,8 +307,15 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
 
     // Full lid opening is spread across hundreds of scroll pixels.
     const opened = smoothstep((progress - 0.02) / 0.43);
-    screen.style.transform = "rotateX(" + (-88 + 88 * opened).toFixed(2) + "deg)";
-    cover.style.opacity = (1 - smoothstep(opened * 3)).toFixed(3);
+    // One connected panel rotates from the rear hinge. The outer shell is
+    // the closed surface; its inner face becomes the terminal screen.
+    screen.style.transform = "rotateX(" + (-100 + 100 * opened).toFixed(2) + "deg)";
+    const terminalVisible = smoothstep((opened - 0.08) / 0.34);
+    const baseVisible = smoothstep((opened - 0.28) / 0.38);
+    lid.style.opacity = (1 - terminalVisible).toFixed(3);
+    bezel.style.opacity = terminalVisible.toFixed(3);
+    deck.style.opacity = baseVisible.toFixed(3);
+    hinge.style.opacity = baseVisible.toFixed(3);
 
     const width = window.innerWidth;
     const mode = width <= 700 ? "mobile" : width <= 1200 ? "tablet" : "desktop";
