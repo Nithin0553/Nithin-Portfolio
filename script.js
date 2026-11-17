@@ -307,11 +307,11 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
 
     // Full lid opening is spread across hundreds of scroll pixels.
     const opened = smoothstep((progress - 0.02) / 0.43);
-    // The same hinged panel reveals its inside; keyboard and deck are
-    // entirely invisible while closed so no second floating panel remains.
-    screen.style.transform = "rotateX(" + (-75 + 82 * opened).toFixed(2) + "deg)";
-    const terminalVisible = smoothstep((opened - 0.10) / 0.36);
-    const baseVisible = smoothstep((opened - 0.08) / 0.48);
+    // One connected panel rotates from the rear hinge. The outer shell is
+    // the closed surface; its inner face becomes the terminal screen.
+    screen.style.transform = "rotateX(" + (-100 + 100 * opened).toFixed(2) + "deg)";
+    const terminalVisible = smoothstep((opened - 0.08) / 0.34);
+    const baseVisible = smoothstep((opened - 0.28) / 0.38);
     lid.style.opacity = (1 - terminalVisible).toFixed(3);
     bezel.style.opacity = terminalVisible.toFixed(3);
     deck.style.opacity = baseVisible.toFixed(3);
