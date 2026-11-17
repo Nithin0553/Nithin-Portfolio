@@ -1665,129 +1665,150 @@ h1,h2,h3 { font-family: var(--display); }
 
 
 
-/* The toolkit: one physically connected laptop lid, screen and base.
-   The outer lid belongs to the SAME hinged screen assembly, never a
-   detached cover over a visible keyboard. Scroll controls every pose. */
+
+/* Toolbox section — single true laptop chassis, no detached cover. */
 .toolkit-section {
-  padding:clamp(72px,7vw,112px) 0 clamp(72px,7vw,112px);
+  padding:clamp(70px,7vw,110px) 0 clamp(75px,7vw,108px);
   background:#000;
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
   overflow:clip;
 }
-.toolkit-section__intro { display:flex; align-items:baseline; justify-content:flex-start; margin-bottom:18px; }
-.toolkit-section__intro h2 {
-  display:flex;align-items:baseline;margin:0;color:#fff;
-  font:800 clamp(35px,4.3vw,60px)/1.08 var(--display);
-  letter-spacing:-.065em;
-}
-.toolkit-section__dot {
-  display:inline-block;width:.13em;height:.13em;margin-left:.12em;
-  border-radius:50%;background:var(--blue);
-}
+.toolkit-section__intro { display:flex;align-items:baseline;justify-content:flex-start;margin-bottom:18px; }
+.toolkit-section__intro h2 { display:flex;align-items:baseline;margin:0;color:#fff;font:800 clamp(35px,4.3vw,60px)/1.08 var(--display);letter-spacing:-.065em; }
+.toolkit-section__dot { display:inline-block;width:.13em;height:.13em;margin-left:.12em;border-radius:50%;background:var(--blue); }
 .skills-laptop-stage {
   --logo-size:62px;position:relative;isolation:isolate;
-  width:min(100%,1190px);height:658px;margin:0 auto;
+  width:min(100%,1190px);height:700px;margin:0 auto;
 }
 .skills-laptop-stage__halo {
-  position:absolute;z-index:-1;left:50%;bottom:60px;width:610px;height:420px;
+  position:absolute;z-index:-1;left:50%;bottom:48px;width:700px;height:440px;
   border-radius:50%;transform:translateX(-50%);
   background:radial-gradient(ellipse,rgba(30,104,190,.18),rgba(12,31,53,.07) 48%,transparent 74%);
-  filter:blur(19px);pointer-events:none;
+  filter:blur(22px);pointer-events:none;
 }
+/* The lid and the keyboard have exactly one shared rear-hinge datum. */
 .skills-laptop__device {
-  position:absolute;left:50%;bottom:66px;z-index:2;width:560px;height:370px;
-  transform:translateX(-50%);perspective:1300px;
-  filter:drop-shadow(0 22px 22px rgba(0,0,0,.65)) drop-shadow(0 0 26px rgba(82,168,255,.07));
+  position:absolute;z-index:2;left:50%;bottom:61px;
+  width:700px;height:470px;transform:translateX(-50%);
+  perspective:1350px;transform-style:preserve-3d;
+  filter:drop-shadow(0 16px 24px rgba(0,0,0,.65));
+}
+.skills-laptop__device::before {
+  content:"";position:absolute;left:10%;right:10%;top:430px;height:35px;
+  background:rgba(22,70,115,.55);filter:blur(35px);pointer-events:none;
 }
 .skills-laptop__hinge {
-  position:absolute;z-index:2;left:12%;right:12%;top:278px;height:11px;
-  border-radius:999px;
-  background:linear-gradient(#a0a7ad 0%,#354258 22%,#131e2a 65%,#44546a);
-  box-shadow:0 2px 4px #000;
+  position:absolute;z-index:5;top:327px;left:15%;right:15%;height:12px;
+  border-radius:7px;background:linear-gradient(#8da0b3,#263448 35%,#0c1420 55%,#708399);
+  box-shadow:0 3px 10px rgba(0,0,0,.7);
 }
+.skills-laptop__deck {
+  position:absolute;z-index:3;left:0;top:330px;width:100%;height:154px;
+  border:1px solid #617287;border-radius:10px 10px 20px 20px;
+  background:linear-gradient(170deg,#718297,#43576c 13%,#23344a 74%,#52667d);
+  transform:rotateX(62deg);transform-origin:center top;
+  box-shadow:inset 0 2px rgba(221,232,242,.32),0 17px 26px rgba(0,0,0,.55);
+}
+.skills-laptop__deck::after {
+  content:"";position:absolute;bottom:-2px;left:11%;right:11%;height:4px;border-radius:100%;
+  background:linear-gradient(90deg,transparent,#c3d1dd 50%,transparent);opacity:.3;
+}
+.skills-laptop__keys {
+  position:absolute;top:12px;left:13%;width:74%;height:89px;padding:4px;
+  border:1px solid #1d293b;border-radius:7px;
+  background:linear-gradient(#0b1320,#152135);
+  box-shadow:0 3px 7px rgba(0,0,0,.48);
+}
+.skills-laptop__keyrow { display:flex;height:18%;gap:3px;margin-bottom:3px; }
+.skills-laptop__key {
+  display:flex;min-width:0;flex:1;align-items:center;justify-content:center;
+  font:500 8px/1 var(--mono);color:#9aaebf;
+  border-radius:2px;border:1px solid #27384c;
+  background:linear-gradient(#243449,#0c1829);
+  box-shadow:inset 0 1px rgba(135,158,189,.15),0 1px 2px rgba(0,0,0,.28);
+}
+.skills-laptop__key.is-wide { flex:1.4; }
+.skills-laptop__key.is-space { flex:5; }
+.skills-laptop__speaker {
+  position:absolute;top:13px;width:55px;height:82px;opacity:.45;
+  background:repeating-linear-gradient(90deg,#0b1725 0 2px,#536579 2px 3px);
+  mask-image:linear-gradient(to right,transparent,black,transparent);
+}
+.skills-laptop__speaker--left { left:6%; }
+.skills-laptop__speaker--right { right:6%; }
+.skills-laptop__trackpad {
+  position:absolute;bottom:8px;left:39%;width:22%;height:32px;
+  border:1px solid rgba(191,205,221,.4);border-radius:5px;
+  background:linear-gradient(125deg,rgba(240,247,255,.07),rgba(255,255,255,0));
+}
+/* A single folding lid. Its outer metal face is shown when shut. */
 .skills-laptop__screen-shell {
-  position:absolute;z-index:4;left:5.5%;width:89%;top:0;height:282px;
-  transform-origin:50% 100%;transform-style:preserve-3d;
-  border:1px solid #55677e;border-radius:13px 13px 6px 6px;
-  background:linear-gradient(140deg,#35465d,#0a1320 50%,#3a4a60);
-  box-shadow:0 0 0 2px #172338,0 10px 32px rgba(1,14,36,.3);
+  position:absolute;z-index:4;left:4.5%;top:0;width:91%;height:337px;
+  transform-origin:center bottom;transform-style:preserve-3d;
+  border:2px solid #62778e;border-radius:17px 17px 8px 8px;
+  background:#1d2b3d;
+  box-shadow:inset 0 2px rgba(234,246,255,.14),0 9px 23px rgba(0,0,0,.3);
   will-change:transform;
 }
-.skills-laptop__lid-back {
-  position:absolute;inset:0;z-index:3;border-radius:inherit;
-  display:grid;place-items:center;overflow:hidden;
-  background:linear-gradient(148deg,#6b7d90 0%,#394a60 14%,#253449 50%,#1a283c 73%,#62758a 100%);
-  box-shadow:inset 0 2px rgba(221,233,247,.38),inset 0 -2px rgba(3,15,30,.4);
-  opacity:0;pointer-events:none;
+.skills-laptop__lid-back,.skills-laptop__screen-bezel {
+  position:absolute;inset:0;border-radius:15px 15px 6px 6px;
 }
-.skills-laptop__lid-back::before {
-  content:"";position:absolute;inset:14px;border:1px solid rgba(237,249,255,.05);border-radius:8px;
+.skills-laptop__lid-back {
+  display:grid;place-items:center;z-index:3;pointer-events:none;opacity:0;
+  background:linear-gradient(136deg,#586b83 0%,#3f526a 30%,#1f3044 72%,#53677e);
+  box-shadow:inset 0 2px rgba(227,240,253,.32);
+}
+.skills-laptop__lid-back::after {
+  content:"";position:absolute;inset:14px;border-radius:8px;
+  border:1px solid rgba(255,255,255,.06);
 }
 .skills-laptop__lid-mark {
-  transform:scaleY(-1);font:800 55px/1 var(--display);
-  letter-spacing:-.1em;color:#dae7f5;text-shadow:0 1px 3px rgba(0,0,0,.35);
+  color:#dcebf8;font:800 58px/1 var(--display);letter-spacing:-.08em;
+  text-shadow:0 1px 2px rgba(0,0,0,.2);
 }
 .skills-laptop__lid-mark span { color:var(--blue); }
 .skills-laptop__screen-bezel {
-  position:absolute;inset:0;z-index:4;padding:11px 10px 9px;
-  border-radius:inherit;background:linear-gradient(150deg,#324359,#0f1824 45%,#28374b);
+  z-index:4;display:flex;flex-direction:column;padding:12px 11px 10px;
+  background:linear-gradient(160deg,#3d5068,#0b1320 46%,#26394e);
 }
 .skills-laptop__camera {
-  position:absolute;top:4px;left:50%;width:4px;height:4px;border-radius:50%;
-  background:#566c82;box-shadow:0 0 0 2px #0a1320;
+  position:absolute;top:5px;left:50%;width:5px;height:5px;
+  border-radius:50%;background:#182338;box-shadow:0 0 0 1px #6a839d;
 }
 .skills-laptop__display {
-  display:flex;flex-direction:column;width:100%;height:100%;overflow:hidden;
-  border:1px solid #313b4a;border-radius:5px;background:#0d1117;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.018);
+  display:flex;flex:1;flex-direction:column;width:100%;height:100%;overflow:hidden;
+  border:1px solid #303c4c;border-radius:6px;background:#0e1219;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
 }
 .skills-laptop__terminal-top {
   position:relative;display:flex;align-items:center;justify-content:center;
-  height:32px;flex:0 0 32px;border-bottom:1px solid #343c47;background:#1d232c;
-  color:#9ca8ba;font:500 10px/1.3 var(--mono);
+  height:38px;flex:0 0 38px;border-bottom:1px solid #2a3542;
+  background:#1b222c;color:#a5b2c0;font:500 11px/1 var(--mono);
 }
-.skills-laptop__window-dots { position:absolute;left:12px;display:flex;gap:7px; }
-.skills-laptop__window-dots i { display:block;width:9px;height:9px;border-radius:50%; }
-.skills-laptop__window-dots .dot-red { background:#ff5f57; }
-.skills-laptop__window-dots .dot-yellow { background:#febc2e; }
-.skills-laptop__window-dots .dot-green { background:#28c840; }
-.skills-laptop__terminal-body { padding:16px 22px;color:#dbe3ee;font:500 11px/1.55 var(--mono); }
-.skills-laptop__terminal-body p { margin:0 0 4px;white-space:nowrap; }
-.skills-laptop__terminal-spacer { height:7px;margin:0 !important; }
+.skills-laptop__window-dots { position:absolute;left:13px;display:flex;gap:7px; }
+.skills-laptop__window-dots i { display:block;width:10px;height:10px;border-radius:50%; }
+.skills-laptop__window-dots i.dot-red { background:#ff5f57; }
+.skills-laptop__window-dots i.dot-yellow { background:#febc2e; }
+.skills-laptop__window-dots i.dot-green { background:#28c840; }
+.skills-laptop__terminal-body {
+  padding:22px 27px;color:#dbe3ee;font:500 13px/1.55 var(--mono);
+  letter-spacing:-.01em;
+}
+.skills-laptop__terminal-body p { margin:0 0 5px;white-space:nowrap; }
+.skills-laptop__terminal-body .skills-laptop__terminal-spacer { height:10px;margin:0; }
 .skills-laptop__prompt,.skills-laptop__terminal-success,.skills-laptop__terminal-ready { color:#7ee787; }
-.skills-laptop__terminal-success span { color:#dbe3ee; }
+.skills-laptop__terminal-success span { color:#ccd8e2; }
 .skills-laptop__terminal-success .skills-laptop__count { color:#7ee787; }
-.skills-laptop__terminal-path { color:#9cdcfe; }
-.skills-laptop__symbol,.skills-laptop__cursor { color:#58a6ff; }
-.skills-laptop__terminal-output { color:#8494a6; }
-.skills-laptop__terminal-dim { color:#bbc4ce; }
+.skills-laptop__terminal-path { color:#86c9ff; }
+.skills-laptop__symbol,.skills-laptop__cursor { color:#52a8ff; }
+.skills-laptop__terminal-output { color:#8193a5; }
+.skills-laptop__terminal-dim { color:#aab6c3; }
 .skills-laptop__terminal-ready { margin-top:9px !important; }
 .skills-laptop__cursor { animation:skills-cursor 1.1s steps(1) infinite; }
 @keyframes skills-cursor { 50% { opacity:0; } }
-.skills-laptop__deck {
-  position:absolute;z-index:3;left:0;right:0;top:277px;height:115px;
-  border-radius:5px 5px 12px 12px;border:1px solid #6b7b8f;
-  background:linear-gradient(177deg,#708196 0%,#3c4b60 23%,#26374d 76%,#67768d);
-  transform-origin:50% 0%;transform:rotateX(60deg);
-  box-shadow:inset 0 2px rgba(216,231,249,.3),0 20px 25px rgba(0,0,0,.6);
-}
-.skills-laptop__keys {
-  position:absolute;left:10%;width:80%;top:11px;height:57px;border-radius:5px;
-  background:
-    repeating-linear-gradient(0deg,transparent 0 11px,#49596b 11px 13px),
-    repeating-linear-gradient(90deg,#101a27 0 24px,#344456 24px 28px);
-  box-shadow:0 3px 8px rgba(0,0,0,.4);
-}
-.skills-laptop__trackpad {
-  position:absolute;left:40%;width:20%;bottom:6px;height:28px;
-  border-radius:4px;border:1px solid rgba(174,190,210,.31);
-  background:rgba(18,30,45,.08);
-}
-/* Floating brand images have no tiles, backgrounds, or labels. */
-.skills-laptop__logos {
-  position:absolute;z-index:4;inset:0;margin:0;padding:0;list-style:none;pointer-events:none;
-}
+/* All fourteen brands remain separate and untiled. */
+.skills-laptop__logos { position:absolute;z-index:4;inset:0;margin:0;padding:0;list-style:none;pointer-events:none; }
 .skills-laptop__logo {
   position:absolute;top:50%;left:50%;width:var(--logo-size);height:var(--logo-size);
   opacity:1;transform:translate(-50%,-50%) translate(var(--dx),var(--dy)) scale(1);
@@ -1808,7 +1829,7 @@ h1,h2,h3 { font-family: var(--display); }
   from { transform:translate3d(0,-6px,0) rotate(-3deg); }
   to { transform:translate3d(0,8px,0) rotate(3deg); }
 }
-/* Sticky runway holds the scene in view until all 14 logos have emerged. */
+/* Pinned scroll area finishes logo movement before releasing scene. */
 .skills-laptop-scroll { position:relative;width:100%; }
 .skills-laptop-pin { position:relative;width:100%; }
 .skills-laptop-scroll.is-scroll-enhanced {
@@ -1819,13 +1840,13 @@ h1,h2,h3 { font-family: var(--display); }
 }
 .skills-laptop-scroll.is-scroll-enhanced .skills-laptop-stage { flex:0 0 auto; }
 @media (max-width:1200px) {
-  .skills-laptop-stage { height:626px; }
-  .skills-laptop__device { transform:translateX(-50%) scale(.92);transform-origin:center bottom; }
+  .skills-laptop-stage { height:650px; }
+  .skills-laptop__device { transform:translateX(-50%) scale(.85);transform-origin:center bottom; }
   .skills-laptop__logo { transform:translate(-50%,-50%) translate(var(--mx),var(--my)) scale(1); }
 }
 @media (max-width:850px) {
-  .skills-laptop-stage { height:665px;--logo-size:54px; }
-  .skills-laptop__device { bottom:72px;transform:translateX(-50%) scale(.78); }
+  .skills-laptop-stage { height:660px;--logo-size:54px; }
+  .skills-laptop__device { bottom:72px;transform:translateX(-50%) scale(.72); }
   .skills-laptop__float img { width:48px;height:48px; }
   .skills-laptop__logo { transform:translate(-50%,-50%) translate(var(--mx),var(--my)) scale(.92); }
 }
@@ -1833,15 +1854,15 @@ h1,h2,h3 { font-family: var(--display); }
   .toolkit-section { padding:57px 0 74px; }
   .toolkit-section__intro { margin-bottom:14px; }
   .toolkit-section__intro h2 { font-size:clamp(34px,8vw,45px); }
-  .skills-laptop-stage { height:712px;width:100%;--logo-size:48px; }
+  .skills-laptop-stage { height:690px;width:100%;--logo-size:48px; }
   .skills-laptop-stage__halo { width:100%;height:280px;bottom:72px; }
-  .skills-laptop__device { bottom:52px;transform:translateX(-50%) scale(.62); }
+  .skills-laptop__device { bottom:52px;transform:translateX(-50%) scale(.48); }
   .skills-laptop__logo { transform:translate(-50%,-50%) translate(var(--sx),var(--sy)) scale(1); }
   .skills-laptop__float img { width:43px;height:43px; }
 }
 @media (max-width:380px) {
-  .skills-laptop-stage { height:680px;--logo-size:43px; }
-  .skills-laptop__device { bottom:45px;transform:translateX(-50%) scale(.55); }
+  .skills-laptop-stage { height:675px;--logo-size:43px; }
+  .skills-laptop__device { bottom:45px;transform:translateX(-50%) scale(.43); }
   .skills-laptop__float img { width:39px;height:39px; }
   .skills-laptop__logo { transform:translate(-50%,-50%) translate(var(--sx),var(--sy)) scale(.88); }
 }
@@ -1852,7 +1873,5 @@ h1,h2,h3 { font-family: var(--display); }
 @media (prefers-reduced-motion:reduce) {
   .skills-laptop__float,.skills-laptop__cursor { animation:none !important; }
   .skills-laptop-scroll.is-scroll-enhanced { height:auto; }
-  .skills-laptop-scroll.is-scroll-enhanced .skills-laptop-pin {
-    position:relative;height:auto;display:block;
-  }
+  .skills-laptop-scroll.is-scroll-enhanced .skills-laptop-pin { position:relative;height:auto;display:block; }
 }
