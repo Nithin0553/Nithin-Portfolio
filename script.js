@@ -326,6 +326,10 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
       const y = 104 + (targetY * spread - 104) * reveal;
       const scale = 0.08 + 0.92 * reveal;
       item.el.style.opacity = reveal.toFixed(3);
+      // Do not let unrevealed, invisible skill buttons capture input or tab focus.
+      item.el.style.pointerEvents = reveal >= 0.85 ? "auto" : "none";
+      const trigger = item.el.querySelector(".skills-laptop__trigger");
+      if (trigger) trigger.tabIndex = reveal >= 0.85 ? 0 : -1;
       item.el.style.transform =
         "translate(-50%, -50%) translate(" + x.toFixed(2) + "px, " +
         y.toFixed(2) + "px) scale(" + scale.toFixed(3) + ")";
@@ -343,4 +347,132 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
   update();
   window.addEventListener("scroll", scheduleUpdate, { passive: true });
   window.addEventListener("resize", scheduleUpdate);
+})();
+
+
+/* Small career-context cards for each floating technology logo.
+   Fixed positioning keeps them readable near stage boundaries.
+   Mouse hover, keyboard focus and tap/click all reveal the same card. */
+(function initSkillUsageTooltips() {
+  const stage = document.getElementById("skills-laptop-stage");
+  if (!stage) return;
+
+  const triggers = Array.from(stage.querySelectorAll(".skills-laptop__trigger"));
+  if (!triggers.length) return;
+
+  const tooltip = document.createElement("div");
+  tooltip.className = "skills-laptop__tooltip";
+  tooltip.id = "skills-laptop-tooltip";
+  tooltip.setAttribute("role", "tooltip");
+  tooltip.setAttribute("aria-hidden", "true");
+  tooltip.innerHTML =
+    '<span class="skills-laptop__tooltip-kicker">Used in my work</span>' +
+    '<strong class="skills-laptop__tooltip-title"></strong>' +
+    '<p class="skills-laptop__tooltip-description"></p>';
+  document.body.appendChild(tooltip);
+
+  const title = tooltip.querySelector(".skills-laptop__tooltip-title");
+  const description = tooltip.querySelector(".skills-laptop__tooltip-description");
+  let active = null;
+  let pinned = false;
+
+  function clamp(value, low, high) {
+    return Math.max(low, Math.min(high, value));
+  }
+
+  function isRevealed(trigger) {
+    const logo = trigger.closest(".skills-laptop__logo");
+    return logo && Number.parseFloat(getComputedStyle(logo).opacity) >= 0.85;
+  }
+
+  function hide() {
+    if (active) active.setAttribute("aria-expanded", "false");
+    active = null;
+    pinned = false;
+    tooltip.classList.remove("is-visible");
+    tooltip.setAttribute("aria-hidden", "true");
+  }
+
+  function position() {
+    if (!active) return;
+    const box = active.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const w = tooltip.offsetWidth;
+    const h = tooltip.offsetHeight;
+    const gap = 14;
+    const edge = 12;
+    if (box.bottom < 0 || box.top > vh || box.right < 0 || box.left > vw) {
+      hide();
+      return;
+    }
+
+    let x;
+    let y;
+    if (vw <= 700) {
+      // Mobile: stack the note above or below the touched logo.
+      x = box.left + box.width / 2 - w / 2;
+      y = box.top - h - gap >= edge ? box.top - h - gap : box.bottom + gap;
+    } else {
+      // Desktop: put the note beside the logo, away from screen edges.
+      const right = box.right + gap;
+      const left = box.left - w - gap;
+      if (box.left < vw / 2) {
+        x = right + w <= vw - edge ? right : left;
+      } else {
+        x = left >= edge ? left : right;
+      }
+      y = box.top + box.height / 2 - h / 2;
+    }
+
+    tooltip.style.left = clamp(x, edge, Math.max(edge, vw - w - edge)) + "px";
+    tooltip.style.top = clamp(y, edge, Math.max(edge, vh - h - edge)) + "px";
+  }
+
+  function show(trigger, lock) {
+    if (!isRevealed(trigger)) return;
+    if (active && active !== trigger) active.setAttribute("aria-expanded", "false");
+    active = trigger;
+    pinned = !!lock;
+    title.textContent = trigger.dataset.skill || "";
+    description.textContent = trigger.dataset.context || "";
+    tooltip.classList.add("is-visible");
+    tooltip.setAttribute("aria-hidden", "false");
+    trigger.setAttribute("aria-expanded", "true");
+    position();
+  }
+
+  triggers.forEach(function (trigger) {
+    trigger.addEventListener("pointerenter", function (event) {
+      if (event.pointerType === "mouse" || event.pointerType === "pen") {
+        show(trigger, false);
+      }
+    });
+    trigger.addEventListener("pointerleave", function () {
+      if (active === trigger && !pinned) hide();
+    });
+    trigger.addEventListener("focus", function () {
+      show(trigger, false);
+    });
+    trigger.addEventListener("blur", function () {
+      if (active === trigger && !pinned) hide();
+    });
+    trigger.addEventListener("click", function () {
+      if (active === trigger && pinned) hide();
+      else show(trigger, true);
+    });
+  });
+
+  document.addEventListener("pointerdown", function (event) {
+    if (active && !active.contains(event.target)) hide();
+  });
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") hide();
+  });
+  window.addEventListener("scroll", function () {
+    if (!active) return;
+    if (!isRevealed(active)) hide();
+    else window.requestAnimationFrame(position);
+  }, { passive: true });
+  window.addEventListener("resize", position);
 })();
