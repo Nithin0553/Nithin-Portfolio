@@ -207,7 +207,7 @@ h1,h2,h3 { font-family: var(--display); }
 .contact-section h2 { color: var(--white); font-weight: 500; max-width: 850px; line-height: 1.07; letter-spacing: -3px; font-size: clamp(36px,5vw,68px); margin: 0; }
 .contact-section h2 span { color: #777; }
 .contact-section__content .btn-square { flex: 0 0 auto; margin-bottom: 7px; }
-.contact-email { font: 12px var(--mono); display: inline-flex; align-items: center; gap: 24px; border-bottom: 1px solid rgba(255,255,255,.3); margin-top: 44px; padding-bottom: 8px; color: #aaa; }
+.contact-email { font: 500 12px/1.5 var(--display); display: inline-flex; align-items: center; gap: 24px; border-bottom: 1px solid rgba(255,255,255,.3); margin-top: 44px; padding-bottom: 8px; color: #aaa; }
 .contact-email:hover { color: var(--blue); border-color: var(--blue); }
 /* Spacious editorial footer: bold wordmark, clear contact, and compact utility row. */
 .footer {
