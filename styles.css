@@ -1676,8 +1676,7 @@ h1,h2,h3 { font-family: var(--display); }
 .toolkit-section__dot { display:inline-block; width:.13em; height:.13em; margin-left:.12em; border-radius:50%; background:var(--blue); }
 .toolkit-section__intro p { max-width:350px; margin:0 0 7px; color:#a0a8b1; font:400 14px/1.65 var(--display); }
 .skills-laptop-stage {
-  --logo-size:62px; position:relative; isolation:isolate;
-  width:min(100%,1190px); height:658px; margin:0 auto;
+--logo-size:62px;position:relative;isolation:isolate;width:min(100%,1190px);height:680px;margin:0 auto;
 }
 .skills-laptop-stage__halo {
   position:absolute; z-index:-1; left:50%; bottom:60px; width:610px; height:420px;
@@ -1686,19 +1685,21 @@ h1,h2,h3 { font-family: var(--display); }
   filter:blur(19px); pointer-events:none;
 }
 .skills-laptop__device {
-  position:absolute; z-index:2; left:50%; bottom:66px; width:518px; height:354px;
-  transform:translateX(-50%); perspective:1200px;
-  filter:drop-shadow(0 24px 27px rgba(0,0,0,.65));
+position:absolute;z-index:2;left:50%;bottom:65px;width:620px;height:525px;
+ transform:translateX(-50%);perspective:1600px;transform-style:preserve-3d;
+ filter:drop-shadow(0 26px 25px rgba(0,0,0,.69));
 }
 .skills-laptop__screen-shell {
-  position:absolute; top:0; left:5%; width:90%; height:278px; padding:12px 11px 11px;
-  border:1px solid #536377; border-radius:16px 16px 7px 7px;
-  background:linear-gradient(145deg,#34465a,#151b27 38%,#090f1b 84%,#2d3c4f);
-  box-shadow:0 0 0 2px #0c1523,0 8px 38px rgba(22,111,216,.2),inset 0 2px 1px rgba(196,222,251,.2);
-  transform:rotateX(0); transform-origin:center 100%; backface-visibility:hidden;
-  transition:transform 1.45s cubic-bezier(.17,.83,.2,1);
+position:absolute;left:2.5%;width:95%;top:0;height:365px;z-index:6;
+ transform-origin:center bottom;transform-style:preserve-3d;
+ border:2px solid #667b93;border-radius:13px 13px 6px 6px;background:#121e2b;
+ box-shadow:inset 0 1px rgba(220,232,243,.17),0 6px 16px rgba(0,0,0,.35);
+ will-change:transform;
 }
-.skills-laptop__camera { position:absolute; top:5px; left:50%; width:3px; height:3px; border-radius:50%; background:#7596ac; box-shadow:0 0 0 2px rgba(8,16,28,.75); }
+.skills-laptop__camera {
+position:absolute;top:4px;left:50%;width:5px;height:5px;border-radius:50%;
+ background:#57728b;box-shadow:0 0 0 2px #162334;
+}
 .skills-laptop__display {
   display:flex; flex-direction:column; width:100%; height:100%; overflow:hidden;
   border:1px solid #27496e; border-radius:6px;
@@ -1730,37 +1731,31 @@ h1,h2,h3 { font-family: var(--display); }
 }
 .skills-laptop__status span { color:var(--blue); }
 .skills-laptop__hinge {
-  position:absolute; z-index:3; left:6%; right:6%; bottom:72px; height:11px;
-  border-radius:3px; background:linear-gradient(180deg,#3d5167,#121c2a 67%,#53647a);
+position:absolute;top:364px;left:10%;right:10%;height:9px;z-index:3;
+ border-radius:9px;background:linear-gradient(#506781,#141f2b 60%,#405268);
+ box-shadow:0 3px 4px rgba(0,0,0,.55);
 }
 .skills-laptop__deck {
-  position:absolute; z-index:4; left:0; right:0; bottom:0; height:99px;
-  border:1px solid #576779; border-radius:9px 9px 14px 14px;
-  background:linear-gradient(170deg,#46586b,#253449 30%,#121e2e 76%,#435368);
-  transform:perspective(560px) rotateX(57deg); transform-origin:center top;
-  box-shadow:0 14px 24px rgba(2,9,20,.65),inset 0 3px 0 rgba(213,232,251,.17);
+position:absolute;top:365px;left:0;width:100%;height:438px;z-index:4;
+ transform:rotateX(68deg);transform-origin:center top;border:2px solid #71859b;
+ border-radius:8px 8px 25px 25px;
+ background:linear-gradient(135deg,#6c8097,#33465d 44%,#243347 73%,#6b8099);
+ box-shadow:inset 0 3px rgba(225,236,255,.25),0 20px 26px rgba(0,0,0,.51);
 }
 .skills-laptop__keys {
-  position:absolute; top:12px; left:11%; width:78%; height:41px; border-radius:5px;
-  background:repeating-linear-gradient(0deg,transparent 0 10px,rgba(70,88,111,.75) 10px 12px),repeating-linear-gradient(90deg,#09111d 0 24px,#273447 24px 28px);
-  box-shadow:0 2px 7px rgba(0,0,0,.5),inset 0 1px 0 rgba(145,177,210,.18);
+position:absolute;left:8%;top:18px;width:84%;height:64%;
+ border-radius:9px;background:#172536;border:2px solid #182437;
+ box-shadow:0 2px 9px rgba(0,0,0,.48);padding:6px;
 }
 .skills-laptop__trackpad {
-  position:absolute; bottom:7px; left:39%; width:22%; height:23px;
-  border:1px solid rgba(146,176,205,.23); border-radius:4px; background:rgba(4,12,21,.18);
+position:absolute;left:40%;width:20%;bottom:10px;height:84px;
+ border:1px solid rgba(157,180,202,.41);border-radius:6px;
+ background:rgba(28,45,66,.065);
 }
 /* An outer metal lid conceals the keyboard while the laptop is shut. */
-.skills-laptop__closed-cover {
-  position:absolute; z-index:6; bottom:23px; left:2%; width:96%; height:86px;
-  display:grid; place-items:center; border:1px solid #62758a; border-radius:10px 10px 5px 5px;
-  background:linear-gradient(155deg,#536881,#273a52 39%,#17273c 72%,#546781);
-  box-shadow:inset 0 2px 1px rgba(208,228,252,.3),0 6px 12px rgba(0,0,0,.5);
-  transform:perspective(500px) rotateX(63deg);
-  opacity:0; visibility:hidden; pointer-events:none;
-  transition:opacity .32s ease,visibility .32s ease;
-}
-.skills-laptop__closed-cover>span { color:#c3d7eb; font:800 34px/1 var(--display); letter-spacing:-.08em; }
-.skills-laptop__closed-cover>span span { color:var(--blue); }
+
+
+
 .skills-laptop__logos { position:absolute; z-index:4; inset:0; margin:0; padding:0; list-style:none; pointer-events:none; }
 .skills-laptop__logo {
   position:absolute; top:50%; left:50%; width:var(--logo-size); height:var(--logo-size);
@@ -1940,218 +1935,50 @@ h1,h2,h3 { font-family: var(--display); }
   }
 }
 
-/* =========================================================
-   PREMIUM LAPTOP VISUAL UPGRADE
-   Visual refinement only: preserve existing scroll pinning,
-   screen rotation and staggered skill-logo animation.
-   ========================================================= */
-.skills-laptop__device {
-  width:560px;
-  height:372px;
-  filter:
-    drop-shadow(0 26px 34px rgba(0,0,0,.58))
-    drop-shadow(0 0 28px rgba(82,168,255,.08));
-}
 
-/* Screen enclosure and thin metallic bezel */
-.skills-laptop__screen-shell {
-  top:0;
-  left:7%;
-  width:86%;
-  height:286px;
-  padding:10px;
-  border:1px solid rgba(132,156,190,.28);
-  border-radius:18px 18px 10px 10px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),
-    linear-gradient(145deg,#40536b 0%,#243447 30%,#101927 72%,#3a4e66 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.16),
-    inset 0 -1px 0 rgba(0,0,0,.35),
-    0 10px 26px rgba(0,0,0,.28),
-    0 0 0 1px rgba(10,18,30,.65);
-  overflow:hidden;
+/* Geometry: 14-inch ultrabook proportions, 620:438 body and 589:365 display.
+   The closed aluminum outer surface and terminal are two faces of one lid. */
+.skills-laptop__screen-front,.skills-laptop__lid-back{
+ position:absolute;inset:0;border-radius:11px 11px 4px 4px;
+ backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;
 }
-.skills-laptop__screen-shell::before {
-  content:"";
-  position:absolute;
-  inset:8px;
-  border-radius:12px 12px 8px 8px;
-  pointer-events:none;
-  background:
-    linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 18%,transparent 45%),
-    linear-gradient(180deg,transparent 0%,transparent 70%,rgba(255,255,255,.02) 100%);
-  z-index:2;
+.skills-laptop__screen-front{
+ padding:12px;transform:translateZ(1px);
+ background:linear-gradient(130deg,#4a5970 0%,#0b121e 14%,#263449 100%);
 }
-.skills-laptop__screen-shell::after {
-  content:"";
-  position:absolute;
-  top:12px;
-  left:16px;
-  right:16px;
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
-  opacity:.9;
-  pointer-events:none;
+.skills-laptop__lid-back{
+ display:grid;place-items:center;transform:rotateY(180deg) translateZ(1px);
+ background:linear-gradient(135deg,#72839a,#3d4f67 30%,#233447 72%,#64758d);
+ box-shadow:inset 0 3px rgba(236,245,255,.23),inset 0 -5px rgba(16,28,43,.45);
 }
-.skills-laptop__camera {
-  top:7px;
-  left:50%;
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 35%,#a7d3ff 0%,#58789a 28%,#162232 62%,#0b1119 100%);
-  box-shadow:0 0 0 2px rgba(8,16,28,.88),0 0 0 3px rgba(255,255,255,.03);
-  z-index:3;
+.skills-laptop__lid-mark{
+ transform:rotateZ(180deg);color:#dce8f9;font:800 58px/1 var(--display);
+ letter-spacing:-.06em;text-shadow:0 2px 4px rgba(0,0,0,.4);
 }
-
-/* Terminal glass and system chrome */
-.skills-laptop__display {
-  position:relative;
-  border:1px solid rgba(53,63,74,.95);
-  border-radius:10px;
-  background:
-    radial-gradient(circle at 80% 18%,rgba(120,180,255,.07),transparent 26%),
-    radial-gradient(circle at 20% 100%,rgba(82,168,255,.06),transparent 24%),
-    #0d1117;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.02),
-    inset 0 -12px 24px rgba(0,0,0,.16);
-  overflow:hidden;
+.skills-laptop__lid-mark span{color:var(--blue);}
+.skills-laptop__deck::after{
+ content:"";position:absolute;left:12%;right:12%;bottom:0;height:3px;
+ border-radius:50%;background:rgba(155,170,186,.3);
 }
-.skills-laptop__display::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(135deg,rgba(255,255,255,.065) 0%,rgba(255,255,255,.02) 12%,transparent 28%),
-    linear-gradient(180deg,transparent 0%,transparent 80%,rgba(255,255,255,.015) 100%);
+.skills-laptop__keyrow{height:18%;display:flex;gap:4px;margin-bottom:4px;}
+.skills-laptop__key{
+ flex:1;display:grid;place-items:center;min-width:0;border-radius:3px;
+ border:1px solid #33455a;background:linear-gradient(#2b3c50,#0b1523);
+ color:#9baec6;font:500 8px/1 var(--mono);
+ box-shadow:inset 0 1px rgba(193,215,244,.08);
 }
-.skills-laptop__terminal-top {
-  height:34px;
-  flex-basis:34px;
-  background:linear-gradient(180deg,#1e252d 0%,#171d25 100%);
-  border-bottom:1px solid #2b3440;
-  color:#9da8b4;
+.skills-laptop__key.is-wide{flex:1.7;}
+.skills-laptop__key.is-space{flex:5;}
+.skills-laptop__speaker{
+ position:absolute;top:25px;width:30px;height:265px;opacity:.5;
+ background:repeating-linear-gradient(90deg,#101e30 0 2px,transparent 2px 5px);
+ -webkit-mask-image:linear-gradient(to right,transparent,#000,transparent);
+ mask-image:linear-gradient(to right,transparent,#000,transparent);
 }
-.skills-laptop__window-dots { left:14px; gap:8px; }
-.skills-laptop__window-dots i {
-  width:10px;
-  height:10px;
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.22);
-}
-.skills-laptop__terminal-body {
-  padding:18px 22px;
-  font:500 11px/1.55 var(--mono);
-}
-
-/* Steel hinge */
-.skills-laptop__hinge {
-  left:16%;
-  right:16%;
-  bottom:73px;
-  height:10px;
-  border-radius:999px;
-  background:linear-gradient(180deg,#607183 0%,#314154 35%,#1a2735 70%,#6c7d8e 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 2px 3px rgba(0,0,0,.24);
-}
-
-/* Aluminum deck, keyboard and trackpad */
-.skills-laptop__deck {
-  height:108px;
-  border:1px solid rgba(114,132,155,.42);
-  border-radius:12px 12px 20px 20px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.015)),
-    linear-gradient(180deg,#44576d 0%,#27384d 32%,#162434 78%,#33465d 100%);
-  transform:perspective(620px) rotateX(59deg);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.18),
-    inset 0 -1px 0 rgba(0,0,0,.28),
-    0 14px 28px rgba(0,0,0,.4);
-  overflow:hidden;
-}
-.skills-laptop__deck::before {
-  content:"";
-  position:absolute;
-  left:7%;
-  right:7%;
-  top:8px;
-  height:18px;
-  border-radius:20px;
-  background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,0));
-  pointer-events:none;
-  opacity:.55;
-}
-.skills-laptop__deck::after {
-  content:"";
-  position:absolute;
-  left:50%;
-  bottom:4px;
-  width:132px;
-  height:5px;
-  transform:translateX(-50%);
-  border-radius:999px;
-  background:linear-gradient(180deg,rgba(190,210,235,.75),rgba(95,118,146,.6));
-  opacity:.85;
-}
-.skills-laptop__keys {
-  top:12px;
-  left:10%;
-  width:80%;
-  height:45px;
-  border-radius:7px;
-  background:
-    repeating-linear-gradient(0deg,transparent 0 9px,rgba(73,92,116,.7) 9px 11px),
-    repeating-linear-gradient(90deg,#101923 0 25px,#2a394b 25px 29px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 4px 12px rgba(0,0,0,.32);
-}
-.skills-laptop__trackpad {
-  bottom:10px;
-  left:38%;
-  width:24%;
-  height:22px;
-  border:1px solid rgba(136,163,194,.24);
-  border-radius:5px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0)),
-    rgba(8,16,26,.2);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 1px 1px rgba(0,0,0,.18);
-}
-
-/* Closed aluminum cover */
-.skills-laptop__closed-cover {
-  bottom:24px;
-  left:5.5%;
-  width:89%;
-  height:78px;
-  border:1px solid rgba(136,156,180,.34);
-  border-radius:14px 14px 7px 7px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),
-    linear-gradient(145deg,#4f6280 0%,#31465f 38%,#1b2a3c 78%,#435873 100%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 6px 16px rgba(0,0,0,.3);
-}
-.skills-laptop__closed-cover::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  background:linear-gradient(135deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.04) 22%,transparent 44%);
-  pointer-events:none;
-}
-.skills-laptop__closed-cover > span {
-  font:800 34px/1 var(--display);
-  color:#d7e6f5;
-  text-shadow:0 1px 0 rgba(255,255,255,.1),0 2px 7px rgba(0,0,0,.22);
-}
-
-/* Keep the larger design consistent with responsive laptop scaling */
-@media (max-width:1200px) {
-  .skills-laptop__device { width:560px; height:372px; }
-}
-@media (max-width:700px) {
-  .skills-laptop__screen-shell { border-radius:16px 16px 9px 9px; }
-  .skills-laptop__deck { height:104px; }
-}
+.skills-laptop__speaker--left{left:4%;}
+.skills-laptop__speaker--right{right:4%;}
+/* Larger physical model is scaled down to fit tablets and phones. */
+@media(max-width:1200px){.skills-laptop__device{transform:translateX(-50%) scale(.88);transform-origin:center bottom;}}
+@media(max-width:850px){.skills-laptop__device{transform:translateX(-50%) scale(.74);}}
+@media(max-width:700px){.skills-laptop__device{transform:translateX(-50%) scale(.46);}}
+@media(max-width:380px){.skills-laptop__device{transform:translateX(-50%) scale(.42);}}
