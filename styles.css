@@ -2035,12 +2035,15 @@ position:absolute;left:40%;width:20%;bottom:10px;height:84px;
   z-index:1;
   pointer-events:none;
 }
-/* A hovered logo holds its current float frame, then resumes from
-   that same frame when the pointer leaves (also supports focus and taps). */
+/* Freeze the floating wrapper on hover/focus. The image itself eases
+   toward the precise center by counteracting its current float transform. */
 .skills-laptop__trigger:hover .skills-laptop__float,
-.skills-laptop__trigger:focus-visible .skills-laptop__float,
-.skills-laptop__trigger[aria-expanded="true"] .skills-laptop__float {
+.skills-laptop__trigger:focus-visible .skills-laptop__float {
   animation-play-state:paused;
+}
+.skills-laptop__trigger .skills-laptop__float img {
+  transition:transform .55s cubic-bezier(.22,.72,.22,1);
+  will-change:transform;
 }
 .skills-laptop__tooltip {
   position:fixed;

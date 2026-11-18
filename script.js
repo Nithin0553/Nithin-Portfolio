@@ -384,6 +384,30 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
     return logo && Number.parseFloat(getComputedStyle(logo).opacity) >= 0.85;
   }
 
+  // Stop the floating wrapper at its exact current frame, then animate
+  // only the icon back to the center of the existing circular hover ring.
+  function centerLogo(trigger) {
+    if (!isRevealed(trigger)) return;
+    const floater = trigger.querySelector(".skills-laptop__float");
+    const image = floater && floater.querySelector("img");
+    if (!image) return;
+    const transform = getComputedStyle(floater).transform;
+    try {
+      const matrix = transform === "none"
+        ? new DOMMatrixReadOnly()
+        : new DOMMatrixReadOnly(transform);
+      image.style.transform = matrix.inverse().toString();
+    } catch (error) {
+      // Reduced-motion and older browsers keep the image centered.
+      image.style.transform = "none";
+    }
+  }
+
+  function resumeLogo(trigger) {
+    const image = trigger.querySelector(".skills-laptop__float img");
+    if (image) image.style.transform = "";
+  }
+
   function hide() {
     if (active) active.setAttribute("aria-expanded", "false");
     active = null;
@@ -444,16 +468,21 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
   triggers.forEach(function (trigger) {
     trigger.addEventListener("pointerenter", function (event) {
       if (event.pointerType === "mouse" || event.pointerType === "pen") {
+        centerLogo(trigger);
         show(trigger, false);
       }
     });
     trigger.addEventListener("pointerleave", function () {
+      // Resume immediately when the cursor leaves, even if a card was clicked open.
+      if (!trigger.matches(":focus-visible")) resumeLogo(trigger);
       if (active === trigger && !pinned) hide();
     });
     trigger.addEventListener("focus", function () {
+      if (trigger.matches(":focus-visible")) centerLogo(trigger);
       show(trigger, false);
     });
     trigger.addEventListener("blur", function () {
+      resumeLogo(trigger);
       if (active === trigger && !pinned) hide();
     });
     trigger.addEventListener("click", function () {
