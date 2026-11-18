@@ -366,7 +366,6 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
   tooltip.setAttribute("role", "tooltip");
   tooltip.setAttribute("aria-hidden", "true");
   tooltip.innerHTML =
-    '<span class="skills-laptop__tooltip-kicker">Used in my work</span>' +
     '<strong class="skills-laptop__tooltip-title"></strong>' +
     '<p class="skills-laptop__tooltip-description"></p>';
   document.body.appendChild(tooltip);

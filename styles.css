@@ -2035,6 +2035,13 @@ position:absolute;left:40%;width:20%;bottom:10px;height:84px;
   z-index:1;
   pointer-events:none;
 }
+/* A hovered logo holds its current float frame, then resumes from
+   that same frame when the pointer leaves (also supports focus and taps). */
+.skills-laptop__trigger:hover .skills-laptop__float,
+.skills-laptop__trigger:focus-visible .skills-laptop__float,
+.skills-laptop__trigger[aria-expanded="true"] .skills-laptop__float {
+  animation-play-state:paused;
+}
 .skills-laptop__tooltip {
   position:fixed;
   left:0;
@@ -2061,25 +2068,6 @@ position:absolute;left:40%;width:20%;bottom:10px;height:84px;
   opacity:1;
   visibility:visible;
   transform:translateY(0) scale(1);
-}
-.skills-laptop__tooltip-kicker {
-  display:flex;
-  align-items:center;
-  gap:7px;
-  margin-bottom:8px;
-  color:#8dbce8;
-  font:600 9px/1.2 var(--mono);
-  letter-spacing:.13em;
-  text-transform:uppercase;
-}
-.skills-laptop__tooltip-kicker::before {
-  content:"";
-  display:inline-block;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:var(--blue);
-  box-shadow:0 0 8px rgba(82,168,255,.55);
 }
 .skills-laptop__tooltip-title {
   display:block;
