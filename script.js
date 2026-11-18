@@ -317,8 +317,13 @@ if (copyrightYear) copyrightYear.textContent = String(now.getFullYear());
       // Each skill leaves the display at a slightly different scroll position.
       const reveal = smoothstep((progress - 0.43 - index * 0.014) / 0.26);
       const [targetX, targetY] = item[mode];
-      const x = targetX * reveal;
-      const y = 104 + (targetY - 104) * reveal;
+      // Spread logos outward without altering the laptop, animation timing,
+      // or their staggered entrance. Keep mobile spacing gentler.
+      const spread = mode === "mobile" ? 1.10
+        : mode === "tablet" ? 1.12
+        : 1.15;
+      const x = targetX * spread * reveal;
+      const y = 104 + (targetY * spread - 104) * reveal;
       const scale = 0.08 + 0.92 * reveal;
       item.el.style.opacity = reveal.toFixed(3);
       item.el.style.transform =
